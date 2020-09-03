@@ -49,6 +49,25 @@ public class Food {
 		return name;
 	}
 
+	public boolean isValid() {
+		if(!(this.amount > 0)) {
+			System.out.println("Food amount cannot be neither negative nor zero.");
+			return false;
+		}
+
+		if(!(this.calories > 0)) {
+			System.out.println("Food calories cannot be neither negative nor zero.");
+			return false;
+		}
+
+		if(this.name.equals(null) || this.name.trim().equals("")) {
+			System.out.println("Food name cannot be neither null nor blank.");
+			return false;
+		}
+
+		return true;
+	}
+
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
