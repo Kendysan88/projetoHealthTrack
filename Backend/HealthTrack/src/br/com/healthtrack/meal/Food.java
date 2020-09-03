@@ -4,8 +4,6 @@ import br.com.healthtrack.utils.Constants;
 
 public class Food {
 
-	// keep in alphabetically sorted
-	// TODO: amount should be able to be dynamically declared.
 	private double amount;
 	private double calories;
 	private String description;
