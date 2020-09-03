@@ -54,6 +54,14 @@ public class Food {
 		return true;
 	}
 
+	public static Food[] search(String name) {
+		Food[] results = {};
+
+		System.out.println("Searching for " + name + " into Foods table in database... DONE!");
+
+		return results;
+	}
+
 	public void setAmount(double amount) {
 		if(amount > 0) {
 			this.amount = amount;
