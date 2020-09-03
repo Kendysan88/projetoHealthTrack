@@ -25,11 +25,6 @@ public class Food {
 		this.description = description;
 	}
 	
-	public boolean save() {
-		System.out.println("Saving Food in the database... DONE!");
-		return true;
-	}
-
 	private String formatCalories(double calories) {
 		return String.format("%.2f", calories) + " " + Constants.CALORIES_UNIT_SYMBOL;
 	}
@@ -52,6 +47,11 @@ public class Food {
 
 	public String getName() {
 		return name;
+	}
+
+	public boolean save() {
+		System.out.println("Saving Food in the database... DONE!");
+		return true;
 	}
 
 	public void setAmount(double amount) {
