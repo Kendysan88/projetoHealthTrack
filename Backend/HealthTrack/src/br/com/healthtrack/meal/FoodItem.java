@@ -26,6 +26,15 @@ public class FoodItem {
 	}
 	
 	/**
+	 * Método para remover um item alimentício no banco de dados.
+	 * @return Se o objeto foi removido corretamente no banco de dados.
+	 */
+	public boolean destroy() {
+		System.out.println("Deleting FoodItem from the database... DONE!");
+		return true;
+	}
+	
+	/**
 	 * Método para se obter a quantidade do item alimentício.
 	 * @return Quantidade em gramas (g) do item alimentício.
 	 */

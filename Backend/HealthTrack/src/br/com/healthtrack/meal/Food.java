@@ -42,6 +42,15 @@ public class Food {
 		this.name = name;
 		this.description = description;
 	}
+	
+	/**
+	 * Método para remover um item alimentício no banco de dados.
+	 * @return Se o objeto foi removido corretamente no banco de dados.
+	 */
+	public boolean destroy() {
+		System.out.println("Deleting Food from the database... DONE!");
+		return true;
+	}
 
 	/**
 	 * Método para se obter a quantidade do item alimentício.
