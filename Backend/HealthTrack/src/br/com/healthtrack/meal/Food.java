@@ -42,10 +42,6 @@ public class Food {
 		this.name = name;
 		this.description = description;
 	}
-	
-	private String formatCalories(double calories) {
-		return String.format("%.2f", calories) + " " + Constants.CALORIES_UNIT_SYMBOL;
-	}
 
 	/**
 	 * Método para se obter a quantidade do item alimentício.
@@ -68,7 +64,7 @@ public class Food {
 	 * @return Quantidade de calorias (cal) do item alimentício.
 	 */
 	public String getCaloriesPretty() {
-		return formatCalories(calories);
+		return Constants.formatCalories(calories);
 	}
 
 	/**
