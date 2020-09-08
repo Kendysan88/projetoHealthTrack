@@ -10,7 +10,6 @@ import br.com.healthtrack.utils.Constants;
 public class FoodItem {
 	private Food food;
 	private double amount;
-	private double calories;
 	
 	public FoodItem() {
 	}
