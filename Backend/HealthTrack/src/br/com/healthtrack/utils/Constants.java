@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Constants {
 	public static final String CALORIES_UNIT_SYMBOL = "cal";
-	public static final String DATETIME_FORMAT = "dd-MM-yyyy HH:mm";
+	public static final String DATETIME_FORMAT = "dd-MM-yyyy HH:mm:ss";
 	
 	public static String formatCalories(double calories) {
 		return String.format("%.2f", calories) + " " + CALORIES_UNIT_SYMBOL;

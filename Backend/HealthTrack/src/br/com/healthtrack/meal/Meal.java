@@ -80,8 +80,8 @@ public class Meal {
 	}
 
 	/**
-	 * Método para se obter a data e hora da refeição formatados (dd/mm/yy HH:MM:SS).
-	 * @return Data e hora da refeição no formato (dd/mm/yy HH:MM:SS).
+	 * Método para se obter a data e hora da refeição formatados (dd-mm-yy HH:MM:SS).
+	 * @return Data e hora da refeição no formato (dd-mm-yy HH:MM:SS).
 	 */
 	public String getDateTimePretty() {
 		return Constants.formatDateTime(getDateTime());
