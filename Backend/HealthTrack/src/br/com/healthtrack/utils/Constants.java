@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Constants {
+	public static final int PASSWORD_SIZE = 6;
 	public static final String CALORIES_UNIT_SYMBOL = "cal";
 	public static final String DATETIME_FORMAT = "dd-MM-yyyy HH:mm";
 	
