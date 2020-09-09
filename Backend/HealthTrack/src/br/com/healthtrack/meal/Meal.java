@@ -22,14 +22,14 @@ public class Meal {
 			"LUNCH",
 			"SNACK"
 	).collect(Collectors.toCollection(HashSet::new));
-	
+
 	private LocalDateTime dateTime;
 	private String type;
 	private List<FoodItem> foodItems = new ArrayList<FoodItem>();
 
 	public Meal() {
 	}
-	
+
 	/**
 	 * Método construtor padrão.
 	 * @param dateTime Date e hora da refeição.
@@ -55,14 +55,14 @@ public class Meal {
 	 */
 	public double getTotalCalories() {
 		double totalCalories = 0.0;
-		
+
 		for(FoodItem foodItem : foodItems) {
 			totalCalories += foodItem.getCalories();
 		}
-		
+
 		return totalCalories;
 	}
-	
+
 	/**
 	 * Método para se obter a quantidade total de calorias da refeição com sufixo de unidade.
 	 * @return Quantidade de calorias (cal) da refeição.
@@ -78,7 +78,7 @@ public class Meal {
 	public LocalDateTime getDateTime() {
 		return dateTime;
 	}
-	
+
 	/**
 	 * Método para se obter a data e hora da refeição formatados (dd/mm/yy HH:MM:SS).
 	 * @return Data e hora da refeição no formato (dd/mm/yy HH:MM:SS).
@@ -94,7 +94,7 @@ public class Meal {
 	public String getType() {
 		return type;
 	}
-	
+
 	/**
 	 * Método para se obter os itens alimentícios da refeição.
 	 * @return Itens alimentícios da refeição.
@@ -102,14 +102,14 @@ public class Meal {
 	public List<FoodItem> getFoodItems() {
 		return foodItems;
 	}
-	
+
 	/**
 	 * Método para persistir as informações da refeição no banco de dados.
 	 * @return Se o objeto foi salvo corretamente no banco de dados.
 	 */
 	public boolean save() {
 		for(FoodItem foodItem : foodItems) {
-			foodItem.save();			
+			foodItem.save();
 		}
 
 		System.out.println("Saving Meal in the database... DONE!");
@@ -138,7 +138,7 @@ public class Meal {
 
 		return results;
 	}
-	
+
 	/**
 	 * Método para se consultar refeições já persistidas no banco de dados.
 	 * @param initialDateTime Data e hora inicial do intervalo.
@@ -175,7 +175,7 @@ public class Meal {
 	 */
 	public void setType(String type) {
 		String sanitizedType = type.trim().toLowerCase();
-		
+
 		if(!sanitizedType.equals("")) {
 			if(types.contains(sanitizedType)) {
 				this.type = sanitizedType;

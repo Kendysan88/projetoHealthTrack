@@ -10,7 +10,7 @@ public class Constants {
 	public static String formatCalories(double calories) {
 		return String.format("%.2f", calories) + " " + CALORIES_UNIT_SYMBOL;
 	}
-	
+
 	public static String formatDateTime(LocalDateTime dateTime) {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
 		return dateTime.format(format);
