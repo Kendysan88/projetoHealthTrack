@@ -14,17 +14,7 @@ public class FoodItem {
 	
 	public FoodItem() {
 	}
-	
-	/**
-	 * Método construtor padrão.
-	 * @param amount Quantidade em gramas (g).
-	 * @param food Item alimentício de referência.
-	 */
-	public FoodItem(double amount, Food food) {
-		this.amount = amount;
-		this.food = food;
-	}
-	
+
 	/**
 	 * Método para remover um item alimentício no banco de dados.
 	 * @return Se o objeto foi removido corretamente no banco de dados.

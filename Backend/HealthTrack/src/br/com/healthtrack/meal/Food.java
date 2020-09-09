@@ -18,32 +18,6 @@ public class Food {
 	}
 	
 	/**
-	 * Método construtor padrão.
-	 * @param amount Quantidade de referência em gramas (g).
-	 * @param calories Quantidade de calorias (cal).
-	 * @param name Nome para o item alimentício.
-	 */
-	public Food(double amount, double calories, String name) {
-		this.amount = amount;
-		this.calories = calories;
-		this.name = name;
-	}
-	
-	/**
-	 * Método construtor sobrecarregado.
-	 * @param amount Quantidade de referência em gramas (g).
-	 * @param calories Quantidade de calorias (cal).
-	 * @param name Nome para o item alimentício.
-	 * @param description Descrição e/ou observação sobre o item alimentício.
-	 */
-	public Food(double amount, double calories, String name, String description) {
-		this.amount = amount;
-		this.calories = calories;
-		this.name = name;
-		this.description = description;
-	}
-	
-	/**
 	 * Método para remover um item alimentício no banco de dados.
 	 * @return Se o objeto foi removido corretamente no banco de dados.
 	 */

@@ -31,16 +31,6 @@ public class Meal {
 	}
 
 	/**
-	 * Método construtor padrão.
-	 * @param dateTime Date e hora da refeição.
-	 * @param type Tipo de refeição.
-	 */
-	public Meal(LocalDateTime dateTime, String type) {
-		this.dateTime = dateTime;
-		this.type = type;
-	}
-
-	/**
 	 * Método para remover uma refeição no banco de dados.
 	 * @return Se o objeto foi removido corretamente no banco de dados.
 	 */
