@@ -36,8 +36,8 @@ public class Meal {
 	 * @param type Tipo de refeição.
 	 */
 	public Meal(LocalDateTime dateTime, String type) {
-		this.setDateTime(dateTime);
-		this.setType(type);
+		this.dateTime = dateTime;
+		this.type = type;
 	}
 
 	/**
