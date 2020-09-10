@@ -7,7 +7,8 @@ import br.com.healthtrack.utils.Constants;
 /**
  * Classe que abstrai uma informação/medida corporal.
  * @author Afonso de Sousa Costa
- * @version <h3>1.0</h3>*/
+ * @version 1.0
+ */
 
 public class BodyInformation {
 	private LocalDateTime dateTime;
@@ -43,7 +44,6 @@ public class BodyInformation {
 	/**
 	 * Método para se alterar a data e hora da medição corporal.
 	 * @param dateTime Date e hora da medição corporal.
-	 * @return Não há retorno.
 	 */
 	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
@@ -51,7 +51,7 @@ public class BodyInformation {
 
 	/**
 	 * Método para se alterar o valor da medição corporal (apenas para valores maiores do que zero).
-	 * @return Não há retorno.
+	 * @param value Valor da medição corporal.
 	 */
 	public void setValue(double value) {
 		if(value > 0) {

@@ -13,7 +13,8 @@ import br.com.healthtrack.utils.Constants;
 /**
  * Classe que abstrai uma refeição bem como seu valor calórico.
  * @author Afonso de Sousa Costa
- * @version <h3>1.0</h3>*/
+ * @version 1.0
+ */
 
 public class Meal {
 	public static final Set<String> types = Stream.of(
@@ -152,7 +153,6 @@ public class Meal {
 	/**
 	 * Método para se alterar a data e hora da refeição.
 	 * @param dateTime Date e hora da reifeção.
-	 * @return Não há retorno.
 	 */
 	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
@@ -161,7 +161,6 @@ public class Meal {
 	/**
 	 * Método para se alterar o tipo da refeição (apenas para valores diferentes de vazio e inclusos na lista de tipos).
 	 * @param type Tipo da refeição.
-	 * @return Não há retorno.
 	 */
 	public void setType(String type) {
 		String sanitizedType = type.trim().toLowerCase();

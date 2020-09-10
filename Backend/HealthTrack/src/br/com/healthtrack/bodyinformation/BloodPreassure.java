@@ -7,7 +7,8 @@ import br.com.healthtrack.utils.Constants;
 /**
  * Classe que abstrai uma informação/medida de pressão sanguínea corporal.
  * @author Afonso de Sousa Costa
- * @version <h3>1.0</h3>*/
+ * @version 1.0
+ */
 
 public class BloodPreassure extends BodyInformation {
 	private int diastolicValue;
@@ -24,7 +25,7 @@ public class BloodPreassure extends BodyInformation {
 
 	/**
 	 * Método para se obter o valor diastólico da medição de pressão corporal.
-	 * @return Valor disstólico da medição corporal.
+	 * @return Valor diastólico da medição de pressão corporal.
 	 */
 	public int getDiastolicValue() {
 		return diastolicValue;
@@ -32,7 +33,7 @@ public class BloodPreassure extends BodyInformation {
 
 	/**
 	 * Método para se obter o valor sistólico da medição de pressão corporal.
-	 * @return Valor disstólico da medição corporal.
+	 * @return Valor sistólico da medição de pressão corporal
 	 */
 	public int getSystolicValue() {
 		return systolicValue;
@@ -42,7 +43,7 @@ public class BloodPreassure extends BodyInformation {
 	 * Método para se obter o valor de pressão sanguínea da medição corporal com sufixo de unidade.
 	 * @return Valor da pressão sanguínea da medição corporal com sufixo de milimetros mercúrio.
 	 */
-	public String getValuePretty(int diastolicValue, int systolicValue) {
+	public String getValuePretty() {
 		return diastolicValue + "/" + systolicValue + " " + Constants.CALORIES_UNIT_SYMBOL;
 	}
 
@@ -77,7 +78,7 @@ public class BloodPreassure extends BodyInformation {
 
 	/**
 	 * Método para se alterar o valor diastólico da medição de pressão corporal (apenas para valores maiores do que zero).
-	 * @return Não há retorno.
+	 * @param diastolicValue Valor diastólico da medição de pressão corporal.
 	 */
 	public void setDiastolicValue(int diastolicValue) {
 		if(diastolicValue > 0) {
@@ -87,7 +88,7 @@ public class BloodPreassure extends BodyInformation {
 
 	/**
 	 * Método para se alterar o valor sistólico da medição de pressão corporal (apenas para valores maiores do que zero).
-	 * @return Não há retorno.
+	 * @param systolicValue Valor sistólico da medição de pressão corporal.
 	 */
 	public void setSystolicValue(int systolicValue) {
 		if(diastolicValue > 0) {

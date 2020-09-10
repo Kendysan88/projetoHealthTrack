@@ -7,7 +7,8 @@ import br.com.healthtrack.utils.Constants;
 /**
  * Classe que abstrai uma informação/medida de altura corporal.
  * @author Afonso de Sousa Costa
- * @version <h3>1.0</h3>*/
+ * @version 1.0
+ */
 
 public class Height extends BodyInformation {
 	/**

@@ -5,8 +5,8 @@ import br.com.healthtrack.utils.Constants;
 /**
  * Classe que abstrai uma porção de um item alimentício, bem como seu valor calórico.
  * @author Afonso de Sousa Costa
- * @version <h3>1.0</h3>*/
-
+ * @version 1.0
+ */
 public class Food {
 
 	private double amount;
@@ -91,7 +91,6 @@ public class Food {
 	/**
 	 * Método para se alterar a quantidade do item alimentício (apenas para valores maiores do que zero).
 	 * @param amount Quantidade do item alimentício.
-	 * @return Não há retorno.
 	 */
 	public void setAmount(double amount) {
 		if(amount > 0) {
@@ -101,7 +100,7 @@ public class Food {
 
 	/**
 	 * Método para se alterar a quantidade de calorias do item alimentício (apenas para valores maiores do que zero).
-	 * @return Não há retorno.
+	 * @param calories Quantidade de calorias do item alimentício.
 	 */
 	public void setCalories(double calories) {
 		if(calories > 0) {
@@ -111,7 +110,7 @@ public class Food {
 	
 	/**
 	 * Método para se alterar a descrição do item alimentício (apenas para valores diferentes de vazio).
-	 * @return Não há retorno.
+	 * @param description Descrição do item alimentício.
 	 */
 	public void setDescription(String description) {
 		if(!description.trim().equals("")) {
@@ -121,7 +120,7 @@ public class Food {
 
 	/**
 	 * Método para se alterar o nome do item alimentício (apenas para valores diferentes de vazio).
-	 * @return Não há retorno.
+	 * @param name Nome do item alimentício.
 	 */
 	public void setName(String name) {
 		if(!name.trim().equals("")) {
