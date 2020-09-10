@@ -123,7 +123,7 @@ public class Meal {
 				Constants.formatDateTime(finalDateTime) +
 				" and " +
 				type +
-				" into Meal table in database... DONE!"
+				" into Meals table in database... DONE!"
 		);
 
 		return results;
