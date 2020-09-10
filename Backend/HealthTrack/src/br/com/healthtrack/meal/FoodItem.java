@@ -12,8 +12,13 @@ public class FoodItem {
 	private Food food;
 	private double amount;
 	private double calories;
-	
-	public FoodItem() {
+
+	/**
+	 * Método construtor.
+	 * @param food Item alimentício de referência.
+	 */
+	public FoodItem(Food food) {
+		this.food = food;
 	}
 
 	/**
