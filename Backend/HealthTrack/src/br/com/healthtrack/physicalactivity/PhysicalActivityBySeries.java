@@ -3,8 +3,8 @@ package br.com.healthtrack.physicalactivity;
 /**
  * Classe que herda da classe atividade física e permite realizar exercícios com séries, repetições e pesos.
  * @author Richard Kendy Tanaka
- * @version
- * <h3>1.0</h3>*/
+ * @version 1.0
+ */
 
 public class PhysicalActivityBySeries extends PhysicalActivity {
 
@@ -44,7 +44,6 @@ public class PhysicalActivityBySeries extends PhysicalActivity {
 	/**
 	 * Método para se alterar a quantidade de séries necessárias para realizar a atividade.(apenas para valores maiores do que zero).
 	 * @param series Quantidade de séries necessárias para realizar a atividade.
-	 * @return Não há retorno.
 	 */
 	public void setSeries(int series) {
 		if (series > 0) {
@@ -63,7 +62,6 @@ public class PhysicalActivityBySeries extends PhysicalActivity {
 	/**
 	 * Método para se alterar a quantidade de repetições necessárias para realizar a atividade.(apenas para valores maiores do que zero).
 	 * @param repetions Quantidade de repetições necessárias para realizar a atividade.
-	 * @return Não há retorno.
 	 */
 	public void setRepetions(int repetions) {
 		if (repetions > 0) {
@@ -82,7 +80,6 @@ public class PhysicalActivityBySeries extends PhysicalActivity {
 	/**
 	 * Método para se alterar a quantidade de peso necessário para realizar a atividade.(apenas para valores maiores do que zero).
 	 * @param weight Quantidade de peso necessário para realizar a atividade.
-	 * @return Não há retorno.
 	 */
 	public void setWeight(double weight) {
 		if (weight > 0) {

@@ -5,8 +5,8 @@ import java.util.Calendar;
 /**
  * Classe que abstrai uma atividade física.
  * @author Richard Kendy Tanaka
- * @version
- * <h3>1.0</h3>*/
+ * @version 1.0
+ */
 
 public class PhysicalActivity {
 
@@ -53,7 +53,6 @@ public class PhysicalActivity {
 	/**
 	 * Método para se alterar a quantidade de calorias gastas durante a atividade.(apenas para valores maiores do que zero).
 	 * @param calories Quantidade de calorias gastas durante a atividade.
-	 * @return Não há retorno.
 	 */
 	public void setCalories(double calories) {
 		if (calories > 0) {
@@ -72,7 +71,6 @@ public class PhysicalActivity {
 	/**
 	 * Método para se alterar o tipo de atividade física realizada. (apenas para valores diferentes de vazio).
 	 * @param type Tipo de atividade física realizada.
-	 * @return Não há retorno.
 	 */
 	public void setType(String type) {
 		if (!type.trim().equals("")) {
@@ -92,7 +90,6 @@ public class PhysicalActivity {
 	/**
 	 * Método para se alterar a hora inicial da atividade (horas). (apenas para valores diferentes de zero).
 	 * @param beginHour Hora inicial da atividade
-	 * @return Não há retorno.
 	 */
 	public void setBeginHour(int beginHour) {
 		Calendar dateTime = Calendar.getInstance();
@@ -112,7 +109,6 @@ public class PhysicalActivity {
 	/**
 	 * Método para se alterar a hora final da atividade (horas). (apenas para valores diferentes de zero).
 	 * @param endHour Hora final da atividade
-	 * @return Não há retorno.
 	 */
 	public void setEndHour(int endHour) {
 		Calendar dateTime = Calendar.getInstance();
@@ -124,6 +120,7 @@ public class PhysicalActivity {
 	// Methods
 	/**
 	 * Método para calcular a quantidade calorias gastas
+	 * @param calories Quantidade de calorias gastas durante a atividade (cal).
 	 * @return A quantidade calorias gastas na atividade
 	 */
 	public double calculateCalories(double calories) {
@@ -133,6 +130,7 @@ public class PhysicalActivity {
 
 	/**
 	 * Método para persistir as informações das atividades físicas no banco de dados.
+	 * @param physicalActivity instância do objeto PhysicalActivity 
 	 * @return Se o objeto foi salvo corretamente no banco de dados.
 	 */
 	public boolean save(PhysicalActivity physicalActivity) {
@@ -142,7 +140,7 @@ public class PhysicalActivity {
 
 	/**
 	 * Método para alterar as informações das atividades físicas no banco de dados.
-	 * 
+	 * @param physicalActivity instância do objeto PhysicalActivity 
 	 * @return Se o objeto foi atualizado corretamente no banco de dados.
 	 */
 	public boolean update(PhysicalActivity physicalActivity) {
@@ -153,6 +151,7 @@ public class PhysicalActivity {
 
 	/**
 	 * Método para remover as atividades físicas no banco de dados.
+	 * @param physicalActivity instância do objeto PhysicalActivity 
 	 * @return Se o objeto foi removido corretamente no banco de dados.
 	 */
 	public boolean destroy(PhysicalActivity physicalActivity) {

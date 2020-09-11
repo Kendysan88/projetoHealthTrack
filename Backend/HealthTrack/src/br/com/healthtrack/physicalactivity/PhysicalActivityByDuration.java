@@ -3,8 +3,8 @@ package br.com.healthtrack.physicalactivity;
 /**
  * Classe que herda da classe atividade física e permite realizar exercícios com distância e duração.
  * @author Richard Kendy Tanaka
- * @version
- * <h3>1.0</h3>*/
+ * @version 1.0
+ */
 
 public class PhysicalActivityByDuration extends PhysicalActivity {
 
@@ -37,7 +37,6 @@ public class PhysicalActivityByDuration extends PhysicalActivity {
 	/**
 	 * Método para se alterar a distância percorrida durante a atividade realizada.(apenas para valores maiores do que zero).
 	 * @param distance A distância percorrida durante a atividade realizada.
-	 * @return Não há retorno.
 	 */
 	public void setDistance(double distance) {
 		if (distance > 0) {

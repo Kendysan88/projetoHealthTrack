@@ -5,7 +5,8 @@ import br.com.healthtrack.utils.Constants;
 /**
  * Classe que abstrai uma pessoa.
  * @author Gabriel Souza Piscinato
- * @version <h3>1.0</h3>*/
+ * @version 1.0
+ */
 
 public class Person {
 
