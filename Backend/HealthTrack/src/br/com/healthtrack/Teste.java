@@ -9,6 +9,11 @@ import br.com.healthtrack.physicalactivity.PhysicalActivity;
 import br.com.healthtrack.physicalactivity.PhysicalActivityByDuration;
 import br.com.healthtrack.physicalactivity.PhysicalActivityBySeries;
 
+/**
+ * Classe que serve para testar as classes que foram criadas.
+ * @author Todos os membros do grupo
+ * @version 1.0
+ */
 public class Teste {
 //	Nesta classe iremos testar as classes que foram criadas para o projeto.
 	public static void main(String[] args) {
