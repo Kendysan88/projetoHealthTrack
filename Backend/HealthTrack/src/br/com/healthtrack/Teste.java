@@ -2,9 +2,14 @@ package br.com.healthtrack;
 
 import java.time.LocalDateTime;
 
+import br.com.healthtrack.bodyinformation.BodyInformation;
+import br.com.healthtrack.bodyinformation.Height;
+import br.com.healthtrack.bodyinformation.Weight;
 import br.com.healthtrack.meal.Food;
 import br.com.healthtrack.meal.FoodItem;
 import br.com.healthtrack.meal.Meal;
+import br.com.healthtrack.users.Person;
+import br.com.healthtrack.users.User;
 
 public class Teste {
 
@@ -80,6 +85,17 @@ public class Teste {
 		System.out.println("Total calories: " + lunch.getTotalCaloriesPretty());
 
 		lunch.save();
+		
+		Height altura = new Height();
+		Weight peso = new Weight();
+		altura.setValue(1.75);
+		peso.setValue(70);
+		
+		User user = new User();
+		user.getAlturas().add(altura);
+		user.getPesos().add(peso);
+		System.out.println("Seu IMC é: " + user.calculateIMC());
+		
 	}
 
 }
