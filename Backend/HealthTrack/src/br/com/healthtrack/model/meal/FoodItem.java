@@ -9,6 +9,7 @@ import br.com.healthtrack.utils.Utils;
  */
 
 public class FoodItem {
+
 	private Food food;
 	private double amount;
 	private double calories;
