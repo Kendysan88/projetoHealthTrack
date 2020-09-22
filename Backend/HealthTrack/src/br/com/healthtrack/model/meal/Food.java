@@ -21,12 +21,9 @@ public class Food {
 	 * @param name     Nome do tipo de refeição.
 	 */
 	public Food(double amount, double calories, String name) {
-		if(amount < 0) {
-			this.amount = 0;
-		}
-		if(calories < 0) {
-			this.calories = 0;
-		}
+		this.amount = amount < 0 ? 0 : amount;
+		this.calories = calories < 0 ? 0 : calories;
+
 		if(!name.trim().equals("")) {
 			this.name = name;
 		}
