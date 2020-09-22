@@ -1,11 +1,11 @@
-package br.com.healthtrack.meal;
+package br.com.healthtrack.model.meal;
 
-import br.com.healthtrack.utils.Constants;
+import br.com.healthtrack.utils.Utils;
 
 /**
- * Classe que abstrai uma porÁ„o de um item alimentÌcio, bem como seu valor calÛrico.
+ * Classe que abstrai uma por√ß√£o de um item aliment√≠cio, bem como seu valor cal√≥rico.
  * @author Afonso de Sousa Costa
- * @version 1.0
+ * @version 2.0
  */
 public class Food {
 
@@ -14,83 +14,88 @@ public class Food {
 	private String description;
 	private String name;
 	
-	public Food() {
-	}
-	
 	/**
-	 * MÈtodo para remover um item alimentÌcio no banco de dados.
-	 * @return Se o objeto foi removido corretamente no banco de dados.
+	 * M√©todo construtor padr√£o (amount, calories e name s√£o obrigat√≥rios).
+	 * @param amount   Quantidade do item aliment√≠cio.
+	 * @param calories Quatidade de calorias do item aliment√≠cio.
+	 * @param name     Nome do tipo de refei√ß√£o.
 	 */
-	public boolean destroy() {
-		System.out.println("Deleting Food from the database... DONE!");
-		return true;
+	public Food(double amount, double calories, String name) {
+		if(amount < 0) {
+			this.amount = 0;
+		}
+		if(calories < 0) {
+			this.calories = 0;
+		}
+		if(!name.trim().equals("")) {
+			this.name = name;
+		}
 	}
 
 	/**
-	 * MÈtodo para se obter a quantidade do item alimentÌcio.
-	 * @return Quantidade em gramas (g) do item alimentÌcio.
+	 * M√©todo construtor padr√£o sobrecarregado (amount, calories. name e description s√£o obrigat√≥rios).
+	 * @param amount   Quantidade do item aliment√≠cio.
+	 * @param calories Quatidade de calorias do item aliment√≠cio.
+	 * @param name     Nome do tipo de refei√ß√£o.
+	 */
+	public Food(double amount, double calories, String name, String description) {
+		if(amount < 0) {
+			this.amount = 0;
+		}
+		if(calories < 0) {
+			this.calories = 0;
+		}
+		if(!name.trim().equals("")) {
+			this.name = name;
+		}
+		if(!description.trim().equals("")) {
+			this.description = description;
+		}
+	}
+
+	/**
+	 * M√©todo para se obter a quantidade do item aliment√≠cio.
+	 * @return Quantidade em gramas (g) do item aliment√≠cio.
 	 */
 	public double getAmount() {
 		return amount;
 	}
 
 	/**
-	 * MÈtodo para se obter a quantidade de calorias do item alimentÌcio.
-	 * @return Quantidade de calorias (cal) do item alimentÌcio.
+	 * M√©todo para se obter a quantidade de calorias do item aliment√≠cio.
+	 * @return Quantidade de calorias (cal) do item aliment√≠cio.
 	 */
 	public double getCalories() {
 		return calories;
 	}
 	
 	/**
-	 * MÈtodo para se obter a quantidade de calorias do item alimentÌcio com sufixo de unidade.
-	 * @return Quantidade de calorias (cal) do item alimentÌcio.
+	 * M√©todo para se obter a quantidade de calorias do item aliment√≠cio com sufixo de unidade.
+	 * @return Quantidade de calorias (cal) do item aliment√≠cio.
 	 */
 	public String getCaloriesPretty() {
-		return Constants.formatCalories(calories);
+		return Utils.formatCalories(calories);
 	}
 
 	/**
-	 * MÈtodo para se obter a descriÁ„o dada ao item alimentÌcio.
-	 * @return DescriÁ„o do item alimentÌcio.
+	 * M√©todo para se obter a descri√ß√£o dada ao item aliment√≠cio.
+	 * @return Descri√ß√£o do item aliment√≠cio.
 	 */
 	public String getDescription() {
 		return description;
 	}
 
 	/**
-	 * MÈtodo para se obter o nome do item alimentÌcio.
-	 * @return Nome do item alimentÌcio.
+	 * M√©todo para se obter o nome do item aliment√≠cio.
+	 * @return Nome do item aliment√≠cio.
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * MÈtodo para persistir as informaÁıes de do item alimentÌcio no banco de dados.
-	 * @return Se o objeto foi salvo corretamente no banco de dados.
-	 */
-	public boolean save() {
-		System.out.println("Saving Food in the database... DONE!");
-		return true;
-	}
-
-	/**
-	 * MÈtodo para se consultar itens alimentÌcios j· persistidos no banco de dados.
-	 * @param name Nome do item alimentÌcio.
-	 * @return Lista de itens alimentÌcios.
-	 */
-	public static Food[] search(String name) {
-		Food[] results = {};
-
-		System.out.println("Searching for " + name + " into Foods table in database... DONE!");
-
-		return results;
-	}
-
-	/**
-	 * MÈtodo para se alterar a quantidade do item alimentÌcio (apenas para valores maiores do que zero).
-	 * @param amount Quantidade do item alimentÌcio.
+	 * M√©todo para se alterar a quantidade do item aliment√≠cio (apenas para valores maiores do que zero).
+	 * @param amount Quantidade do item aliment√≠cio.
 	 */
 	public void setAmount(double amount) {
 		if(amount > 0) {
@@ -99,8 +104,8 @@ public class Food {
 	}
 
 	/**
-	 * MÈtodo para se alterar a quantidade de calorias do item alimentÌcio (apenas para valores maiores do que zero).
-	 * @param calories Quantidade de calorias do item alimentÌcio.
+	 * M√©todo para se alterar a quantidade de calorias do item aliment√≠cio (apenas para valores maiores do que zero).
+	 * @param calories Quantidade de calorias do item aliment√≠cio.
 	 */
 	public void setCalories(double calories) {
 		if(calories > 0) {
@@ -109,8 +114,8 @@ public class Food {
 	}
 	
 	/**
-	 * MÈtodo para se alterar a descriÁ„o do item alimentÌcio (apenas para valores diferentes de vazio).
-	 * @param description DescriÁ„o do item alimentÌcio.
+	 * M√©todo para se alterar a descri√ß√£o do item aliment√≠cio (apenas para valores diferentes de vazio).
+	 * @param description Descri√ß√£o do item aliment√≠cio.
 	 */
 	public void setDescription(String description) {
 		if(!description.trim().equals("")) {
@@ -119,8 +124,8 @@ public class Food {
 	}
 
 	/**
-	 * MÈtodo para se alterar o nome do item alimentÌcio (apenas para valores diferentes de vazio).
-	 * @param name Nome do item alimentÌcio.
+	 * M√©todo para se alterar o nome do item aliment√≠cio (apenas para valores diferentes de vazio).
+	 * @param name Nome do item aliment√≠cio.
 	 */
 	public void setName(String name) {
 		if(!name.trim().equals("")) {

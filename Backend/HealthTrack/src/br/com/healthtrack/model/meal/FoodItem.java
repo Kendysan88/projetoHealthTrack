@@ -1,11 +1,11 @@
-package br.com.healthtrack.meal;
+package br.com.healthtrack.model.meal;
 
-import br.com.healthtrack.utils.Constants;
+import br.com.healthtrack.utils.Utils;
 
 /**
- * Classe que abstrai um item alimentício presente em uma refeição, bem como seu valor calórico.
+ * Classe que abstrai um item alimentÃ­cio presente em uma refeiÃ§Ã£o, bem como seu valor calÃ³rico.
  * @author Afonso de Sousa Costa
- * @version 1.0
+ * @version 2.0
  */
 
 public class FoodItem {
@@ -14,82 +14,73 @@ public class FoodItem {
 	private double calories;
 
 	/**
-	 * Método construtor.
-	 * @param food Item alimentício de referência.
+	 * MÃ©todo construtor padrÃ£o.
+	 * @param food Item alimentÃ­cio de referÃªncia.
+	 * @param amount Quantidade do item alimentÃ­cio de referÃªncia.
 	 */
-	public FoodItem(Food food) {
+	public FoodItem(Food food, double amount) {
 		this.food = food;
-	}
 
-	/**
-	 * Método para remover um item alimentício no banco de dados.
-	 * @return Se o objeto foi removido corretamente no banco de dados.
-	 */
-	public boolean destroy() {
-		System.out.println("Deleting FoodItem from the database... DONE!");
-		return true;
+		if(amount > 0) {
+			this.amount = amount;
+			calculateCalories(food, amount);
+		} else {
+			this.amount = 0;
+			this.calories = 0;
+		}
 	}
 	
 	/**
-	 * Método para se obter a quantidade do item alimentício.
-	 * @return Quantidade em gramas (g) do item alimentício.
+	 * MÃ©todo para se obter a quantidade do item alimentÃ­cio.
+	 * @return Quantidade em gramas (g) do item alimentÃ­cio.
 	 */
 	public double getAmount() {
 		return amount;
 	}
 	
 	/**
-	 * Método para se obter o nome do item alimentício de referência.
-	 * @return Nome do item alimentício de referência.
+	 * MÃ©todo para se obter o nome do item alimentÃ­cio de referÃªncia.
+	 * @return Nome do item alimentÃ­cio de referÃªncia.
 	 */
 	public String getFoodName() {
 		return food.getName();
 	}
 	
 	/**
-	 * Método para se obter a quantidade de calorias do item alimentício.
-	 * @return Quantidade de calorias (cal) do item alimentício.
+	 * MÃ©todo para se obter a quantidade de calorias do item alimentÃ­cio.
+	 * @return Quantidade de calorias (cal) do item alimentÃ­cio.
 	 */
 	public double getCalories() {
-		return ((amount / food.getAmount()) * food.getCalories());
+		return this.calories;
 	}
 	
 	/**
-	 * Método para se obter a quantidade de calorias do item alimentício com sufixo de unidade.
-	 * @return Quantidade de calorias (cal) do item alimentício.
+	 * MÃ©todo para se obter a quantidade de calorias do item alimentÃ­cio com sufixo de unidade.
+	 * @return Quantidade de calorias (cal) do item alimentÃ­cio.
 	 */
 	public String getCaloriesPretty() {
-		return Constants.formatCalories(getAmount());
+		return Utils.formatCalories(getAmount());
 	}
 	
 	/**
-	 * Método para persistir as informações do item alimentício no banco de dados.
-	 * @return Se o objeto foi salvo corretamente no banco de dados.
-	 */
-	public boolean save() {
-		setCalories(getCalories());
-
-		System.out.println("Saving FoodItem in the database... DONE!");
-		return true;
-	}
-	
-	/**
-	 * Método para se alterar a quantidade do item alimentício (apenas para valores maiores do que zero).
-	 * @param amount Quantidade do item alimentício.
+	 * MÃ©todo para se alterar a quantidade do item alimentÃ­cio (apenas para valores maiores do que zero).
+	 * @param amount Quantidade do item alimentÃ­cio.
 	 */
 	public void setAmount(double amount) {
 		if(amount > 0) {
 			this.amount = amount;
+
+			calculateCalories(this.food, amount);
 		}
 	}
-	
+
 	/**
-	 * Método para se alterar a quantidade de calorias do item alimentício (apenas para valores maiores do que zero).
-	 * @return Não há retorno.
+	 * MÃ©todo para se calcular a quantidade de calorias do item alimentÃ­cio.
+	 * @param amount Quantidade do item alimentÃ­cio.
 	 */
-	private void setCalories(double calories) {
-		if(calories > 0) {
-			this.calories = calories;
+	private void calculateCalories(Food food, double amount) {
+		if(amount > 0) {
+			this.calories = ((amount / food.getAmount()) * food.getCalories());
 		}
 	}
 }
