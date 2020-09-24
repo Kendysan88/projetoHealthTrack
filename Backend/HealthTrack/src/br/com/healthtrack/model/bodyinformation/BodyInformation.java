@@ -1,62 +1,93 @@
-package br.com.healthtrack.bodyinformation;
+package br.com.healthtrack.model.bodyinformation;
 
 import java.time.LocalDateTime;
 
-import br.com.healthtrack.utils.Constants;
+import br.com.healthtrack.utils.Utils;
 
 /**
- * Classe que abstrai uma informaÁ„o/medida corporal.
+ * Classe que abstrai uma informa√ß√£o/medida corporal.
  * @author Afonso de Sousa Costa
- * @version 1.0
+ * @version 2.0
  */
 
 public class BodyInformation {
+
 	private LocalDateTime dateTime;
 	private double value;
 
-	public BodyInformation() {
+	/**
+	 * M√©todo construtor padr√£o (dateTime √© obrigat√≥rio).
+	 * @param dateTime Data e hora da medi√ß√£o corporal.
+	 */
+	public BodyInformation(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	/**
-	 * MÈtodo para se obter a data e hora da mediÁ„o corporal.
-	 * @return Data e hora da mediÁ„o corporal.
+	 * M√©todo construtor sobrecarregado (value e dateTime s√£o obrigat√≥rios).
+	 * @param value    Valor da medi√ß√£o corporal.
+	 * @param dateTime Data e hora da medi√ß√£o corporal.
+	 */
+	public BodyInformation(double value, LocalDateTime dateTime) {
+		this.value = value < 0 ? 0 : value;
+		this.dateTime = dateTime;
+	}
+
+	/**
+	 * M√©todo para se obter a data e hora da medi√ß√£o corporal.
+	 * @return Data e hora da medi√ß√£o corporal.
 	 */
 	public LocalDateTime getDateTime() {
 		return dateTime;
 	}
 
 	/**
-	 * MÈtodo para se obter a data e hora da mediÁ„o corporal formatados (dd/mm/yy HH:MM:SS).
-	 * @return Data e hora da refeiÁ„o no formato (dd/mm/yy HH:MM:SS).
+	 * M√©todo para se obter a data e hora da medi√ß√£o corporal formatados (dd/mm/yy HH:MM:SS).
+	 * @return Data e hora da refei√ß√£o no formato (dd/mm/yy HH:MM:SS).
 	 */
 	public String getDateTimePretty() {
-		return Constants.formatDateTime(getDateTime());
+		return Utils.formatDateTime(getDateTime());
 	}
 
 	/**
-	 * MÈtodo para se obter o valor da mediÁ„o corporal.
-	 * @return Valor da mediÁ„o corporal.
+	 * M√©todo para se obter o valor da medi√ß√£o corporal com sufixo de unidade.
+	 * @return Valor da medi√ß√£o corporal com sufixo de metros.
+	 */
+	public String getHeightValuePretty() {
+		return Utils.formatMeters(getValue());
+	}
+
+	/**
+	 * M√©todo para se obter o valor da medi√ß√£o corporal.
+	 * @return Valor da medi√ß√£o corporal.
 	 */
 	public double getValue() {
 		return value;
 	}
+	
+	/**
+	 * M√©todo para se obter o valor da medi√ß√£o corporal com sufixo de unidade.
+	 * @return Valor da medi√ß√£o corporal com sufixo de quilograma.
+	 */
+	public String getWeightValuePretty() {
+		return Utils.formatKilograms(getValue());
+	}
 
 	/**
-	 * MÈtodo para se alterar a data e hora da mediÁ„o corporal.
-	 * @param dateTime Date e hora da mediÁ„o corporal.
+	 * M√©todo para se alterar a data e hora da medi√ß√£o corporal.
+	 * @param dateTime Date e hora da medi√ß√£o corporal.
 	 */
 	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
 	}
 
 	/**
-	 * MÈtodo para se alterar o valor da mediÁ„o corporal (apenas para valores maiores do que zero).
-	 * @param value Valor da mediÁ„o corporal.
+	 * M√©todo para se alterar o valor da medi√ß√£o corporal (apenas para valores maiores do que zero).
+	 * @param value Valor da medi√ß√£o corporal.
 	 */
 	public void setValue(double value) {
 		if(value > 0) {
 			this.value = value;
 		}
 	}
-
 }
