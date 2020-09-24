@@ -1,84 +1,82 @@
-package br.com.healthtrack.bodyinformation;
+package br.com.healthtrack.model.bodyinformation;
 
 import java.time.LocalDateTime;
 
-import br.com.healthtrack.utils.Constants;
+import br.com.healthtrack.utils.Utils;
 
 /**
- * Classe que abstrai uma informaÁ„o/medida de press„o sanguÌnea corporal.
+ * Classe que abstrai uma informa√ß√£o/medida de press√£o sangu√≠nea corporal.
  * @author Afonso de Sousa Costa
- * @version 1.0
+ * @version 2.0
  */
 
 public class BloodPreassure extends BodyInformation {
+
+	private static final BloodPreassureStatus[] status = {
+		new BloodPreassureStatus(120, 80, "NORMAL"),
+		new BloodPreassureStatus(139, 89, "PR√â-HIPERTENS√ÉO"),
+		new BloodPreassureStatus(159, 99, "HIPERTENS√ÉO EST√ÅGIO 1"),
+		new BloodPreassureStatus(179, 109, "HIPERTENS√ÉO EST√ÅGIO 2"),
+		new BloodPreassureStatus(200, 120, "HIPERTENS√ÉO EST√ÅGIO 3")
+	};
+
 	private int diastolicValue;
 	private int systolicValue;
 
 	/**
-	 * MÈtodo para remover uma mediÁ„o de press„o sanguÌnea no banco de dados.
-	 * @return Se o objeto foi removido corretamente no banco de dados.
+	 * M√©todo construtor padr√£o (diastolicValue, systolicValue e dateTime s√£o obrigat√≥rios).
+	 * @param diastolicValue Valor diast√≥lico da medi√ß√£o de press√£o corporal.
+	 * @param systolicValue  Valor sist√≥lico da medi√ß√£o de press√£o corporal.
+	 * @param dateTime       Data e hora da medi√ß√£o corporal.
 	 */
-	public boolean destroy() {
-		System.out.println("Deleting BloodPreassure from the database... DONE!");
-		return true;
+	public BloodPreassure(int systolicValue, int diastolicValue, LocalDateTime dateTime) {
+		super(dateTime);
+
+		this.diastolicValue = diastolicValue < 0 ? 0 : diastolicValue;
+		this.systolicValue = systolicValue < 0 ? 0 : systolicValue;
 	}
 
 	/**
-	 * MÈtodo para se obter o valor diastÛlico da mediÁ„o de press„o corporal.
-	 * @return Valor diastÛlico da mediÁ„o de press„o corporal.
+	 * M√©todo para se obter o valor diast√≥lico da medi√ß√£o de press√£o corporal.
+	 * @return Valor diast√≥lico da medi√ß√£o de press√£o corporal.
 	 */
 	public int getDiastolicValue() {
 		return diastolicValue;
 	}
 
 	/**
-	 * MÈtodo para se obter o valor sistÛlico da mediÁ„o de press„o corporal.
-	 * @return Valor sistÛlico da mediÁ„o de press„o corporal
+	 * M√©todo para se obter o status da medi√ß√£o de press√£o corporal.
+	 * @return Mensagem de acordo com os valores aferidos na medi√ß√£o de press√£o corporal.
+	 */
+	public String getStatus() {
+		for(BloodPreassureStatus currentStatus : status) {
+			if (systolicValue <= currentStatus.getSystolicValue() ||
+				diastolicValue <= currentStatus.getDiastolicValue()) {
+				return currentStatus.getMessage();
+			}
+		}
+		return "";
+	}
+
+	/**
+	 * M√©todo para se obter o valor sist√≥lico da medi√ß√£o de press√£o corporal.
+	 * @return Valor sist√≥lico da medi√ß√£o de press√£o corporal.
 	 */
 	public int getSystolicValue() {
 		return systolicValue;
 	}
 
 	/**
-	 * MÈtodo para se obter o valor de press„o sanguÌnea da mediÁ„o corporal com sufixo de unidade.
-	 * @return Valor da press„o sanguÌnea da mediÁ„o corporal com sufixo de milimetros merc˙rio.
+	 * M√©todo para se obter o valor de press√£o sangu√≠nea da medi√ß√£o corporal com sufixo de unidade.
+	 * @return Valor da press√£o sangu√≠nea da medi√ß√£o corporal com sufixo de milimetros merc√∫rio.
 	 */
 	public String getValuePretty() {
-		return diastolicValue + "/" + systolicValue + " " + Constants.CALORIES_UNIT_SYMBOL;
+		return diastolicValue + "/" + systolicValue + " " + Utils.CALORIES_UNIT_SYMBOL;
 	}
 
 	/**
-	 * MÈtodo para persistir as informaÁıes de uma mediÁ„o de press„o sanguÌnea no banco de dados.
-	 * @return Se o objeto foi salvo corretamente no banco de dados.
-	 */
-	public boolean save() {
-		System.out.println("Saving BloodPreassures in the database... DONE!");
-		return true;
-	}
-
-	/**
-	 * MÈtodo para se consultar mediÁıes de press„o sanguÌnea j· persistidos no banco de dados.
-	 * @param initialDateTime Data e hora inicial do intervalo.
-	 * @param finalDateTime Data e hora final do intervalo.
-	 * @return Lista de mediÁıes de press„o sanguÌnea.
-	 */
-	public static BloodPreassure[] search(LocalDateTime initialDateTime, LocalDateTime finalDateTime) {
-		BloodPreassure[] results = {};
-
-		System.out.println(
-				"Searching since " +
-				Constants.formatDateTime(initialDateTime) +
-				" to " +
-				Constants.formatDateTime(finalDateTime) +
-				" into BloodPreassures table in database... DONE!"
-		);
-
-		return results;
-	}
-
-	/**
-	 * MÈtodo para se alterar o valor diastÛlico da mediÁ„o de press„o corporal (apenas para valores maiores do que zero).
-	 * @param diastolicValue Valor diastÛlico da mediÁ„o de press„o corporal.
+	 * M√©todo para se alterar o valor diast√≥lico da medi√ß√£o de press√£o corporal (apenas para valores maiores do que zero).
+	 * @param diastolicValue Valor diast√≥lico da medi√ß√£o de press√£o corporal.
 	 */
 	public void setDiastolicValue(int diastolicValue) {
 		if(diastolicValue > 0) {
@@ -87,8 +85,8 @@ public class BloodPreassure extends BodyInformation {
 	}
 
 	/**
-	 * MÈtodo para se alterar o valor sistÛlico da mediÁ„o de press„o corporal (apenas para valores maiores do que zero).
-	 * @param systolicValue Valor sistÛlico da mediÁ„o de press„o corporal.
+	 * M√©todo para se alterar o valor sist√≥lico da medi√ß√£o de press√£o corporal (apenas para valores maiores do que zero).
+	 * @param systolicValue Valor sist√≥lico da medi√ß√£o de press√£o corporal.
 	 */
 	public void setSystolicValue(int systolicValue) {
 		if(diastolicValue > 0) {
