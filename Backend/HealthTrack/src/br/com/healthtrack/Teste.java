@@ -6,9 +6,9 @@ import br.com.healthtrack.model.bodyinformation.BloodPreassure;
 import br.com.healthtrack.model.meal.Food;
 import br.com.healthtrack.model.meal.FoodItem;
 import br.com.healthtrack.model.meal.Meal;
-import br.com.healthtrack.physicalactivity.PhysicalActivity;
-import br.com.healthtrack.physicalactivity.PhysicalActivityByDuration;
-import br.com.healthtrack.physicalactivity.PhysicalActivityBySeries;
+import br.com.healthtrack.model.physicalactivity.PhysicalActivity;
+import br.com.healthtrack.model.physicalactivity.PhysicalActivityByDuration;
+import br.com.healthtrack.model.physicalactivity.PhysicalActivityBySeries;
 
 /**
  * Classe que serve para testar as classes que foram criadas.

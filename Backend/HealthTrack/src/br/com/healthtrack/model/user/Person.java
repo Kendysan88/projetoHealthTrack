@@ -1,6 +1,6 @@
-package br.com.healthtrack.users;
+package br.com.healthtrack.model.user;
 
-import br.com.healthtrack.utils.Constants;
+import br.com.healthtrack.utils.Utils;
 
 /**
  * Classe que abstrai uma pessoa.
@@ -37,7 +37,7 @@ public class Person {
 
     public void setPassword(String password, String passwordConfirmation) {
         if(!password.trim().equals("") &&
-        	password.trim().length() >= Constants.PASSWORD_SIZE &&
+        	password.trim().length() >= Utils.PASSWORD_SIZE &&
         	password.trim().equals(passwordConfirmation.trim())) {
             this.password = password;
         }

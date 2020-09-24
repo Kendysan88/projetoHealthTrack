@@ -1,4 +1,4 @@
-package br.com.healthtrack.physicalactivity;
+package br.com.healthtrack.model.physicalactivity;
 
 import java.util.Calendar;
 
