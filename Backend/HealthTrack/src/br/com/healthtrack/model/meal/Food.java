@@ -16,7 +16,7 @@ public class Food {
 	
 	/**
 	 * Método construtor padrão (amount, calories e name são obrigatórios).
-	 * @param amount   Quantidade do item alimentício.
+	 * @param amount   Quantidade em gramas do item alimentício.
 	 * @param calories Quatidade de calorias do item alimentício.
 	 * @param name     Nome do tipo de refeição.
 	 */
@@ -31,7 +31,7 @@ public class Food {
 
 	/**
 	 * Método construtor padrão sobrecarregado (amount, calories. name e description são obrigatórios).
-	 * @param amount   Quantidade do item alimentício.
+	 * @param amount   Quantidade em gramas do item alimentício.
 	 * @param calories Quatidade de calorias do item alimentício.
 	 * @param name     Nome do tipo de refeição.
 	 */
@@ -89,7 +89,7 @@ public class Food {
 
 	/**
 	 * Método para se alterar a quantidade do item alimentício (apenas para valores maiores do que zero).
-	 * @param amount Quantidade do item alimentício.
+	 * @param amount Quantidade em gramas do item alimentício.
 	 */
 	public void setAmount(double amount) {
 		if(amount > 0) {

@@ -17,7 +17,7 @@ public class FoodItem {
 	/**
 	 * Método construtor padrão.
 	 * @param food Item alimentício de referência.
-	 * @param amount Quantidade do item alimentício de referência.
+	 * @param amount Quantidade em gramas do item alimentício de referência.
 	 */
 	public FoodItem(Food food, double amount) {
 		this.food = food;
@@ -65,7 +65,7 @@ public class FoodItem {
 	
 	/**
 	 * Método para se alterar a quantidade do item alimentício (apenas para valores maiores do que zero).
-	 * @param amount Quantidade do item alimentício.
+	 * @param amount Quantidade em gramas do item alimentício.
 	 */
 	public void setAmount(double amount) {
 		if(amount > 0) {
