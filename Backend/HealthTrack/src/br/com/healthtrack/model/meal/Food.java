@@ -7,7 +7,7 @@ import br.com.healthtrack.utils.Utils;
  * @author Afonso de Sousa Costa
  * @version 2.0
  */
-public class Food {
+public class Food implements Comparable<Food> {
 
 	private double amount;
 	private double calories;
@@ -47,6 +47,11 @@ public class Food {
 		}
 	}
 
+	@Override
+    public int compareTo(Food otherFood) {
+        return this.getName().compareToIgnoreCase(otherFood.getName());
+    }
+
 	/**
 	 * Método para se obter a quantidade do item alimentício.
 	 * @return Quantidade em gramas (g) do item alimentício.
@@ -62,7 +67,15 @@ public class Food {
 	public double getCalories() {
 		return calories;
 	}
-	
+
+	/**
+	 * Método para se obter a quantidade do item alimentício com sufixo de unidade.
+	 * @return Quantidade do item alimentício em gramas (g).
+	 */
+	public String getAmountPretty() {
+		return Utils.formatGrams(amount);
+	}
+
 	/**
 	 * Método para se obter a quantidade de calorias do item alimentício com sufixo de unidade.
 	 * @return Quantidade de calorias (cal) do item alimentício.
@@ -77,6 +90,18 @@ public class Food {
 	 */
 	public String getDescription() {
 		return description;
+	}
+
+	/**
+	 * Método para se obter informações sobre o objeto instanciado.
+	 * @return Texto contendo os valores dos atributos desse objeto.
+	 */
+	public String getInfoPretty() {
+		String info = getName() +
+		  " (" + getDescription() + ") " +
+		  getAmountPretty() + " - " + getCaloriesPretty();
+
+		return info;
 	}
 
 	/**
