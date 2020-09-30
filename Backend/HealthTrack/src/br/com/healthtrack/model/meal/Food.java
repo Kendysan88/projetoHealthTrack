@@ -7,7 +7,7 @@ import br.com.healthtrack.utils.Utils;
  * @author Afonso de Sousa Costa
  * @version 2.0
  */
-public class Food {
+public class Food implements Comparable<Food> {
 
 	private double amount;
 	private double calories;
@@ -16,9 +16,9 @@ public class Food {
 	
 	/**
 	 * Método construtor padrão (amount, calories e name são obrigatórios).
-	 * @param amount   Quantidade do item alimentício.
+	 * @param amount   Quantidade em gramas do item alimentício.
 	 * @param calories Quatidade de calorias do item alimentício.
-	 * @param name     Nome do tipo de refeição.
+	 * @param name     Nome do item alimentício.
 	 */
 	public Food(double amount, double calories, String name) {
 		this.amount = amount < 0 ? 0 : amount;
@@ -30,10 +30,11 @@ public class Food {
 	}
 
 	/**
-	 * Método construtor padrão sobrecarregado (amount, calories. name e description são obrigatórios).
-	 * @param amount   Quantidade do item alimentício.
-	 * @param calories Quatidade de calorias do item alimentício.
-	 * @param name     Nome do tipo de refeição.
+	 * Método construtor padrão sobrecarregado (amount, calories, name e description são obrigatórios).
+	 * @param amount      Quantidade em gramas do item alimentício.
+	 * @param calories    Quatidade de calorias do item alimentício.
+	 * @param name        Nome do item alimentício.
+	 * @param description Descrição/observação do item alimentício.
 	 */
 	public Food(double amount, double calories, String name, String description) {
 		this.amount = amount < 0 ? 0 : amount;
@@ -47,6 +48,11 @@ public class Food {
 		}
 	}
 
+	@Override
+    public int compareTo(Food otherFood) {
+        return this.getName().compareToIgnoreCase(otherFood.getName());
+    }
+
 	/**
 	 * Método para se obter a quantidade do item alimentício.
 	 * @return Quantidade em gramas (g) do item alimentício.
@@ -56,13 +62,22 @@ public class Food {
 	}
 
 	/**
+	 * Método para se obter a quantidade do item alimentício com sufixo de unidade.
+	 * @return Quantidade do item alimentício em gramas (g).
+	 */
+	public String getAmountPretty() {
+		return Utils.formatGrams(amount);
+	}
+
+
+	/**
 	 * Método para se obter a quantidade de calorias do item alimentício.
 	 * @return Quantidade de calorias (cal) do item alimentício.
 	 */
 	public double getCalories() {
 		return calories;
 	}
-	
+
 	/**
 	 * Método para se obter a quantidade de calorias do item alimentício com sufixo de unidade.
 	 * @return Quantidade de calorias (cal) do item alimentício.
@@ -80,6 +95,22 @@ public class Food {
 	}
 
 	/**
+	 * Método para se obter informações sobre o objeto instanciado.
+	 * @return Texto contendo os valores dos atributos desse objeto.
+	 */
+	public String getInfoPretty() {
+		String info = getName() + " ";
+
+		if (getDescription() != null && !getDescription().equals("")){
+			info += "(" + getDescription() + ") ";
+		}
+
+		info += getAmountPretty() + " - " + getCaloriesPretty();
+
+		return info;
+	}
+
+	/**
 	 * Método para se obter o nome do item alimentício.
 	 * @return Nome do item alimentício.
 	 */
@@ -89,7 +120,7 @@ public class Food {
 
 	/**
 	 * Método para se alterar a quantidade do item alimentício (apenas para valores maiores do que zero).
-	 * @param amount Quantidade do item alimentício.
+	 * @param amount Quantidade em gramas do item alimentício.
 	 */
 	public void setAmount(double amount) {
 		if(amount > 0) {

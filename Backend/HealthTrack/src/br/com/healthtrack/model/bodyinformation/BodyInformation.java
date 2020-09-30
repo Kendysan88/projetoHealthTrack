@@ -25,7 +25,7 @@ public class BodyInformation {
 
 	/**
 	 * Método construtor sobrecarregado (value e dateTime são obrigatórios).
-	 * @param value    Valor da medição corporal.
+	 * @param value    Valor da medição corporal (quilogramas, ou kg, para peso, e metros, ou m, para altura).
 	 * @param dateTime Data e hora da medição corporal.
 	 */
 	public BodyInformation(double value, LocalDateTime dateTime) {
@@ -83,7 +83,7 @@ public class BodyInformation {
 
 	/**
 	 * Método para se alterar o valor da medição corporal (apenas para valores maiores do que zero).
-	 * @param value Valor da medição corporal.
+	 * @param value Valor da medição corporal (quilogramas, ou kg, para peso, e metros, ou m, para altura).
 	 */
 	public void setValue(double value) {
 		if(value > 0) {

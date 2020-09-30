@@ -1,7 +1,7 @@
 package br.com.healthtrack.model.physicalactivity;
 
 /**
- * Classe que herda da classe atividade física e permite realizar exercícios com séries, repetições e pesos.
+ * Classe que herda da classe atividade fÃ­sica e permite realizar exercÃ­cios com sÃ©ries, repetiÃ§Ãµes e pesos.
  * @author Richard Kendy Tanaka
  * @version 1.0
  */
@@ -15,14 +15,14 @@ public class PhysicalActivityBySeries extends PhysicalActivity {
 
 	// Constructor
 	/**
-	 * Método construtor padrão.
+	 * MÃ©todo construtor padrÃ£o.
 	 * @param calories  Quantidade de calorias gastas durante a atividade (cal).
 	 * @param beginHour Hora inicial da atividade (horas).
 	 * @param endHour   Hora final da atividade (horas).
 	 * @param type      Tipo de atividade realizada.
-	 * @param series	Quantidade de séries necessárias para realizar a atividade.
-	 * @param repetions Quantidade de repetições necessárias para realizar a atividade.
-	 * @param weight	Quantidade de peso necessário para realizar a atividade. 
+	 * @param series	Quantidade de sÃ©ries necessÃ¡rias para realizar a atividade.
+	 * @param repetions Quantidade de repetiÃ§Ãµes necessÃ¡rias para realizar a atividade.
+	 * @param weight	Quantidade de peso necessÃ¡rio para realizar a atividade. 
 	 */
 	public PhysicalActivityBySeries(double calories, int beginHour, int endHour, String type, int series, int repetions,
 			double weight) {
@@ -34,16 +34,16 @@ public class PhysicalActivityBySeries extends PhysicalActivity {
 
 	// Getters And Setters
 	/**
-	 * Método para se obter a quantidade de séries necessárias para realizar a atividade.
-	 * @return Quantidade de séries necessárias para realizar a atividade.
+	 * MÃ©todo para se obter a quantidade de sÃ©ries necessÃ¡rias para realizar a atividade.
+	 * @return Quantidade de sÃ©ries necessÃ¡rias para realizar a atividade.
 	 */
 	public int getSeries() {
 		return series;
 	}
 	
 	/**
-	 * Método para se alterar a quantidade de séries necessárias para realizar a atividade.(apenas para valores maiores do que zero).
-	 * @param series Quantidade de séries necessárias para realizar a atividade.
+	 * MÃ©todo para se alterar a quantidade de sÃ©ries necessÃ¡rias para realizar a atividade.(apenas para valores maiores do que zero).
+	 * @param series Quantidade de sÃ©ries necessÃ¡rias para realizar a atividade.
 	 */
 	public void setSeries(int series) {
 		if (series > 0) {
@@ -52,16 +52,16 @@ public class PhysicalActivityBySeries extends PhysicalActivity {
 	}
 
 	/**
-	 * Método para se obter a quantidade de repetições necessárias para realizar a atividade.
-	 * @return Quantidade de repetições necessárias para realizar a atividade.
+	 * MÃ©todo para se obter a quantidade de repetiÃ§Ãµes necessÃ¡rias para realizar a atividade.
+	 * @return Quantidade de repetiÃ§Ãµes necessÃ¡rias para realizar a atividade.
 	 */
 	public int getRepetions() {
 		return repetions;
 	}
 	
 	/**
-	 * Método para se alterar a quantidade de repetições necessárias para realizar a atividade.(apenas para valores maiores do que zero).
-	 * @param repetions Quantidade de repetições necessárias para realizar a atividade.
+	 * MÃ©todo para se alterar a quantidade de repetiÃ§Ãµes necessÃ¡rias para realizar a atividade.(apenas para valores maiores do que zero).
+	 * @param repetions Quantidade de repetiÃ§Ãµes necessÃ¡rias para realizar a atividade.
 	 */
 	public void setRepetions(int repetions) {
 		if (repetions > 0) {
@@ -70,16 +70,16 @@ public class PhysicalActivityBySeries extends PhysicalActivity {
 	}
 
 	/**
-	 * Método para se obter a quantidade de peso necessário para realizar a atividade.
-	 * @return Quantidade de peso necessário para realizar a atividade.
+	 * MÃ©todo para se obter a quantidade de peso necessÃ¡rio para realizar a atividade.
+	 * @return Quantidade de peso necessÃ¡rio para realizar a atividade.
 	 */
 	public double getWeight() {
 		return weight;
 	}
 
 	/**
-	 * Método para se alterar a quantidade de peso necessário para realizar a atividade.(apenas para valores maiores do que zero).
-	 * @param weight Quantidade de peso necessário para realizar a atividade.
+	 * MÃ©todo para se alterar a quantidade de peso necessÃ¡rio para realizar a atividade.(apenas para valores maiores do que zero).
+	 * @param weight Quantidade de peso necessÃ¡rio para realizar a atividade.
 	 */
 	public void setWeight(double weight) {
 		if (weight > 0) {
@@ -88,7 +88,7 @@ public class PhysicalActivityBySeries extends PhysicalActivity {
 	}
 	
 	/**
-	 * Método sobrescrito para calcular a quantidade calorias gastas
+	 * MÃ©todo sobrescrito para calcular a quantidade calorias gastas
 	 * @return A quantidade calorias gastas na atividade
 	 */
 	@Override

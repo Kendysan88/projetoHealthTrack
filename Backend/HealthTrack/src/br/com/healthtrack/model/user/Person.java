@@ -17,7 +17,7 @@ public class Person {
     }
 
     /**
-     * M�todo construtor padrão.
+     * Método construtor padrão.
      * @param email Email da pessoa.
      * @param password Senha da pessoa.
      */
