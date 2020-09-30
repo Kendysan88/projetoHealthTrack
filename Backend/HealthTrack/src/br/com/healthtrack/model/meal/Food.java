@@ -18,7 +18,7 @@ public class Food implements Comparable<Food> {
 	 * Método construtor padrão (amount, calories e name são obrigatórios).
 	 * @param amount   Quantidade em gramas do item alimentício.
 	 * @param calories Quatidade de calorias do item alimentício.
-	 * @param name     Nome do tipo de refeição.
+	 * @param name     Nome do item alimentício.
 	 */
 	public Food(double amount, double calories, String name) {
 		this.amount = amount < 0 ? 0 : amount;
@@ -30,10 +30,11 @@ public class Food implements Comparable<Food> {
 	}
 
 	/**
-	 * Método construtor padrão sobrecarregado (amount, calories. name e description são obrigatórios).
-	 * @param amount   Quantidade em gramas do item alimentício.
-	 * @param calories Quatidade de calorias do item alimentício.
-	 * @param name     Nome do tipo de refeição.
+	 * Método construtor padrão sobrecarregado (amount, calories, name e description são obrigatórios).
+	 * @param amount      Quantidade em gramas do item alimentício.
+	 * @param calories    Quatidade de calorias do item alimentício.
+	 * @param name        Nome do item alimentício.
+	 * @param description Descrição/observação do item alimentício.
 	 */
 	public Food(double amount, double calories, String name, String description) {
 		this.amount = amount < 0 ? 0 : amount;
@@ -61,19 +62,20 @@ public class Food implements Comparable<Food> {
 	}
 
 	/**
-	 * Método para se obter a quantidade de calorias do item alimentício.
-	 * @return Quantidade de calorias (cal) do item alimentício.
-	 */
-	public double getCalories() {
-		return calories;
-	}
-
-	/**
 	 * Método para se obter a quantidade do item alimentício com sufixo de unidade.
 	 * @return Quantidade do item alimentício em gramas (g).
 	 */
 	public String getAmountPretty() {
 		return Utils.formatGrams(amount);
+	}
+
+
+	/**
+	 * Método para se obter a quantidade de calorias do item alimentício.
+	 * @return Quantidade de calorias (cal) do item alimentício.
+	 */
+	public double getCalories() {
+		return calories;
 	}
 
 	/**
@@ -97,9 +99,13 @@ public class Food implements Comparable<Food> {
 	 * @return Texto contendo os valores dos atributos desse objeto.
 	 */
 	public String getInfoPretty() {
-		String info = getName() +
-		  " (" + getDescription() + ") " +
-		  getAmountPretty() + " - " + getCaloriesPretty();
+		String info = getName() + " ";
+
+		if (getDescription() != null && !getDescription().equals("")){
+			info += "(" + getDescription() + ") ";
+		}
+
+		info += getAmountPretty() + " - " + getCaloriesPretty();
 
 		return info;
 	}

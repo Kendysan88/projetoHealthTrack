@@ -1,7 +1,7 @@
 package br.com.healthtrack.model.physicalactivity;
 
 /**
- * Classe que herda da classe atividade fÌsica e permite realizar exercÌcios com dist‚ncia e duraÁ„o.
+ * Classe que herda da classe atividade f√≠sica e permite realizar exerc√≠cios com dist√¢ncia e dura√ß√£o.
  * @author Richard Kendy Tanaka
  * @version 1.0
  */
@@ -13,12 +13,12 @@ public class PhysicalActivityByDuration extends PhysicalActivity {
 
 	// Constructor
 	/**
-	 * MÈtodo construtor padr„o.
+	 * M√©todo construtor padr√£o.
 	 * @param calories  Quantidade de calorias gastas durante a atividade (cal).
 	 * @param beginHour Hora inicial da atividade (horas).
 	 * @param endHour   Hora final da atividade (horas).
 	 * @param type      Tipo de atividade realizada.
-	 * @param distance	A dist‚ncia percorrida durante a atividade realizada.
+	 * @param distance	A dist√¢ncia percorrida durante a atividade realizada.
 	 */
 	public PhysicalActivityByDuration(double calories, int beginHour, int endHour, String type, double distance) {
 		super(calories, beginHour, endHour, type);
@@ -27,16 +27,16 @@ public class PhysicalActivityByDuration extends PhysicalActivity {
 
 	// Getters And Setters
 	/**
-	 * MÈtodo para se obter a dist‚ncia percorrida durante a atividade realizada.
-	 * @return A dist‚ncia percorrida
+	 * M√©todo para se obter a dist√¢ncia percorrida durante a atividade realizada.
+	 * @return A dist√¢ncia percorrida
 	 */
 	public double getDistance() {
 		return distance;
 	}
 	
 	/**
-	 * MÈtodo para se alterar a dist‚ncia percorrida durante a atividade realizada.(apenas para valores maiores do que zero).
-	 * @param distance A dist‚ncia percorrida durante a atividade realizada.
+	 * M√©todo para se alterar a dist√¢ncia percorrida durante a atividade realizada.(apenas para valores maiores do que zero).
+	 * @param distance A dist√¢ncia percorrida durante a atividade realizada.
 	 */
 	public void setDistance(double distance) {
 		if (distance > 0) {
@@ -46,7 +46,7 @@ public class PhysicalActivityByDuration extends PhysicalActivity {
 
 	// Methods
 	/**
-	 * MÈtodo sobrescrito para calcular a quantidade calorias gastas
+	 * M√©todo sobrescrito para calcular a quantidade calorias gastas
 	 * @return A quantidade calorias gastas na atividade
 	 */
 	@Override
@@ -55,7 +55,7 @@ public class PhysicalActivityByDuration extends PhysicalActivity {
 	}
 
 	/**
-	 * MÈtodo para calcular o tempo total da atividade realizada.
+	 * M√©todo para calcular o tempo total da atividade realizada.
 	 * @return O tempo gasto.
 	 */
 	public int CalculateDuration() {
@@ -63,7 +63,7 @@ public class PhysicalActivityByDuration extends PhysicalActivity {
 		if (duration > 0) {
 			return duration;
 		} else {
-			System.out.println("A hora inicial n„o pode ser maior que a hora final.");
+			System.out.println("A hora inicial n√£o pode ser maior que a hora final.");
 			return 0;
 		}
 	}

@@ -5,7 +5,6 @@ package br.com.healthtrack.model.meal;
  * @author Afonso de Sousa Costa
  * @version 1.0
  */
-
 public class MealType {
 
 	private String description;
@@ -53,7 +52,7 @@ public class MealType {
 
 	/**
 	 * Método para se alterar a descrição do tipo de refeição (apenas para valores diferentes de vazio).
-	 * @param name Descrição do tipo de refeição.
+	 * @param description Descrição do tipo de refeição.
 	 */
 	public void setDescription(String description) {
 		if(!name.trim().equals("")) {

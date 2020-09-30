@@ -11,21 +11,73 @@ import br.com.healthtrack.utils.Utils;
  * @author Afonso de Sousa Costa
  * @version 2.0
  */
-
-public class Meal {
+public class Meal implements Comparable<Meal> {
 
 	private LocalDateTime dateTime;
 	private MealType type;
-	private List<FoodItem> foodItems = new ArrayList<FoodItem>();
+	private ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
 
 	/**
-	 * Método construtor padrão.
+	 * Método construtor padrão (dateTime e type).
 	 * @param dateTime Data e hora da refeição.
 	 * @param type     Tipo de refeição.
 	 */
 	public Meal(LocalDateTime dateTime, MealType type) {
 		this.dateTime = dateTime;
 		this.type = type;
+	}
+
+	/**
+	 * Método construtor sobrecarregado (dateTime, type e foodItems são obrigatórios).
+	 * @param dateTime  Data e hora da refeição.
+	 * @param type      Tipo de refeição.
+	 * @param foodItems Lista de itens alimentícios.
+	 */
+	public Meal(LocalDateTime dateTime, MealType type, ArrayList<FoodItem> foodItems) {
+		this.dateTime = dateTime;
+		this.type = type;
+		this.foodItems = foodItems;
+	}
+
+	@Override
+    public int compareTo(Meal otherMeal) {
+        return this.getDateTime().compareTo(otherMeal.getDateTime());
+    }
+
+	/**
+	 * Método para se obter a data e hora da refeição.
+	 * @return Data e hora da refeição.
+	 */
+	public LocalDateTime getDateTime() {
+		return dateTime;
+	}
+
+	/**
+	 * Método para se obter a data e hora da refeição formatados (dd-mm-yy HH:MM:SS).
+	 * @return Data e hora da refeição no formato (dd-mm-yy HH:MM:SS).
+	 */
+	public String getDateTimePretty() {
+		return Utils.formatDateTime(getDateTime());
+	}
+
+	/**
+	 * Método para se obter os itens alimentícios da refeição.
+	 * @return Itens alimentícios da refeição.
+	 */
+	public List<FoodItem> getFoodItems() {
+		return foodItems;
+	}
+
+	/**
+	 * Método para se obter informações sobre o objeto instanciado.
+	 * @return Texto contendo os valores dos atributos desse objeto.
+	 */
+	public String getInfoPretty() {
+		String info = getTypeName() +
+		  " às " + getDateTimePretty() +
+		  " Total de calorias: " + getTotalCaloriesPretty();
+
+		return info;
 	}
 
 	/**
@@ -51,22 +103,6 @@ public class Meal {
 	}
 
 	/**
-	 * Método para se obter a data e hora da refeição.
-	 * @return Data e hora da refeição.
-	 */
-	public LocalDateTime getDateTime() {
-		return dateTime;
-	}
-
-	/**
-	 * Método para se obter a data e hora da refeição formatados (dd-mm-yy HH:MM:SS).
-	 * @return Data e hora da refeição no formato (dd-mm-yy HH:MM:SS).
-	 */
-	public String getDateTimePretty() {
-		return Utils.formatDateTime(getDateTime());
-	}
-
-	/**
 	 * Método para se obter o tipo da refeição.
 	 * @return Tipo da refeição.
 	 */
@@ -75,11 +111,11 @@ public class Meal {
 	}
 
 	/**
-	 * Método para se obter os itens alimentícios da refeição.
-	 * @return Itens alimentícios da refeição.
+	 * Método para se obter o nome do tipo de refeição.
+	 * @return Nome do tipo de refeição.
 	 */
-	public List<FoodItem> getFoodItems() {
-		return foodItems;
+	public String getTypeName() {
+		return type.getName();
 	}
 
 	/**
