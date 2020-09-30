@@ -3,12 +3,12 @@ package br.com.healthtrack.utils;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Constants {
+public class Utils {
 	public static final int PASSWORD_SIZE = 6;
 	public static final String CALORIES_UNIT_SYMBOL = "cal";
 	public static final String DATETIME_FORMAT = "dd-MM-yyyy HH:mm:ss";
-	public static final String MERCURY_MILLIMETERS_UNIT_SYMBOL = "mmHg";
 	public static final String KILOGRAMS_UNIT_SYMBOL = "kg";
+	public static final String MERCURY_MILLIMETERS_UNIT_SYMBOL = "mmHg";
 	public static final String METERS_UNIT_SYMBOL = "m";
 	
 	public static String formatCalories(double calories) {
