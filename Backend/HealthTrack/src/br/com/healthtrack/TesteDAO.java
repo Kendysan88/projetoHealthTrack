@@ -1,5 +1,7 @@
 package br.com.healthtrack;
 
+import br.com.healthtrack.model.bodyinformation.BodyInformation;
+import br.com.healthtrack.model.bodyinformation.BodyInformationDAO;
 import br.com.healthtrack.model.meal.Food;
 import br.com.healthtrack.model.meal.FoodDAO;
 import br.com.healthtrack.model.meal.Meal;
@@ -24,6 +26,14 @@ public class TesteDAO {
 		System.out.println("Refeições DAO");
 
 		for(Meal item : new MealDAO().getAll()) {
+			System.out.println(item.getInfoPretty());
+		}
+
+		System.out.println("\n\n\n");
+
+		System.out.println("Informações Corporais DAO");
+
+		for(BodyInformation item : new BodyInformationDAO().getAll()) {
 			System.out.println(item.getInfoPretty());
 		}
 	}

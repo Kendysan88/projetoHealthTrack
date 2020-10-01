@@ -45,6 +45,15 @@ public class BloodPreassure extends BodyInformation {
 	}
 
 	/**
+	 * Método para se obter informações sobre o objeto instanciado.
+	 * @return Texto contendo os valores dos atributos desse objeto.
+	 */
+	public String getInfoPretty() {
+		String info = getDateTimePretty() + " " + getValuePretty();
+		return info;
+	}
+
+	/**
 	 * Método para se obter o status da medição de pressão corporal.
 	 * @return Mensagem de acordo com os valores aferidos na medição de pressão corporal.
 	 */
@@ -71,7 +80,7 @@ public class BloodPreassure extends BodyInformation {
 	 * @return Valor da pressão sanguínea da medição corporal com sufixo de milimetros mercúrio.
 	 */
 	public String getValuePretty() {
-		return diastolicValue + "/" + systolicValue + " " + Utils.CALORIES_UNIT_SYMBOL;
+		return diastolicValue + "/" + systolicValue + " " + Utils.MERCURY_MILLIMETERS_UNIT_SYMBOL;
 	}
 
 	/**
