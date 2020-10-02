@@ -24,9 +24,9 @@ public class PhysicalActivityBySeries extends PhysicalActivity {
 	 * @param repetions Quantidade de repetições necessárias para realizar a atividade.
 	 * @param weight	Quantidade de peso necessário para realizar a atividade. 
 	 */
-	public PhysicalActivityBySeries(double calories, int beginHour, int endHour, String type, int series, int repetions,
+	public PhysicalActivityBySeries(String type, int beginHour, int endHour, double calories, int series, int repetions,
 			double weight) {
-		super(calories, beginHour, endHour, type);
+		super(type, beginHour, endHour, calories );
 		this.series = series;
 		this.repetions = repetions;
 		this.weight = weight;
@@ -94,6 +94,15 @@ public class PhysicalActivityBySeries extends PhysicalActivity {
 	@Override
 	public double calculateCalories(double calories) {
 		return super.calculateCalories(calories);
+	}
+	
+	@Override
+	public String getInfoPretty() {
+		String info = "Atividade: " + getType() +
+				  ", Início: " + getBeginHour() + ", Fim: " + getEndHour() + 
+				  ", Calorias Queimadas: " + getCalories() + ", Séries: " + getSeries() + ", Repetições: " 
+				  + getRepetions() + ", Peso: " + getWeight();
+		return info;
 	}
 
 }

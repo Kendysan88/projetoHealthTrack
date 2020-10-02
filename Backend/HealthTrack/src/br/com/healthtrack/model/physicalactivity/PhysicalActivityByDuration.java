@@ -20,8 +20,8 @@ public class PhysicalActivityByDuration extends PhysicalActivity {
 	 * @param type      Tipo de atividade realizada.
 	 * @param distance	A distância percorrida durante a atividade realizada.
 	 */
-	public PhysicalActivityByDuration(double calories, int beginHour, int endHour, String type, double distance) {
-		super(calories, beginHour, endHour, type);
+	public PhysicalActivityByDuration(String type, int beginHour, int endHour, double calories, double distance) {
+		super(type, beginHour, endHour, calories);
 		this.distance = distance;
 	}
 
@@ -66,6 +66,15 @@ public class PhysicalActivityByDuration extends PhysicalActivity {
 			System.out.println("A hora inicial não pode ser maior que a hora final.");
 			return 0;
 		}
+	}
+	
+	@Override
+	public String getInfoPretty() {
+		String info = "Atividade: " + getType() +
+				  ", Início: " + getBeginHour() + ", Fim: " + getEndHour() + 
+				  ", Calorias Queimadas: " + getCalories() + ", Distância percorrida: " + getDistance();
+
+		return info;
 	}
 
 }

@@ -3,18 +3,19 @@ package br.com.healthtrack.model.physicalactivity;
 import java.util.Calendar;
 
 /**
- * Classe que abstrai uma atividade física.
+ * Classe que abstrai uma atividade fÃ­sica.
  * @author Richard Kendy Tanaka
  * @version 1.0
  */
 
-public class PhysicalActivity {
+public class PhysicalActivity implements Comparable<PhysicalActivity> {
 
 	// Attributes
-	private double calories;
 	private String type;
 	protected int beginHour;
 	protected int endHour;
+	private double calories;
+
 
 	// Constructor
 	public PhysicalActivity() {
@@ -22,16 +23,16 @@ public class PhysicalActivity {
 	}
 
 	/**
-	 * Método construtor padrão.
+	 * MÃ©todo construtor padrÃ£o.
 	 * @param calories  Quantidade de calorias gastas durante a atividade (cal).
 	 * @param beginHour Hora inicial da atividade (horas).
 	 * @param endHour   Hora final da atividade (horas).
 	 * @param type      Tipo de atividade realizada.
 	 */
-	public PhysicalActivity(double calories, int beginHour, int endHour, String type) {
+	public PhysicalActivity(String type, int beginHour, int endHour, double calories) {
 		this.calories = calories;
 		if (beginHour > endHour) {
-			System.out.println("A hora inicial não pode ser maior que a hora final.");
+			System.out.println("A hora inicial nÃ£o pode ser maior que a hora final.");
 			this.beginHour = 0;
 			this.endHour = 0;
 		} else {
@@ -43,7 +44,7 @@ public class PhysicalActivity {
 
 	// Getters And Setters
 	/**
-	 * Método para se obter a quantidade de calorias gastas durante a atividade.
+	 * MÃ©todo para se obter a quantidade de calorias gastas durante a atividade.
 	 * @return Quantidade de calorias (cal) gastas durante a atividade.
 	 */
 	public double getCalories() {
@@ -51,7 +52,7 @@ public class PhysicalActivity {
 	}
 
 	/**
-	 * Método para se alterar a quantidade de calorias gastas durante a atividade.(apenas para valores maiores do que zero).
+	 * MÃ©todo para se alterar a quantidade de calorias gastas durante a atividade.(apenas para valores maiores do que zero).
 	 * @param calories Quantidade de calorias gastas durante a atividade.
 	 */
 	public void setCalories(double calories) {
@@ -61,16 +62,16 @@ public class PhysicalActivity {
 	}
 
 	/**
-	 * Método para se obter o tipo de atividade física realizada.
-	 * @return O tipo de atividade física realizada.
+	 * MÃ©todo para se obter o tipo de atividade fÃ­sica realizada.
+	 * @return O tipo de atividade fÃ­sica realizada.
 	 */
 	public String getType() {
 		return type;
 	}
 
 	/**
-	 * Método para se alterar o tipo de atividade física realizada. (apenas para valores diferentes de vazio).
-	 * @param type Tipo de atividade física realizada.
+	 * MÃ©todo para se alterar o tipo de atividade fÃ­sica realizada. (apenas para valores diferentes de vazio).
+	 * @param type Tipo de atividade fÃ­sica realizada.
 	 */
 	public void setType(String type) {
 		if (!type.trim().equals("")) {
@@ -80,7 +81,7 @@ public class PhysicalActivity {
 	}
 
 	/**
-	 * Método para se obter a hora inicial da atividade (horas).
+	 * MÃ©todo para se obter a hora inicial da atividade (horas).
 	 * @return Hora inicial da atividade
 	 */
 	public int getBeginHour() {
@@ -88,7 +89,7 @@ public class PhysicalActivity {
 	}
 
 	/**
-	 * Método para se alterar a hora inicial da atividade (horas). (apenas para valores diferentes de zero).
+	 * MÃ©todo para se alterar a hora inicial da atividade (horas). (apenas para valores diferentes de zero).
 	 * @param beginHour Hora inicial da atividade
 	 */
 	public void setBeginHour(int beginHour) {
@@ -99,7 +100,7 @@ public class PhysicalActivity {
 	}
 
 	/**
-	 * Método para se obter a hora final da atividade (horas).
+	 * MÃ©todo para se obter a hora final da atividade (horas).
 	 * @return Hora final da atividade
 	 */
 	public int getEndHour() {
@@ -107,7 +108,7 @@ public class PhysicalActivity {
 	}
 
 	/**
-	 * Método para se alterar a hora final da atividade (horas). (apenas para valores diferentes de zero).
+	 * MÃ©todo para se alterar a hora final da atividade (horas). (apenas para valores diferentes de zero).
 	 * @param endHour Hora final da atividade
 	 */
 	public void setEndHour(int endHour) {
@@ -119,18 +120,18 @@ public class PhysicalActivity {
 
 	// Methods
 	/**
-	 * Método para calcular a quantidade calorias gastas
+	 * MÃ©todo para calcular a quantidade calorias gastas
 	 * @param calories Quantidade de calorias gastas durante a atividade (cal).
 	 * @return A quantidade calorias gastas na atividade
 	 */
 	public double calculateCalories(double calories) {
-		System.out.println("Voc� queimou " + calories + " kcal.");
+		System.out.println("Você queimou " + calories + " kcal.");
 		return calories;
 	}
 
 	/**
-	 * Método para persistir as informações das atividades físicas no banco de dados.
-	 * @param physicalActivity instância do objeto PhysicalActivity 
+	 * MÃ©todo para persistir as informaÃ§Ãµes das atividades fÃ­sicas no banco de dados.
+	 * @param physicalActivity instÃ¢ncia do objeto PhysicalActivity 
 	 * @return Se o objeto foi salvo corretamente no banco de dados.
 	 */
 	public boolean save(PhysicalActivity physicalActivity) {
@@ -139,8 +140,8 @@ public class PhysicalActivity {
 	}
 
 	/**
-	 * Método para alterar as informações das atividades físicas no banco de dados.
-	 * @param physicalActivity instância do objeto PhysicalActivity 
+	 * MÃ©todo para alterar as informaÃ§Ãµes das atividades fÃ­sicas no banco de dados.
+	 * @param physicalActivity instÃ¢ncia do objeto PhysicalActivity 
 	 * @return Se o objeto foi atualizado corretamente no banco de dados.
 	 */
 	public boolean update(PhysicalActivity physicalActivity) {
@@ -150,30 +151,31 @@ public class PhysicalActivity {
 	}
 
 	/**
-	 * Método para remover as atividades físicas no banco de dados.
-	 * @param physicalActivity instância do objeto PhysicalActivity 
+	 * MÃ©todo para remover as atividades fÃ­sicas no banco de dados.
+	 * @param physicalActivity instÃ¢ncia do objeto PhysicalActivity 
 	 * @return Se o objeto foi removido corretamente no banco de dados.
 	 */
 	public boolean destroy(PhysicalActivity physicalActivity) {
-		System.out.println("Deletando uma atividade física.");
+		System.out.println("Deletando uma atividade fÃ­sica.");
 		return true;
 
 	}
-
+	
 	/**
-	 * Método para se consultar as atividades físicas já persistidos no banco de dados. 
-	 * @param type      Nome do item alimentício.
-	 * @param beginHour Hora inicial da atividade (horas).
-	 * @param endHour   Hora final da atividade (horas).
-	 * @return Lista de atividades físicas
+	 * Método para se obter informações sobre o objeto instanciado.
+	 * @return Texto contendo os valores dos atributos desse objeto.
 	 */
-	public static PhysicalActivity[] search(String type, int beginHour, int endHour) {
-		PhysicalActivity[] results = {};
+	public String getInfoPretty() {
+		String info = "Atividade: " + getType() +
+		  ", Início: " + getBeginHour() + ", Fim: " + getEndHour() + 
+		  ", Calorias Queimadas: " + getCalories();
 
-		System.out.println("Procurado por " + type + " na tabela PhysicalActivities no banco de dados... FEITO!");
-
-		return results;
-
+		return info;
 	}
 
+	@Override
+	public int compareTo(PhysicalActivity otherActivitySerie) {
+        return this.getType().compareToIgnoreCase(otherActivitySerie.getType());
+
+	}
 }

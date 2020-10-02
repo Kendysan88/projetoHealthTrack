@@ -61,31 +61,17 @@ public class Teste {
 
 		// -------------------------
 
-		System.out.println("MOSTRANDO ATIVIDADES F�SICAS");
-		PhysicalActivity atividadeFisica = new PhysicalActivity(2000, 14, 16, "Corrida");
-		System.out.println(atividadeFisica.calculateCalories(2000));
-		System.out.println(atividadeFisica.getBeginHour());
-		System.out.println(atividadeFisica.getEndHour());
-		System.out.println(atividadeFisica.getType());
+		System.out.println("MOSTRANDO ATIVIDADES FÍSICAS");
+		PhysicalActivity atividadeFisica = new PhysicalActivity("Corrida", 14, 16, 2000);
+		System.out.println(atividadeFisica.getInfoPretty());
 		
-		System.out.println("MOSTRANDO ATIVIDADES F�SICAS POR S�RIE");
-		PhysicalActivityBySeries atividadeSeries = new PhysicalActivityBySeries(2000, 16, 14, "Muscula��o", 3, 15, 20);
-		System.out.println(atividadeSeries.calculateCalories(2000));
-		System.out.println(atividadeSeries.getBeginHour());
-		System.out.println(atividadeSeries.getEndHour());
-		System.out.println(atividadeSeries.getType());
-		System.out.println(atividadeSeries.getSeries());
-		System.out.println(atividadeSeries.getRepetions());
-		System.out.println(atividadeSeries.getWeight());
+		System.out.println("MOSTRANDO ATIVIDADES FÍSICAS POR SÉRIE");
+		PhysicalActivityBySeries atividadeSeries = new PhysicalActivityBySeries("Costas", 10, 11, 500, 3, 15, 20);
+		System.out.println(atividadeSeries.getInfoPretty());
 		
-		System.out.println("MOSTRANDO ATIVIDADES F�SICAS POR DURA��O");
-		PhysicalActivityByDuration atividadePorDuracao = new PhysicalActivityByDuration(2000, 16, 14, "Ciclismo", 5);
-		System.out.println(atividadePorDuracao.calculateCalories(2000));
-		System.out.println(atividadePorDuracao.getBeginHour());
-		System.out.println(atividadePorDuracao.getEndHour());
-		System.out.println(atividadePorDuracao.getType());
-		System.out.println(atividadePorDuracao.CalculateDuration());
-		System.out.println(atividadePorDuracao.getDistance());
+		System.out.println("MOSTRANDO ATIVIDADES FÍSICAS POR DURAÇÃO");
+		PhysicalActivityByDuration atividadePorDuracao = new PhysicalActivityByDuration("Ciclismo", 13, 14, 1500, 5);
+		System.out.println(atividadePorDuracao.getInfoPretty());
 	}
 
 }
