@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Classe responsável por manupular entidades do tipo refeição, no banco de dados.
+ * Classe responsável por manipular entidades do tipo refeição, no banco de dados.
  * @author Afonso de Sousa Costa
  * @version 1.0
  */

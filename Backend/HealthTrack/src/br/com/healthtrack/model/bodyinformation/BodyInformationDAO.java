@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Classe responsável por manupular entidades do tipo informações corporais, no banco de dados.
+ * Classe responsável por manipular entidades do tipo informações corporais, no banco de dados.
  * @author Gabriel Souza Piscinato
  * @version 1.0
  */

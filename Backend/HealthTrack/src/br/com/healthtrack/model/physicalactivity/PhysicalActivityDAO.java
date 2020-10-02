@@ -5,7 +5,7 @@ import java.util.Collections;
 
 
 /**
- * Classe responsável por manupular entidades do tipo atividades físicas, no banco de dados.
+ * Classe responsável por manipular entidades do tipo atividades físicas, no banco de dados.
  * @author Richard Kendy
  * @version 1.0
  */
