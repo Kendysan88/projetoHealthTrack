@@ -2,6 +2,8 @@ package br.com.healthtrack.model.bodyinformation;
 
 import java.time.LocalDateTime;
 
+import br.com.healthtrack.model.meal.Food;
+import br.com.healthtrack.model.meal.Meal;
 import br.com.healthtrack.utils.Utils;
 
 /**
@@ -10,7 +12,7 @@ import br.com.healthtrack.utils.Utils;
  * @version 2.0
  */
 
-public class BodyInformation {
+public class BodyInformation implements Comparable<BodyInformation>  {
 
 	private LocalDateTime dateTime;
 	private double value;
@@ -32,6 +34,11 @@ public class BodyInformation {
 		this.value = value < 0 ? 0 : value;
 		this.dateTime = dateTime;
 	}
+
+	@Override
+    public int compareTo(BodyInformation otherBodyInformation) {
+        return this.getDateTime().compareTo(otherBodyInformation.getDateTime());
+    }
 
 	/**
 	 * Método para se obter a data e hora da medição corporal.
@@ -55,6 +62,15 @@ public class BodyInformation {
 	 */
 	public String getHeightValuePretty() {
 		return Utils.formatMeters(getValue());
+	}
+
+	/**
+	 * Método para se obter informações sobre o objeto instanciado.
+	 * @return Texto contendo os valores dos atributos desse objeto.
+	 */
+	public String getInfoPretty() {
+		String info = getDateTimePretty() + " " + getValue();
+		return info;
 	}
 
 	/**
