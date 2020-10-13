@@ -85,3 +85,20 @@ INSERT INTO T_HT_FOOD (food_id, unit_prefix, amount, calories, name, description
 
 INSERT INTO T_HT_FOOD (food_id, unit_prefix, amount, calories, name, description)
   VALUES (SQ_HT_FOOD.NEXTVAL, 'g', 140, 304, 'Pizza de mussarela', '1 fatia.');
+
+---
+
+--- DROP TABLE T_HT_MEAL CASCADE CONSTRAINTS;
+--- DROP SEQUENCE SQ_HT_MEAL;
+
+CREATE TABLE T_HT_MEAL(
+	meal_id      NUMBER    NOT NULL,
+	meal_type_id NUMBER    NOT NULL,
+  date_time    TIMESTAMP NOT NULL
+);
+
+CREATE SEQUENCE SQ_HT_MEAL INCREMENT BY 1 START WITH 1;
+
+ALTER TABLE T_HT_MEAL ADD CONSTRAINT PK_HT_MEAL PRIMARY KEY (meal_id);
+ALTER TABLE T_HT_MEAL ADD CONSTRAINT FK_HT_MEAL_AND_MEAL_TYPE
+  FOREIGN KEY (meal_type_id) REFERENCES T_HT_MEAL_TYPE (meal_type_id);
