@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BE452185-3AB8-78E2-9FCF-7F615BA22A82" name="T_HT_MEAL">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:54:11 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<ordsAlias>table_4</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="meal_id" id="F2C37C8E-5B25-A01C-62FC-400AF48596F7">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:55:41 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="user_id" id="7166C0A4-9897-C7DD-9135-07EA864DEECC">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:55:41 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="meal_type_id" id="EA725D44-51B8-DB9F-3BCA-912D047CD969">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:55:41 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="date_time" id="C96DE28A-B4D1-3479-05D8-62729C3513BE">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:55:41 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1F1BB58A-7719-7BF7-B8A0-796F2A3F70A5" name="T_HT_MEAL_PK">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:55:41 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F2C37C8E-5B25-A01C-62FC-400AF48596F7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

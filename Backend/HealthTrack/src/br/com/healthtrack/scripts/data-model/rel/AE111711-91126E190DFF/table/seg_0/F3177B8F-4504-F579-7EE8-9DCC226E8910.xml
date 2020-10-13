@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F3177B8F-4504-F579-7EE8-9DCC226E8910" name="T_HT_MEASUREMENT_UNIT">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:42:22 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="unit_prefix" id="7530B240-73EE-2832-0E9B-379CF5FBC172">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:43:28 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="50314959-3752-1850-DC17-DE13A32594D5">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:43:28 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25</dataTypeSize>
+<ownDataTypeParameters>25,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="751B8E55-3567-3B92-BCEB-9F862266A028">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:43:28 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="99C56CD3-06DF-71EF-9172-9443853A56DD" name="T_HT_MEASUREMENT_UNIT_PK">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:43:28 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7530B240-73EE-2832-0E9B-379CF5FBC172"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CDDF71FF-6CBE-EF1A-0579-15FBB9B12FF5" name="UN_HT_MEASUREMENT_UNIT_NAME">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:43:50 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="50314959-3752-1850-DC17-DE13A32594D5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

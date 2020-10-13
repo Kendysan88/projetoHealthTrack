@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8006E00D-1A74-3BCD-3F8A-AAC21229DAB5" name="T_HT_FOOD">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:44:47 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="food_id" id="431C5CBE-F5F9-1B1A-BC4E-E1710E89C96A">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:46:42 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="unit_prefix" id="DD6D2733-F877-51ED-07DB-808DA046F312">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:46:42 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="amount" id="6E78236A-A663-F14B-B648-7255FC3AB3D3">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:46:42 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,7,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="calories" id="40C5C007-316D-6EAC-3A90-4FE41E7CB6E1">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:46:42 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,7,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="467B3CE5-2A48-30B7-A42B-F406C8F0188F">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:46:42 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="AAFA3D5A-BAA3-DC5D-5A4E-0FC4DD420D10">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:46:42 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FB48CD5C-2E97-8FAA-8FE1-0C805E4B5AC4" name="T_HT_FOOD_PK">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:46:42 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="431C5CBE-F5F9-1B1A-BC4E-E1710E89C96A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1655D2C8-BE8F-4027-5FFE-1F9BA6430271" name="UN_HT_FOOD_NAME">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:47:17 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="467B3CE5-2A48-30B7-A42B-F406C8F0188F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
