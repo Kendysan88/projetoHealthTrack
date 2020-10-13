@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D1B2AD63-60AC-5629-CE59-00DD47185C83" name="T_HT_FOOD_ITEM">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:56:20 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<ordsAlias>table_5</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="food_id" id="78751A4E-F94C-F03F-2CE4-13002D41B4DB">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:57:37 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="meal_id" id="B94C623E-06F1-04C4-C057-95773B11ED71">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:57:37 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="amount" id="BB485E7B-E61B-BFBE-AAAE-C878550490D0">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:57:37 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,7,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="calories" id="33987BBF-D40C-2C77-4F35-21D9D2DC4CDB">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:57:37 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,7,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D20C545D-68DF-3BC2-A8B2-D03384C251BE" name="T_HT_FOOD_ITEM_PK">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:57:37 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="78751A4E-F94C-F03F-2CE4-13002D41B4DB"/>
+<colUsage columnID="B94C623E-06F1-04C4-C057-95773B11ED71"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

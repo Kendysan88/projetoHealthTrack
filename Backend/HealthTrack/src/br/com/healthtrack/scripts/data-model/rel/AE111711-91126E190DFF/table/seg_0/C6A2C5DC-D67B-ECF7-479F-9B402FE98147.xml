@@ -1,0 +1,68 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C6A2C5DC-D67B-ECF7-479F-9B402FE98147" name="T_HT_MEAL_TYPE">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:37:37 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="meal_type_id" id="4AF26FB4-1F4A-299E-8361-43AE3A6EE084">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:40:22 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="05ECBD11-8605-F3F4-3F05-C7DED958AAAC">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:40:22 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25</dataTypeSize>
+<ownDataTypeParameters>25,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="AD6DFBBC-83DC-B2C8-2416-F6FB6AB8328F">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:40:22 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CE65CED5-E01C-4897-4CCA-70673CC06951" name="T_HT_MEAL_TYPE_PK">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:40:22 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4AF26FB4-1F4A-299E-8361-43AE3A6EE084"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="95DAB6D8-DD0A-5CD8-C1DF-84D5AB35695D" name="UN_HT_MEAL_TYPE_NAME">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 21:41:55 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="05ECBD11-8605-F3F4-3F05-C7DED958AAAC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
