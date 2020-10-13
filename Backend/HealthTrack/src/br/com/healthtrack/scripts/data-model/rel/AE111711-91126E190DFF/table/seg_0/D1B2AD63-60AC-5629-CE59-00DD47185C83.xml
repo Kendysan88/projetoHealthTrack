@@ -17,6 +17,9 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="657E6AC9-D8B8-EA50-0FA2-E6FBBBF7A956" referredColumn="431C5CBE-F5F9-1B1A-BC4E-E1710E89C96A"/>
+</associations>
 </Column>
 <Column name="meal_id" id="B94C623E-06F1-04C4-C057-95773B11ED71">
 <createdBy>afonsir</createdBy>
@@ -27,6 +30,9 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A5639D7D-B17C-2841-204A-F2A39B0E20C5" referredColumn="F2C37C8E-5B25-A01C-62FC-400AF48596F7"/>
+</associations>
 </Column>
 <Column name="amount" id="BB485E7B-E61B-BFBE-AAAE-C878550490D0">
 <createdBy>afonsir</createdBy>
@@ -64,6 +70,26 @@
 <indexColumnUsage>
 <colUsage columnID="78751A4E-F94C-F03F-2CE4-13002D41B4DB"/>
 <colUsage columnID="B94C623E-06F1-04C4-C057-95773B11ED71"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="603003CC-E3C9-F8A4-6FF7-56A936DFA456" name="FK_HT_FOOD_ITEM_AND_MEAL">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 23:32:39 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B94C623E-06F1-04C4-C057-95773B11ED71"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="644BA4B0-77D8-2DCF-0933-85E2970F6AC1" name="FK_HT_FOOD_ITEM_AND_FOOD">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 23:32:39 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="78751A4E-F94C-F03F-2CE4-13002D41B4DB"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

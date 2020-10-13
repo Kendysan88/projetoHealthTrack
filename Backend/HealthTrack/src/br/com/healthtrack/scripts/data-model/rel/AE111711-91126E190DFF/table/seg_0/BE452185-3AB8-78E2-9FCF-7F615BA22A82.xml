@@ -27,6 +27,9 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="525936B6-5AE6-20C9-09E5-26B980D84711" referredColumn="B916A311-1FE3-D88A-298B-736E1516EF2A"/>
+</associations>
 </Column>
 <Column name="meal_type_id" id="EA725D44-51B8-DB9F-3BCA-912D047CD969">
 <createdBy>afonsir</createdBy>
@@ -37,6 +40,9 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8ADD302E-397B-5C21-CA3B-D6DEE0FEBF25" referredColumn="4AF26FB4-1F4A-299E-8361-43AE3A6EE084"/>
+</associations>
 </Column>
 <Column name="date_time" id="C96DE28A-B4D1-3479-05D8-62729C3513BE">
 <createdBy>afonsir</createdBy>
@@ -59,6 +65,26 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="F2C37C8E-5B25-A01C-62FC-400AF48596F7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E63CA7A2-6E30-C955-B4ED-2830BF16F922" name="FK_HT_MEAL_AND_USER">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 23:32:39 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7166C0A4-9897-C7DD-9135-07EA864DEECC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="02A31E2F-3451-2362-DE39-B4B9A838FDE5" name="FK_HT_MEAL_AND_MEAL_TYPE">
+<createdBy>afonsir</createdBy>
+<createdTime>2020-10-13 23:32:39 UTC</createdTime>
+<ownerDesignName>data-model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EA725D44-51B8-DB9F-3BCA-912D047CD969"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
