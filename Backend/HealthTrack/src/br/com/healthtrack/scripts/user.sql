@@ -11,10 +11,8 @@ CREATE SEQUENCE SQ_HT_USER INCREMENT BY 1 START WITH 1;
 ALTER TABLE T_HT_USER ADD CONSTRAINT PK_HT_USER PRIMARY KEY (user_id);
 ALTER TABLE T_HT_USER ADD CONSTRAINT UN_HT_USER_EMAIL UNIQUE (email);
 
-INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user1@email.com');
-INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user2@email.com');
-INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user3@email.com');
-INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user4@email.com');
-INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user5@email.com');
-
-SELECT * FROM T_HT_USER;
+-- INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user1@email.com');
+-- INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user2@email.com');
+-- INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user3@email.com');
+-- INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user4@email.com');
+-- INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user5@email.com');
