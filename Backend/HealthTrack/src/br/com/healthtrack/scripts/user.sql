@@ -2,11 +2,11 @@
 --- DROP SEQUENCE SQ_HT_USER;
 
 CREATE TABLE T_HT_USER(
-	user_id    NUMBER       NOT NULL,
-	email      VARCHAR2(25) NOT NULL,
-	password   VARCHAR2(15) NOT NULL,
-	nickname   VARCHAR2(25),
-	birth_date DATE         NOT NULL
+  user_id    NUMBER       NOT NULL,
+  email      VARCHAR2(25) NOT NULL,
+  password   VARCHAR2(15) NOT NULL,
+  nickname   VARCHAR2(25),
+  birth_date DATE         NOT NULL
 );
 
 CREATE SEQUENCE SQ_HT_USER INCREMENT BY 1 START WITH 1;

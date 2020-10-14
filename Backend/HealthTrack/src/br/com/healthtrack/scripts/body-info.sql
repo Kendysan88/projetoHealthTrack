@@ -2,9 +2,9 @@
 --- DROP SEQUENCE SQ_HT_BLOOD_PREASSURE;
 
 CREATE TABLE T_HT_BLOOD_PREASSURE(
-	blood_preassure_id NUMBER      NOT NULL,
-	user_id            NUMBER      NOT NULL,
-	unit_prefix        VARCHAR2(5) NOT NULL,
+  blood_preassure_id NUMBER      NOT NULL,
+  user_id            NUMBER      NOT NULL,
+  unit_prefix        VARCHAR2(5) NOT NULL,
   diastolic_value    NUMBER(3)   NOT NULL,
   systolic_value     NUMBER(3)   NOT NULL,
   date_time          TIMESTAMP   NOT NULL
@@ -26,9 +26,9 @@ ALTER TABLE T_HT_BLOOD_PREASSURE ADD CONSTRAINT FK_HT_BLOOD_PRE_AND_USER
 --- DROP SEQUENCE SQ_HT_HEIGHT;
 
 CREATE TABLE T_HT_HEIGHT(
-	height_id   NUMBER      NOT NULL,
-	user_id     NUMBER      NOT NULL,
-	unit_prefix VARCHAR2(5) NOT NULL,
+  height_id   NUMBER      NOT NULL,
+  user_id     NUMBER      NOT NULL,
+  unit_prefix VARCHAR2(5) NOT NULL,
   value       NUMBER(3,2) NOT NULL,
   date_time   TIMESTAMP   NOT NULL
 );
@@ -49,9 +49,9 @@ ALTER TABLE T_HT_HEIGHT ADD CONSTRAINT FK_HT_HEIGHT_AND_USER
 --- DROP SEQUENCE SQ_HT_WEIGHT;
 
 CREATE TABLE T_HT_WEIGHT(
-	weight_id   NUMBER      NOT NULL,
-	user_id     NUMBER      NOT NULL,
-	unit_prefix VARCHAR2(5) NOT NULL,
+  weight_id   NUMBER      NOT NULL,
+  user_id     NUMBER      NOT NULL,
+  unit_prefix VARCHAR2(5) NOT NULL,
   value       NUMBER(3,2) NOT NULL,
   date_time   TIMESTAMP   NOT NULL
 );
@@ -71,8 +71,8 @@ ALTER TABLE T_HT_WEIGHT ADD CONSTRAINT FK_HT_WEIGHT_AND_USER
 --- MODELO
 
 INSERT INTO T_HT_BLOOD_PREASSURE (
-	user_id,
-	unit_prefix,
+  user_id,
+  unit_prefix,
   diastolic_value,
   systolic_value,
   date_time
@@ -85,7 +85,7 @@ INSERT INTO T_HT_BLOOD_PREASSURE (
 );
 
 UPDATE T_HT_BLOOD_PREASSURE SET
-	unit_prefix = [UNIDADE DE MEDIDA],
+  unit_prefix = [UNIDADE DE MEDIDA],
   diastolic_value = [VALOR DIASTÓLICO],
   systolic_value = [VALOR SISTÓLICO],
   date_time = '[DATA E HORA DA MEDIÇÃO]'
@@ -93,8 +93,8 @@ WHERE user_id = [IDENTIFICADOR DO USUÁRIO]
   AND blood_preassure_id = [IDENTIFICADOR DA MEDIÇÃO];
 
 INSERT INTO T_HT_HEIGHT (
-	user_id,
-	unit_prefix,
+  user_id,
+  unit_prefix,
   value,
   date_time
 ) VALUES (
@@ -105,15 +105,15 @@ INSERT INTO T_HT_HEIGHT (
 );
 
 UPDATE T_HT_HEIGHT SET
-	unit_prefix = [UNIDADE DE MEDIDA],
+  unit_prefix = [UNIDADE DE MEDIDA],
   value = [ALTURA DO USUÁRIO],
   date_time = '[DATA E HORA DA MEDIÇÃO]'
 WHERE user_id = [IDENTIFICADOR DO USUÁRIO]
   AND height_id = [IDENTIFICADOR DA MEDIÇÃO];
 
 INSERT INTO T_HT_WEIGHT (
-	user_id,
-	unit_prefix,
+  user_id,
+  unit_prefix,
   value,
   date_time
 ) VALUES (
@@ -124,7 +124,7 @@ INSERT INTO T_HT_WEIGHT (
 );
 
 UPDATE T_HT_WEIGHT SET
-	unit_prefix = [UNIDADE DE MEDIDA],
+  unit_prefix = [UNIDADE DE MEDIDA],
   value = [PESO DO USUÁRIO],
   date_time = '[DATA E HORA DA MEDIÇÃO]'
 WHERE user_id = [IDENTIFICADOR DO USUÁRIO]
