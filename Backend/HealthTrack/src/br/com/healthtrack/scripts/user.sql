@@ -2,8 +2,11 @@
 --- DROP SEQUENCE SQ_HT_USER;
 
 CREATE TABLE T_HT_USER(
-	user_id NUMBER       NOT NULL,
-	email   VARCHAR2(25) NOT NULL
+  user_id    NUMBER       NOT NULL,
+  email      VARCHAR2(25) NOT NULL,
+  password   VARCHAR2(15) NOT NULL,
+  nickname   VARCHAR2(25),
+  birth_date DATE         NOT NULL
 );
 
 CREATE SEQUENCE SQ_HT_USER INCREMENT BY 1 START WITH 1;
@@ -11,10 +14,25 @@ CREATE SEQUENCE SQ_HT_USER INCREMENT BY 1 START WITH 1;
 ALTER TABLE T_HT_USER ADD CONSTRAINT PK_HT_USER PRIMARY KEY (user_id);
 ALTER TABLE T_HT_USER ADD CONSTRAINT UN_HT_USER_EMAIL UNIQUE (email);
 
-INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user1@email.com');
-INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user2@email.com');
-INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user3@email.com');
-INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user4@email.com');
-INSERT INTO T_HT_USER (user_id, email) VALUES (SQ_HT_USER.NEXTVAL, 'user5@email.com');
+---
 
-SELECT * FROM T_HT_USER;
+--- MODELO
+
+INSERT INTO T_HT_USER (
+  email,
+  password,
+  nickname,
+  birth_date,
+) VALUES (
+  [EMAIL DO USUÁRIO],
+  [SENHA DO USUÁRIO],
+  [APELIDO DO USUÁRIO],
+  '[DATA DE NASCIMENTO DO USUÁRIO]'
+);
+
+UPDATE T_HT_USER SET
+  email = [EMAIL DO USUÁRIO],
+  password = [SENHA DO USUÁRIO],
+  nickname = [APELIDO DO USUÁRIO],
+  birth_date = '[DATA DE NASCIMENTO DO USUÁRIO]'
+WHERE user_id = [IDENTIFICADOR DO USUÁRIO];
