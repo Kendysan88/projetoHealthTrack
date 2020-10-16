@@ -36,3 +36,11 @@ UPDATE T_HT_USER SET
   nickname = [APELIDO DO USUÁRIO],
   birth_date = '[DATA DE NASCIMENTO DO USUÁRIO]'
 WHERE user_id = [IDENTIFICADOR DO USUÁRIO];
+
+
+--- Consultar os dados de um determinado usuário
+--- (filtrar a partir do seu código).
+
+SELECT U.EMAIL, U.PASSWORD, U.NICKNAME, U.BIRTH_DATE
+FROM T_HT_USER U
+WHERE U.USER_ID = [IDENTIFICADOR DO USUÁRIO];
