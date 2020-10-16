@@ -127,3 +127,30 @@ UPDATE T_HT_FOOD_ITEM SET
   amount = [QUANTIDADE DO ALIMENTO],
   calories = [QUANTIDADE DE CALORIAS DO ALIMENTO]
 WHERE meal_id = [IDENTIFICADOR DA REFEIÇÃO];
+
+
+--- Consultar todos os dados de todos os registros de alimentos
+--- ingeridos de um determinado usuário, ordenando-os dos
+--- registros mais recentes para os mais antigos (filtrar a
+--- partir do seu código).
+
+SELECT F.NAME, F.UNIT_PREFIX, FI.AMOUNT, FI.CALORIES, MT.NAME AS MEAL_TYPE, M.DATE_TIME
+FROM T_HT_USER U
+JOIN T_HT_MEAL M ON U.USER_ID = M.USER_ID
+JOIN T_HT_MEAL_TYPE MT ON M.MEAL_TYPE_ID = MT.MEAL_TYPE_ID
+JOIN T_HT_FOOD_ITEM FI ON M.MEAL_ID = FI.MEAL_ID
+JOIN T_HT_FOOD F ON FI.FOOD_ID = F.FOOD_ID
+WHERE U.USER_ID = [IDENTIFICADOR DO USUÁRIO]
+ORDER BY M.DATE_TIME DESC;
+
+--- Consultar todos os dados de um único registro de alimento
+--- ingerido de um determinado usuário (filtrar a partir do
+--- código do usuário e do código de alimento).
+
+SELECT F.NAME, F.UNIT_PREFIX, FI.AMOUNT, FI.CALORIES, MT.NAME AS MEAL_TYPE, M.DATE_TIME
+FROM T_HT_USER U
+JOIN T_HT_MEAL M ON U.USER_ID = M.USER_ID
+JOIN T_HT_MEAL_TYPE MT ON M.MEAL_TYPE_ID = MT.MEAL_TYPE_ID
+JOIN T_HT_FOOD_ITEM FI ON M.MEAL_ID = FI.MEAL_ID
+JOIN T_HT_FOOD F ON FI.FOOD_ID = F.FOOD_ID
+WHERE U.USER_ID = [IDENTIFICADOR DO USUÁRIO] AND F.FOOD_ID = [IDENTIFICADOR DO ALIMENTO];
