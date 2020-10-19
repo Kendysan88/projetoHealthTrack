@@ -129,3 +129,46 @@ UPDATE T_HT_WEIGHT SET
   date_time = '[DATA E HORA DA MEDIÇÃO]'
 WHERE user_id = [IDENTIFICADOR DO USUÁRIO]
   AND weight_id = [IDENTIFICADOR DA MEDIÇÃO];
+
+--- Consultar todos os dados de todos os registros de peso
+--- de um determinado usuário, ordenando-os dos registros
+--- mais recentes para os mais antigos (filtrar a partir
+--- do seu código).
+
+SELECT W.VALUE, W.UNITY_PREFIX, W.DATE_TIME
+FROM T_HT_USER U
+JOIN T_HT_WEIGHT W ON U.USER_ID = W.USER_ID
+WHERE U.USER_ID = [IDENTIFICADOR DO USUÁRIO]
+ORDER BY W.DATE_TIME DESC;
+
+--- Consultar todos os dados de um único registro de peso
+--- de um determinado usuário (filtrar a partir do código
+--- do usuário e do código de peso).
+
+SELECT W.VALUE, W.UNITY_PREFIX, W.DATE_TIME
+FROM T_HT_USER U
+JOIN T_HT_WEIGHT W ON U.USER_ID = W.USER_ID
+WHERE U.USER_ID = [IDENTIFICADOR DO USUÁRIO] AND W.WEIGHT_ID = [IDENTIFICADOR DE PESO]
+ORDER BY W.DATE_TIME DESC;
+
+--- Consultar todos os dados de todos os registros de
+--- pressão arterial de um determinado usuário,
+--- ordenando-os dos registros mais recentes para os
+--- mais antigos (filtrar a partir do seu código).
+
+SELECT BD.DIASTOLIC_VALUE, BD.SYSTOLIC_VALUE, BD.UNIT_PREFIX, BD.DATE_TIME
+FROM T_HT_USER U
+JOIN T_HT_BLOOD_PREASSURE BD ON U.USER_ID = BD.USER_ID
+WHERE U.USER_ID = [IDENTIFICADOR DO USUÁRIO]
+ORDER BY BD.DATE_TIME DESC;
+
+--- Consultar todos os dados de um único registro de
+--- pressão arterial de um determinado usuário
+--- (filtrar a partir do código do usuário e do
+--- código de pressão).
+
+SELECT BD.DIASTOLIC_VALUE, BD.SYSTOLIC_VALUE, BD.UNIT_PREFIX, BD.DATE_TIME
+FROM T_HT_USER U
+JOIN T_HT_BLOOD_PREASSURE BD ON U.USER_ID = BD.USER_ID
+WHERE U.USER_ID = [IDENTIFICADOR DO USUÁRIO] AND BD.BLOOD_PREASSURE_ID = [IDENTIFICADOR DA PRESSÃO ARTERIAL]
+ORDER BY BD.DATE_TIME DESC;
