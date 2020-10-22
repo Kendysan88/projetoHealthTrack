@@ -5,7 +5,7 @@ import br.com.healthtrack.utils.Utils;
 /**
  * Classe que abstrai uma porção de um item alimentício, bem como seu valor calórico.
  * @author Afonso de Sousa Costa
- * @version 2.1
+ * @version 3.0
  */
 public class Food implements Comparable<Food> {
 
@@ -21,14 +21,9 @@ public class Food implements Comparable<Food> {
 	 * @param name     Nome do item alimentício.
 	 */
 	public Food(double amount, double calories, String name) {
-		this.amount = amount < 0 ? 0 : amount;
-		this.calories = calories < 0 ? 0 : calories;
-
-		name = name.trim();
-
-		if(!name.equals("")) {
-			this.name = name;
-		}
+		setAmount(amount);
+		setCalories(calories);
+		setName(name);
 	}
 
 	/**
@@ -39,20 +34,10 @@ public class Food implements Comparable<Food> {
 	 * @param description Descrição/observação do item alimentício.
 	 */
 	public Food(double amount, double calories, String name, String description) {
-		this.amount = amount < 0 ? 0 : amount;
-		this.calories = calories < 0 ? 0 : calories;
-
-		name = name.trim();
-
-		if(!name.equals("")) {
-			this.name = name;
-		}
-
-		description = description.trim();
-
-		if(!description.equals("")) {
-			this.description = description;
-		}
+		setAmount(amount);
+		setCalories(calories);
+		setName(name);
+		setDescription(description);
 	}
 
 	@Override
@@ -130,9 +115,7 @@ public class Food implements Comparable<Food> {
 	 * @param amount Quantidade em gramas do item alimentício.
 	 */
 	public void setAmount(double amount) {
-		if(amount > 0) {
-			this.amount = amount;
-		}
+		this.amount = amount > 0 ? amount : 0;
 	}
 
 	/**
@@ -140,9 +123,7 @@ public class Food implements Comparable<Food> {
 	 * @param calories Quantidade de calorias do item alimentício.
 	 */
 	public void setCalories(double calories) {
-		if(calories > 0) {
-			this.calories = calories;
-		}
+		this.calories = calories > 0 ? calories : 0;
 	}
 	
 	/**

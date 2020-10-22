@@ -5,13 +5,13 @@ import br.com.healthtrack.utils.Utils;
 /**
  * Classe que abstrai um item alimentício presente em uma refeição, bem como seu valor calórico.
  * @author Afonso de Sousa Costa
- * @version 2.0
+ * @version 3.0
  */
 public class FoodItem {
 
-	private Food food;
 	private double amount;
 	private double calories;
+	private Food food;
 
 	/**
 	 * Método construtor padrão (food e amount são obrigatórios).
@@ -20,14 +20,8 @@ public class FoodItem {
 	 */
 	public FoodItem(Food food, double amount) {
 		this.food = food;
-
-		if(amount > 0) {
-			this.amount = amount;
-			calculateCalories(food, amount);
-		} else {
-			this.amount = 0;
-			this.calories = 0;
-		}
+		setAmount(amount);
+		calculateCalories(food, amount);
 	}
 
 	/**
@@ -37,6 +31,8 @@ public class FoodItem {
 	private void calculateCalories(Food food, double amount) {
 		if(amount > 0) {
 			this.calories = ((amount / food.getAmount()) * food.getCalories());
+		} else {
+			this.calories = 0;
 		}
 	}
 
@@ -97,10 +93,6 @@ public class FoodItem {
 	 * @param amount Quantidade em gramas do item alimentício.
 	 */
 	public void setAmount(double amount) {
-		if(amount > 0) {
-			this.amount = amount;
-
-			calculateCalories(this.food, amount);
-		}
+		this.amount = amount > 0 ? amount : 0;
 	}
 }
