@@ -5,7 +5,7 @@ import br.com.healthtrack.utils.Utils;
 /**
  * Classe que abstrai uma porção de um item alimentício, bem como seu valor calórico.
  * @author Afonso de Sousa Costa
- * @version 2.0
+ * @version 2.1
  */
 public class Food implements Comparable<Food> {
 
@@ -24,7 +24,9 @@ public class Food implements Comparable<Food> {
 		this.amount = amount < 0 ? 0 : amount;
 		this.calories = calories < 0 ? 0 : calories;
 
-		if(!name.trim().equals("")) {
+		name = name.trim();
+
+		if(!name.equals("")) {
 			this.name = name;
 		}
 	}
@@ -40,10 +42,15 @@ public class Food implements Comparable<Food> {
 		this.amount = amount < 0 ? 0 : amount;
 		this.calories = calories < 0 ? 0 : calories;
 
-		if(!name.trim().equals("")) {
+		name = name.trim();
+
+		if(!name.equals("")) {
 			this.name = name;
 		}
-		if(!description.trim().equals("")) {
+
+		description = description.trim();
+
+		if(!description.equals("")) {
 			this.description = description;
 		}
 	}
@@ -143,7 +150,9 @@ public class Food implements Comparable<Food> {
 	 * @param description Descrição do item alimentício.
 	 */
 	public void setDescription(String description) {
-		if(!description.trim().equals("")) {
+		description = description.trim();
+
+		if(!description.equals("")) {
 			this.description = description;
 		}
 	}
@@ -153,7 +162,9 @@ public class Food implements Comparable<Food> {
 	 * @param name Nome do item alimentício.
 	 */
 	public void setName(String name) {
-		if(!name.trim().equals("")) {
+		name = name.trim();
+
+		if(!name.equals("")) {
 			this.name = name;
 		}
 	}

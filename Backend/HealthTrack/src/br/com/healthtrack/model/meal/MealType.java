@@ -3,7 +3,7 @@ package br.com.healthtrack.model.meal;
 /**
  * Classe que abstrai um tipo de refeição.
  * @author Afonso de Sousa Costa
- * @version 1.0
+ * @version 1.1
  */
 public class MealType {
 
@@ -15,7 +15,9 @@ public class MealType {
 	 * @param name Nome do tipo de refeição.
 	 */
 	public MealType(String name) {
-		if(!name.trim().equals("")) {
+		name = name.trim();
+
+		if(!name.equals("")) {
 			this.name = name;
 		}
 	}
@@ -26,10 +28,15 @@ public class MealType {
 	 * @param description Descrição/observação do tipo de refeição.
 	 */
 	public MealType(String name, String description) {
-		if(!name.trim().equals("")) {
+		name = name.trim();
+
+		if(!name.equals("")) {
 			this.name = name;
 		}
-		if(!description.trim().equals("")) {
+
+		description = description.trim();
+
+		if(!description.equals("")) {
 			this.description = description;
 		}
 	}
@@ -55,7 +62,9 @@ public class MealType {
 	 * @param description Descrição do tipo de refeição.
 	 */
 	public void setDescription(String description) {
-		if(!name.trim().equals("")) {
+		description = description.trim();
+
+		if(!description.equals("")) {
 			this.description = description;
 		}
 	}
@@ -65,7 +74,9 @@ public class MealType {
 	 * @param name Nome do tipo de refeição.
 	 */
 	public void setName(String name) {
-		if(!name.trim().equals("")) {
+		name = name.trim();
+
+		if(!name.equals("")) {
 			this.name = name;
 		}
 	}
