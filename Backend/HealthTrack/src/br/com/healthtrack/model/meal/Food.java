@@ -1,11 +1,11 @@
 package br.com.healthtrack.model.meal;
 
-import br.com.healthtrack.utils.Utils;
+import br.com.healthtrack.model.measurementunit.MeasurementUnit;
 
 /**
  * Classe que abstrai uma porção de um item alimentício, bem como seu valor calórico.
  * @author Afonso de Sousa Costa
- * @version 3.0
+ * @version 3.1
  */
 public class Food implements Comparable<Food> {
 
@@ -13,30 +13,35 @@ public class Food implements Comparable<Food> {
 	private double calories;
 	private String description;
 	private String name;
+	private MeasurementUnit unit;
 	
 	/**
-	 * Método construtor padrão (amount, calories e name são obrigatórios).
+	 * Método construtor padrão (amount, calories, unidade de medida e name são obrigatórios).
 	 * @param amount   Quantidade em gramas do item alimentício.
 	 * @param calories Quatidade de calorias do item alimentício.
 	 * @param name     Nome do item alimentício.
+	 * @param unit     Unidade de medida do item alimentício.
 	 */
-	public Food(double amount, double calories, String name) {
+	public Food(double amount, double calories, String name, MeasurementUnit unit) {
 		setAmount(amount);
 		setCalories(calories);
 		setName(name);
+		setUnit(unit);
 	}
 
 	/**
-	 * Método construtor padrão sobrecarregado (amount, calories, name e description são obrigatórios).
+	 * Método construtor padrão sobrecarregado (amount, calories, unidade de medida, name e description são obrigatórios).
 	 * @param amount      Quantidade em gramas do item alimentício.
 	 * @param calories    Quatidade de calorias do item alimentício.
 	 * @param name        Nome do item alimentício.
+	 * @param unit        Unidade de medida do item alimentício.
 	 * @param description Descrição/observação do item alimentício.
 	 */
-	public Food(double amount, double calories, String name, String description) {
+	public Food(double amount, double calories, String name, MeasurementUnit unit, String description) {
 		setAmount(amount);
 		setCalories(calories);
 		setName(name);
+		setUnit(unit);
 		setDescription(description);
 	}
 
@@ -58,7 +63,7 @@ public class Food implements Comparable<Food> {
 	 * @return Quantidade do item alimentício em gramas (g).
 	 */
 	public String getAmountPretty() {
-		return Utils.formatGrams(amount);
+		return unit.formatValueToUnit(amount);
 	}
 
 
@@ -75,7 +80,7 @@ public class Food implements Comparable<Food> {
 	 * @return Quantidade de calorias (cal) do item alimentício.
 	 */
 	public String getCaloriesPretty() {
-		return Utils.formatCalories(calories);
+		return unit.formatValueToUnit(calories);
 	}
 
 	/**
@@ -148,5 +153,13 @@ public class Food implements Comparable<Food> {
 		if(!name.equals("")) {
 			this.name = name;
 		}
+	}
+
+	/**
+	 * Método para se alterar a unidade de medida do item alimentício (apenas para valores diferentes de vazio).
+	 * @param unit Unidade de medida do item alimentício.
+	 */
+	public void setUnit(MeasurementUnit unit) {
+		this.unit = unit;
 	}
 }
