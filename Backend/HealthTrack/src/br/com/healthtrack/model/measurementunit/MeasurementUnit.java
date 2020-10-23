@@ -51,6 +51,22 @@ public class MeasurementUnit implements Comparable<MeasurementUnit> {
 	}
 
 	/**
+	 * Método para se obter informações sobre o objeto instanciado.
+	 * @return Texto contendo os valores dos atributos desse objeto.
+	 */
+	public String getInfoPretty() {
+		String info;
+
+		if(description != null) {
+			info = unitPrefix + " " + name + " " + description;
+		} else {
+			info = unitPrefix + " " + name;
+		}
+
+		return info;
+	}
+
+	/**
 	 * Método para se obter o nome da unidade de medida.
 	 * @return Nome da unidade de medida.
 	 */
