@@ -9,7 +9,7 @@ import br.com.healthtrack.utils.Utils;
 /**
  * Classe que abstrai uma refeiçãoo bem como seu valor calórico.
  * @author Afonso de Sousa Costa
- * @version 2.0
+ * @version 3.0
  */
 public class Meal implements Comparable<Meal> {
 
@@ -23,8 +23,8 @@ public class Meal implements Comparable<Meal> {
 	 * @param type     Tipo de refeição.
 	 */
 	public Meal(LocalDateTime dateTime, MealType type) {
-		this.dateTime = dateTime;
-		this.type = type;
+		setDateTime(dateTime);
+		setType(type);
 	}
 
 	/**
@@ -34,8 +34,8 @@ public class Meal implements Comparable<Meal> {
 	 * @param foodItems Lista de itens alimentícios.
 	 */
 	public Meal(LocalDateTime dateTime, MealType type, ArrayList<FoodItem> foodItems) {
-		this.dateTime = dateTime;
-		this.type = type;
+		setDateTime(dateTime);
+		setType(type);
 		this.foodItems = foodItems;
 	}
 

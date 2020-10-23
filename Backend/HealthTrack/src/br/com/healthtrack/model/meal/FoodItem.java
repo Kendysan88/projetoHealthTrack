@@ -19,7 +19,7 @@ public class FoodItem {
 	 * @param amount Quantidade em gramas do item alimentício de referência.
 	 */
 	public FoodItem(Food food, double amount) {
-		this.food = food;
+		setFood(food);
 		setAmount(amount);
 		calculateCalories(food, amount);
 	}
@@ -94,5 +94,13 @@ public class FoodItem {
 	 */
 	public void setAmount(double amount) {
 		this.amount = amount > 0 ? amount : 0;
+	}
+
+	/**
+	 * Método para se alterar item alimentício de referência.
+	 * @param food Item alimentício de referência.
+	 */
+	public void setFood(Food food) {
+		this.food = food;
 	}
 }
