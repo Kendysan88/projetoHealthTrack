@@ -23,18 +23,18 @@ public class TesteDAO {
 	public static void main(String[] args) {
 		System.out.println("Unidade de Medida DAO");
 
-		MeasurementUnitDAO unitDao = new MeasurementUnitDAO();
+		MeasurementUnitDAO unitDAO = new MeasurementUnitDAO();
 
 		MeasurementUnit unit1 = new MeasurementUnit("kg", "quilogramas");
-		unitDao.create(unit1);
+		unitDAO.create(unit1);
 
 		MeasurementUnit unit2 = new MeasurementUnit("m", "metros", "Usada nas medições de altura");
-		unitDao.create(unit2);
+		unitDAO.create(unit2);
 
 		MeasurementUnit unit3 = new MeasurementUnit("cal", "calorias", "Utilizada nas medições de atividade físicas");
-		unitDao.create(unit3);
+		unitDAO.create(unit3);
 
-		for(MeasurementUnit unitItem : unitDao.getAll()) {
+		for(MeasurementUnit unitItem : unitDAO.getAll()) {
 			System.out.println(unitItem.getInfoPretty());
 		}
 
