@@ -37,6 +37,22 @@ public class MealType {
 	}
 
 	/**
+	 * Método para se obter informações sobre o objeto instanciado.
+	 * @return Texto contendo os valores dos atributos desse objeto.
+	 */
+	public String getInfoPretty() {
+		String info;
+
+		if(description != null) {
+			info = name + " " + description;
+		} else {
+			info = name;
+		}
+
+		return info;
+	}
+
+	/**
 	 * Método para se obter o nome do tipo de refeição.
 	 * @return Nome do tipo de refeição.
 	 */

@@ -6,6 +6,8 @@ import br.com.healthtrack.model.meal.Food;
 import br.com.healthtrack.model.meal.FoodDAO;
 import br.com.healthtrack.model.meal.Meal;
 import br.com.healthtrack.model.meal.MealDAO;
+import br.com.healthtrack.model.meal.MealType;
+import br.com.healthtrack.model.meal.MealTypeDAO;
 import br.com.healthtrack.model.measurementunit.MeasurementUnit;
 import br.com.healthtrack.model.measurementunit.MeasurementUnitDAO;
 import br.com.healthtrack.model.physicalactivity.PhysicalActivity;
@@ -36,26 +38,24 @@ public class TesteDAO {
 			System.out.println(unitItem.getInfoPretty());
 		}
 
-		System.out.println("Alimentos DAO");
+		System.out.println("\n\nTipos de Refeição DAO");
 
-		for(Food item : new FoodDAO().getAll()) {
-			System.out.println(item.getInfoPretty());
-		}
+		MealTypeDAO mealTypeDAO = new MealTypeDAO();
 
-		System.out.println("\n\n\n");
+		MealType mealType1 = new MealType("café da manhã");
+		mealTypeDAO.create(mealType1);
 
-		System.out.println("Refeições DAO");
+		MealType mealType2 = new MealType("almoço");
+		mealTypeDAO.create(mealType2);
 
-		for(Meal item : new MealDAO().getAll()) {
-			System.out.println(item.getInfoPretty());
-		}
+		MealType mealType3 = new MealType("jantar");
+		mealTypeDAO.create(mealType3);
 
-		
-		System.out.println("\n\n\n");
-		
-		System.out.println("Atividades Físicas DAO");
-		for(PhysicalActivity item : new PhysicalActivityDAO().getAll()) {
-			System.out.println(item.getInfoPretty());
+		MealType mealType4 = new MealType("lanche");
+		mealTypeDAO.create(mealType4);
+
+		for(MealType mealTypeItem : mealTypeDAO.getAll()) {
+			System.out.println(mealTypeItem.getInfoPretty());
 		}
 
 
