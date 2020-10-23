@@ -6,6 +6,8 @@ import br.com.healthtrack.model.meal.Food;
 import br.com.healthtrack.model.meal.FoodDAO;
 import br.com.healthtrack.model.meal.Meal;
 import br.com.healthtrack.model.meal.MealDAO;
+import br.com.healthtrack.model.measurementunit.MeasurementUnit;
+import br.com.healthtrack.model.measurementunit.MeasurementUnitDAO;
 import br.com.healthtrack.model.physicalactivity.PhysicalActivity;
 import br.com.healthtrack.model.physicalactivity.PhysicalActivityDAO;
 
@@ -17,12 +19,29 @@ import br.com.healthtrack.model.physicalactivity.PhysicalActivityDAO;
 public class TesteDAO {
 
 	public static void main(String[] args) {
+		System.out.println("Unidade de Medida DAO");
+
+		MeasurementUnitDAO unitDao = new MeasurementUnitDAO();
+
+		MeasurementUnit unit1 = new MeasurementUnit("kg", "quilogramas");
+		unitDao.create(unit1);
+
+		MeasurementUnit unit2 = new MeasurementUnit("m", "metros", "Usada nas medições de altura");
+		unitDao.create(unit2);
+
+		MeasurementUnit unit3 = new MeasurementUnit("cal", "calorias", "Utilizada nas medições de atividade físicas");
+		unitDao.create(unit3);
+
+		for(MeasurementUnit unitItem : unitDao.getAll()) {
+			System.out.println(unitItem.getInfoPretty());
+		}
+
 		System.out.println("Alimentos DAO");
 
 		for(Food item : new FoodDAO().getAll()) {
 			System.out.println(item.getInfoPretty());
 		}
-		
+
 		System.out.println("\n\n\n");
 
 		System.out.println("Refeições DAO");
@@ -48,6 +67,5 @@ public class TesteDAO {
 		for(BodyInformation item : new BodyInformationDAO().getAll()) {
 			System.out.println(item.getInfoPretty());
 		}
-
 	}
 }
