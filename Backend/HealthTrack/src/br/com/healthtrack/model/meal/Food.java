@@ -1,6 +1,7 @@
 package br.com.healthtrack.model.meal;
 
 import br.com.healthtrack.model.measurementunit.MeasurementUnit;
+import br.com.healthtrack.utils.Utils;
 
 /**
  * Classe que abstrai uma porção de um item alimentício, bem como seu valor calórico.
@@ -80,7 +81,7 @@ public class Food implements Comparable<Food> {
 	 * @return Quantidade de calorias (cal) do item alimentício.
 	 */
 	public String getCaloriesPretty() {
-		return unit.formatValueToUnit(calories);
+		return Utils.formatCalories(calories);
 	}
 
 	/**
@@ -96,13 +97,16 @@ public class Food implements Comparable<Food> {
 	 * @return Texto contendo os valores dos atributos desse objeto.
 	 */
 	public String getInfoPretty() {
-		String info = getName() + " ";
+		String info;
 
-		if (getDescription() != null && !getDescription().equals("")){
-			info += "(" + getDescription() + ") ";
+		if (getDescription() != null){
+			info = getName() +
+					" (" + getDescription() + ") "
+					+ getAmountPretty() + " - " + getCaloriesPretty();
+		} else {
+			info = getName() +
+					" " + getAmountPretty() + " - " + getCaloriesPretty();
 		}
-
-		info += getAmountPretty() + " - " + getCaloriesPretty();
 
 		return info;
 	}
@@ -113,6 +117,14 @@ public class Food implements Comparable<Food> {
 	 */
 	public String getName() {
 		return name;
+	}
+
+	/**
+	 * Método para se obter a unidade de medida do item alimentício.
+	 * @return Unidade de medida do item alimentício.
+	 */
+	public String getUnitPrefix() {
+		return unit.getUnitPrefix();
 	}
 
 	/**
