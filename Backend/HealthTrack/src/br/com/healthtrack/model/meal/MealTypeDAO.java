@@ -10,30 +10,41 @@ import java.util.List;
 import br.com.healthtrack.DataBaseManager;
 
 /**
- * Classe responsável por manipular entidades do tipo categorias (tipos) de refeição, no banco de dados.
+ * Classe responsável por manipular entidades do tipo categorias
+ * (tipos) de refeição, no banco de dados.
  * @author Afonso de Sousa Costa
- * @version 1.0
+ * @version 2.0
  */
 public class MealTypeDAO {
 	private Connection conn;
 	private static String TABLE_NAME = "T_HT_MEAL_TYPE";
 
 	/**
-	 * Método para se inserir (persistir) um tipo de refeição no banco de dados.
-	 * @param type Objeto tipo de refeição a ser inserido (persistido) no banco de dados.
+	 * Método para se inserir (persistir) um tipo de refeição no
+	 * banco de dados.
+	 * @param type Objeto tipo de refeição a ser inserido (persistido)
+	 * no banco de dados.
 	 */
 	public void create(MealType type) {
 		boolean descriptionIsPresent = type.getDescription() != null;
 		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		String sql = null;
 
 		try {
 			conn = DataBaseManager.getConnection();
 
 			if (descriptionIsPresent) {
-				sql = "INSERT INTO " + TABLE_NAME + "(MEAL_TYPE_ID, NAME, DESCRIPTION) VALUES (SQ_HT_MEAL_TYPE.NEXTVAL, ?, ?)";
+				sql = "INSERT INTO " + TABLE_NAME +
+						"(MEAL_TYPE_ID, " +
+						"NAME, " +
+						"DESCRIPTION) " +
+						"VALUES (SQ_HT_MEAL_TYPE.NEXTVAL, ?, ?)";
 			} else {
-				sql = "INSERT INTO " + TABLE_NAME + "(MEAL_TYPE_ID, NAME) VALUES (SQ_HT_MEAL_TYPE.NEXTVAL, ?)";
+				sql = "INSERT INTO " + TABLE_NAME +
+						"(MEAL_TYPE_ID, " +
+						"NAME) " +
+						"VALUES (SQ_HT_MEAL_TYPE.NEXTVAL, ?)";
 			}
 
 			stmt = conn.prepareStatement(sql);
@@ -44,6 +55,13 @@ public class MealTypeDAO {
 			}
 
 			stmt.executeUpdate();
+
+			rs = stmt.getGeneratedKeys();
+
+			if(rs.next()){
+				int lastId = rs.getInt(1);
+				type.setId(lastId);
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -60,30 +78,35 @@ public class MealTypeDAO {
 	}
 
 	/**
-	 * Método para se obter uma lista de todos os tipos de refeição persistidos no banco de dados.
-	 * @return Lista ordenada alfabeticamente, contendo todos os tipos de refeição persistidas no banco de dados.
+	 * Método para se obter uma lista de todos os tipos de refeição
+	 * persistidos no banco de dados.
+	 * @return Lista ordenada alfabeticamente, contendo todos os
+	 * tipos de refeição persistidas no banco de dados.
 	 */
 	public List<MealType> getAll(){
 		List<MealType> list = new ArrayList<MealType>();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
+		String sql = null;
 
 		try {
 			conn = DataBaseManager.getConnection();
-			stmt = conn.prepareStatement("SELECT * FROM " + TABLE_NAME + " ORDER BY NAME");
+			sql = "SELECT * FROM " + TABLE_NAME + " ORDER BY NAME";
+			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 
 			while(rs.next()) {
 				MealType type;
 
+				int id = rs.getInt("MEAL_TYPE_ID");
 				String name = rs.getString("NAME");
 				String description = rs.getString("DESCRIPTION");
 
 				if (description != null) {
-					type = new MealType(name, description);
+					type = new MealType(id, name, description);
 
 				} else {
-					type = new MealType(name);
+					type = new MealType(id, name);
 				}
 
 				list.add(type);
