@@ -1,113 +1,143 @@
 package br.com.healthtrack.model.meal;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
+
+import br.com.healthtrack.DataBaseManager;
 
 /**
- * Classe responsável por manipular entidades do tipo refeição, no banco de dados.
+ * Classe responsável por manipular entidades do
+ * tipo refeição, no banco de dados.
  * @author Afonso de Sousa Costa
- * @version 1.0
+ * @version 2.0
  */
 public class MealDAO {
+	private Connection conn;
+	private static String TABLE_NAME = "T_HT_MEAL";
 
-	private ArrayList<FoodItem> foodItems;
-	private ArrayList<Meal> mealList = new ArrayList<Meal>() {{
-
-		foodItems = new ArrayList<FoodItem>() {{
-			add(new FoodItem(new Food(50, 371, "Bolo de cenoura com cobertura de chocolate", "1 fatia."), 100));
-		}};
-
-		add(new Meal(LocalDateTime.parse("2020-04-26T10:32:56.300"), new MealType("Café da manhã"), foodItems));
-
-        //-------------------------------------------------------------------------------------------------------------------
-
-		foodItems = new ArrayList<FoodItem>() {{
-			add(new FoodItem(new Food(100, 287, "Picanha", "1 fatia."), 200));
-			add(new FoodItem(new Food(100, 139, "Lasanha", "1 porção."), 200));
-		}};
-		add(new Meal(LocalDateTime.parse("2020-04-26T12:32:56.300"), new MealType("Almoço"), foodItems));
-
-		//-------------------------------------------------------------------------------------------------------------------
-		
-		foodItems = new ArrayList<FoodItem>() {{
-			add(new FoodItem(new Food(140, 304, "Pizza de mussarela", "1 fatia."), 280));
-		}};
-
-		add(new Meal(LocalDateTime.parse("2020-04-26T20:32:56.300"), new MealType("Jantar"), foodItems));
-
-		//-------------------------------------------------------------------------------------------------------------------
-		
-		foodItems = new ArrayList<FoodItem>() {{
-			add(new FoodItem(new Food(50, 371, "Bolo de cenoura com cobertura de chocolate", "1 fatia."), 100));
-			add(new FoodItem(new Food(100, 68, "Gelatina", "1 porção."), 100));
-		}};
-
-		add(new Meal(LocalDateTime.parse("2020-02-26T10:32:56.300"), new MealType("Café da manhã"), foodItems));
-
-		//-------------------------------------------------------------------------------------------------------------------
-		
-		foodItems = new ArrayList<FoodItem>() {{
-			add(new FoodItem(new Food(100, 287, "Picanha", "1 fatia."), 200));
-			add(new FoodItem(new Food(100, 139, "Lasanha", "1 porção."), 200));
-		}};
-
-		add(new Meal(LocalDateTime.parse("2020-02-26T12:32:56.300"), new MealType("Almoço"), foodItems));
-
-		//-------------------------------------------------------------------------------------------------------------------
-		
-		foodItems = new ArrayList<FoodItem>() {{
-			add(new FoodItem(new Food(140, 304, "Pizza de mussarela", "1 fatia."), 210));
-		}};
-
-		add(new Meal(LocalDateTime.parse("2020-02-26T21:32:56.300"), new MealType("Jantar"), foodItems));
-
-		//-------------------------------------------------------------------------------------------------------------------
-		
-		foodItems = new ArrayList<FoodItem>() {{
-			add(new FoodItem(new Food(50, 371, "Bolo de cenoura com cobertura de chocolate", "1 fatia."), 100));
-			add(new FoodItem(new Food(100, 68, "Gelatina", "1 porção."), 100));
-			add(new FoodItem(new Food(30, 198, "Bacon frito", "2 cubos."), 90));
-		}};
-
-		add(new Meal(LocalDateTime.parse("2020-03-26T08:32:56.300"), new MealType("Café da manhã"), foodItems));
-
-		//-------------------------------------------------------------------------------------------------------------------
-		
-		foodItems = new ArrayList<FoodItem>() {{
-			add(new FoodItem(new Food(100, 144, "Coxa de frango", "1 unidade."), 300));
-			add(new FoodItem(new Food(100, 139, "Lasanha", "1 porção."), 200));
-		}};
-
-		add(new Meal(LocalDateTime.parse("2020-03-26T13:32:56.300"), new MealType("Almoço"), foodItems));
-		
-		//-------------------------------------------------------------------------------------------------------------------
-		
-		foodItems = new ArrayList<FoodItem>() {{
-			add(new FoodItem(new Food(350, 230, "Manga", "1 unidade."), 700));
-		}};
-
-		add(new Meal(LocalDateTime.parse("2020-03-26T17:32:56.300"), new MealType("Lanche"), foodItems));
-		
-		//-------------------------------------------------------------------------------------------------------------------
-		
-		foodItems = new ArrayList<FoodItem>() {{
-			add(new FoodItem(new Food(140, 304, "Pizza de mussarela", "1 fatia."), 280));
-		}};
-
-		add(new Meal(LocalDateTime.parse("2020-03-26T22:32:56.300"), new MealType("Jantar"), foodItems));
-	}};
-	
-	public MealDAO() {
-	}
-	
 	/**
-	 * Método para se obter uma lista de todas as refeições persistidos no banco de dados.
-	 * @return Lista ordenada cronologicamente, contendo todas as refeições persistidos no banco de dados.
+	 * Método para se inserir (persistir) uma refeição no
+	 * banco de dados.
+	 * @param meal Objeto refeição a ser inserido (persistido)
+	 * no banco de dados.
 	 */
-	public ArrayList<Meal> getAll(){
-		Collections.sort(mealList);
+	public void create(Meal meal, int userId) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = null;
 
-		return mealList;
+		try {
+			conn = DataBaseManager.getConnection();
+			sql = "INSERT INTO " + TABLE_NAME +
+					"(MEAL_ID, " +
+					"USER_ID, " +
+					"MEAL_TYPE_ID, " +
+					"DATE_TIME)" +
+					"VALUES (SQ_HT_MEAL.NEXTVAL, ?, ?, ?)";
+
+			stmt = conn.prepareStatement(sql, new String[] { "MEAL_ID" });
+
+			java.sql.Timestamp mealDateTime =
+					java.sql.Timestamp.valueOf(meal.getDateTime());
+
+			stmt.setInt(1, userId); // TODO Create User DAO
+			stmt.setInt(2, meal.getTypeId());
+			stmt.setTimestamp(3, mealDateTime);
+
+			stmt.executeUpdate();
+
+			rs = stmt.getGeneratedKeys();
+
+			if(rs.next()){
+				int lastId = rs.getInt(1);
+				meal.setId(lastId);
+
+				FoodItemDAO foodItemDAO = new FoodItemDAO();
+
+				for(FoodItem foodItem : meal.getFoodItems()) {
+					foodItem.setMealId(lastId);
+					foodItemDAO.create(foodItem);
+				}
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * Método para se obter uma lista de todas as
+	 * refeições persistidas no banco de dados.
+	 * @return Lista contendo todas as refeições
+	 * persistidas no banco de dados.
+	 */
+	public List<Meal> getAll(){
+		List<Meal> list = new ArrayList<Meal>();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = null;
+
+		try {
+			conn = DataBaseManager.getConnection();
+			sql = "SELECT " +
+					"MEAL.MEAL_ID AS MEAL_ID, " +
+					"MEAL.USER_ID AS MEAL_USER_ID, " +
+					"MEAL.DATE_TIME AS MEAL_DATE_TIME, " +
+					"MEAL_TYPE.MEAL_TYPE_ID AS MEAL_TYPE_ID, " +
+					"MEAL_TYPE.NAME AS MEAL_TYPE_NAME " +
+					"FROM " + TABLE_NAME + " " +
+					"MEAL JOIN T_HT_MEAL_TYPE MEAL_TYPE " +
+					"ON MEAL.MEAL_TYPE_ID = MEAL_TYPE.MEAL_TYPE_ID " +
+					"ORDER BY MEAL.DATE_TIME";
+
+			stmt = conn.prepareStatement(sql);
+
+			rs = stmt.executeQuery();
+
+			while(rs.next()) {
+				int mealId                 = rs.getInt("MEAL_ID");
+				int mealTypeId             = rs.getInt("MEAL_TYPE_ID");
+//				int mealUserId             = rs.getInt("MEAL_USER_ID");
+				String mealTypeName        = rs.getString("MEAL_TYPE_NAME");
+				LocalDateTime mealDateTime =
+						rs.getTimestamp("MEAL_DATE_TIME").toLocalDateTime();
+
+				MealType mealType = new MealType(mealTypeId, mealTypeName);
+				Meal meal = new Meal(mealId, mealDateTime, mealType);
+
+				list.add(meal);
+			}
+
+		} catch(SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				stmt.close();
+				rs.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
 	}
 }
+
