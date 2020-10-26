@@ -7,7 +7,7 @@ import br.com.healthtrack.model.meal.FoodDAO;
 import br.com.healthtrack.model.meal.Meal;
 import br.com.healthtrack.model.meal.MealDAO;
 import br.com.healthtrack.model.physicalactivity.PhysicalActivity;
-import br.com.healthtrack.model.physicalactivity.PhysicalActivityDAO;
+import br.com.healthtrack.model.physicalactivity.dao.PhysicalActivityBySeriesDAOImpl;
 
 /**
  * Classe que serve para testar as classes DAO que foram criadas.
@@ -34,10 +34,10 @@ public class TesteDAO {
 		
 		System.out.println("\n\n\n");
 		
-		System.out.println("Atividades Físicas DAO");
-		for(PhysicalActivity item : new PhysicalActivityDAO().getAll()) {
+		/*System.out.println("Atividades Físicas DAO");
+		for(PhysicalActivity item : new PhysicalActivityDAOImpl().getAll()) {
 			System.out.println(item.getInfoPretty());
-		}
+		}*/
 
 
 
