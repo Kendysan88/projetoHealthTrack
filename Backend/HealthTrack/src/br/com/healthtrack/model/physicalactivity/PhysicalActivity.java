@@ -1,20 +1,27 @@
 package br.com.healthtrack.model.physicalactivity;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
+
+import br.com.healthtrack.utils.Utils;
 
 /**
  * Classe que abstrai uma atividade fÃ­sica.
  * @author Richard Kendy Tanaka
- * @version 1.0
+ * @version 2.0
  */
 
 public class PhysicalActivity implements Comparable<PhysicalActivity> {
 
 	// Attributes
-	private String type;
-	protected int beginHour;
-	protected int endHour;
+	private int physicalActivityId;
+	private String activityName;
+	private LocalDateTime startTime;
+	private LocalDateTime endTime;
 	private double calories;
+	private String activityType;
+	private double distance;
+
+	
 
 
 	// Constructor
@@ -23,37 +30,123 @@ public class PhysicalActivity implements Comparable<PhysicalActivity> {
 	}
 
 	/**
-	 * MÃ©todo construtor padrÃ£o.
-	 * @param calories  Quantidade de calorias gastas durante a atividade (cal).
-	 * @param beginHour Hora inicial da atividade (horas).
-	 * @param endHour   Hora final da atividade (horas).
-	 * @param type      Tipo de atividade realizada.
+	 * Método construtor padrão.
+	 * @param activityName      Tipo de atividade realizada.
+	 * @param startTime 		Hora inicial da atividade (horas).
+	 * @param endTime   		Hora final da atividade (horas).
+	 * @param calories  		Quantidade de calorias gastas durante a atividade (cal).
+	 * @param activityType		Tipo de Atividade realizada. Exemplo: Duração, Série e etc.
+
 	 */
-	public PhysicalActivity(String type, int beginHour, int endHour, double calories) {
+	public PhysicalActivity(int physicalActivityId, String activityName, LocalDateTime startTime, LocalDateTime endTime, double calories, String activityType) {
+		this.physicalActivityId = physicalActivityId;
+		this.activityName = activityName;
+		this.startTime = startTime;
+		this.endTime = endTime;
 		this.calories = calories;
-		if (beginHour > endHour) {
-			System.out.println("A hora inicial nÃ£o pode ser maior que a hora final.");
-			this.beginHour = 0;
-			this.endHour = 0;
-		} else {
-			this.beginHour = beginHour;
-			this.endHour = endHour;
-		}
-		this.type = type;
+		this.activityType = activityType;
+		
+	}
+	
+	/**
+	 * Método construtor padrão.
+	 * @param physicalActivityId  Código da Atividade física realizada
+	 * @param activityName        Tipo de atividade física realizada.
+	 * @param startTime 		  Hora inicial da atividade física (horas).
+	 * @param endTime   		  Hora final da atividade física (horas).
+	 * @param calories  		  Quantidade de calorias gastas durante a atividade física (cal).
+	 * @param activityType		  Tipo de Atividade física realizada. Exemplo: Duração, Série e etc.
+	 * @param distance			  Distância percorrida. 
+	 */
+	public PhysicalActivity(int physicalActivityId, String activityName, LocalDateTime startTime, LocalDateTime endTime, double calories, String activityType, double distance) {
+		this.physicalActivityId = physicalActivityId;
+		this.activityName = activityName;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.calories = calories;
+		this.activityType = activityType;
+		this.distance = distance;
+		
 	}
 
-	// Getters And Setters
+	// Getters And Setters	
 	/**
-	 * MÃ©todo para se obter a quantidade de calorias gastas durante a atividade.
-	 * @return Quantidade de calorias (cal) gastas durante a atividade.
+	 * Método para se obter o código da atividade física realizada.
+	 * @return O código da atividade física realizada.
+	 */
+	public int getPhysicalActivityId() {
+		return physicalActivityId;
+	}
+	
+	/**
+	 * Método para se alterar o código da atividade física realizada. (apenas para valores diferentes de vazio).
+	 * @param physicalActivityId o código da atividade física realizada.
+	 */
+	public void setPhysicalActivityId(int physicalActivityId) {
+		this.physicalActivityId = physicalActivityId;
+	}
+	
+	/**
+	 * Método para se obter o nome da atividade física realizada.
+	 * @return O nome da atividade física realizada
+	 */
+	public String getActivityName() {
+		return activityName;
+	}
+	
+	/**
+	 * Método para se alterar o nome da atividade física realizada. (apenas para valores diferentes de vazio).
+	 * @param activityName O nome da atividade física realizada
+	 */
+	public void setActivityName(String activityName) {
+		if (!activityName.trim().equals("")) {
+			this.activityName = activityName;
+		}		
+	}
+	
+	/**
+	 * Método para se obter a data e a hora inicial da atividade física (hh:mm:ss).
+	 * @return Data e Hora inicial da atividade física
+	 */
+	public LocalDateTime getStartTime() {
+		return startTime;
+	}
+	
+	/**
+	 * Método para se alterar a data e a hora inicial da atividade física (dd-mm-aaaa hh:mm:ss).
+	 * @param startTime Data e Hora inicial da atividade física
+	 */
+	public void setStartTime(LocalDateTime startTime) {
+		this.startTime = startTime;
+	}
+	
+	/**
+	 * Método para se obter a data e a hora final da atividade física (dd-mm-aaaa hh:mm:ss).
+	 * @return Data e Hora final da atividade física
+	 */
+	public LocalDateTime getEndTime() {
+		return endTime;
+	}
+	
+	/**
+	 * Método para se alterar a data e a hora final da atividade física (dd-mm-aaaa hh:mm:ss).
+	 * @param endTime Data e Hora final da atividade
+	 */
+	public void setEndTime(LocalDateTime endTime) {
+		this.endTime = endTime;
+	}
+	
+	/**
+	 * Método para se obter a quantidade de calorias gastas durante a atividade física.
+	 * @return Quantidade de calorias (cal) gastas durante a atividade física.
 	 */
 	public double getCalories() {
 		return calories;
 	}
-
+	
 	/**
-	 * MÃ©todo para se alterar a quantidade de calorias gastas durante a atividade.(apenas para valores maiores do que zero).
-	 * @param calories Quantidade de calorias gastas durante a atividade.
+	 * Método para se alterar a quantidade de calorias gastas durante a atividade física.(apenas para valores maiores do que zero).
+	 * @param calories Quantidade de calorias gastas durante a atividade física.
 	 */
 	public void setCalories(double calories) {
 		if (calories > 0) {
@@ -62,67 +155,44 @@ public class PhysicalActivity implements Comparable<PhysicalActivity> {
 	}
 
 	/**
-	 * MÃ©todo para se obter o tipo de atividade fÃ­sica realizada.
-	 * @return O tipo de atividade fÃ­sica realizada.
-	 */
-	public String getType() {
-		return type;
-	}
-
+	 * Método para se obter o tipo de Atividade física realizada. Exemplo: Duração, Série e etc.
+	 * @return Tipo de Atividade física realizada.
+	 */	
+	public String getActivityType() {
+		return activityType;
+	}	
+	
 	/**
-	 * MÃ©todo para se alterar o tipo de atividade fÃ­sica realizada. (apenas para valores diferentes de vazio).
-	 * @param type Tipo de atividade fÃ­sica realizada.
+	 * Método para se alterar o tipo de Atividade física realizada. Exemplo: Duração, Série e etc.
+	 * @param typeActivity tipo de Atividade física realizada.
 	 */
-	public void setType(String type) {
-		if (!type.trim().equals("")) {
-			this.type = type;
-		}
-
+	public void setActivityType(String activityType) {
+		this.activityType = activityType;
 	}
-
+	
 	/**
-	 * MÃ©todo para se obter a hora inicial da atividade (horas).
-	 * @return Hora inicial da atividade
+	 * Método para se obter a distância percorrida durante a atividade física realizada.
+	 * @return A distância percorrida
 	 */
-	public int getBeginHour() {
-		return beginHour;
+	public double getDistance() {
+		return distance;
 	}
-
+	
 	/**
-	 * MÃ©todo para se alterar a hora inicial da atividade (horas). (apenas para valores diferentes de zero).
-	 * @param beginHour Hora inicial da atividade
+	 * Método para se alterar a distância percorrida durante a atividade física realizada.(apenas para valores maiores do que zero).
+	 * @param distance A distância percorrida durante a atividade física realizada.
 	 */
-	public void setBeginHour(int beginHour) {
-		Calendar dateTime = Calendar.getInstance();
-		if (beginHour > 0) {
-			this.beginHour = dateTime.get(Calendar.HOUR);
-		}
-	}
-
-	/**
-	 * MÃ©todo para se obter a hora final da atividade (horas).
-	 * @return Hora final da atividade
-	 */
-	public int getEndHour() {
-		return endHour;
-	}
-
-	/**
-	 * MÃ©todo para se alterar a hora final da atividade (horas). (apenas para valores diferentes de zero).
-	 * @param endHour Hora final da atividade
-	 */
-	public void setEndHour(int endHour) {
-		Calendar dateTime = Calendar.getInstance();
-		if (endHour > 0) {
-			this.endHour = dateTime.get(Calendar.HOUR);
+	public void setDistance(double distance) {
+		if (distance > 0) {
+			this.distance = distance;
 		}
 	}
 
 	// Methods
 	/**
-	 * MÃ©todo para calcular a quantidade calorias gastas
-	 * @param calories Quantidade de calorias gastas durante a atividade (cal).
-	 * @return A quantidade calorias gastas na atividade
+	 * Método para calcular a quantidade calorias gastas
+	 * @param calories Quantidade de calorias gastas durante a atividade física (cal).
+	 * @return A quantidade calorias gastas na atividade física.
 	 */
 	public double calculateCalories(double calories) {
 		System.out.println("Você queimou " + calories + " kcal.");
@@ -130,52 +200,56 @@ public class PhysicalActivity implements Comparable<PhysicalActivity> {
 	}
 
 	/**
-	 * MÃ©todo para persistir as informaÃ§Ãµes das atividades fÃ­sicas no banco de dados.
-	 * @param physicalActivity instÃ¢ncia do objeto PhysicalActivity 
-	 * @return Se o objeto foi salvo corretamente no banco de dados.
-	 */
-	public boolean save(PhysicalActivity physicalActivity) {
-		System.out.println("Salvando uma nova atividade física.");
-		return true;
-	}
-
-	/**
-	 * MÃ©todo para alterar as informaÃ§Ãµes das atividades fÃ­sicas no banco de dados.
-	 * @param physicalActivity instÃ¢ncia do objeto PhysicalActivity 
-	 * @return Se o objeto foi atualizado corretamente no banco de dados.
-	 */
-	public boolean update(PhysicalActivity physicalActivity) {
-		System.out.println("Atualizando uma atividade física.");
-		return true;
-
-	}
-
-	/**
-	 * MÃ©todo para remover as atividades fÃ­sicas no banco de dados.
-	 * @param physicalActivity instÃ¢ncia do objeto PhysicalActivity 
-	 * @return Se o objeto foi removido corretamente no banco de dados.
-	 */
-	public boolean destroy(PhysicalActivity physicalActivity) {
-		System.out.println("Deletando uma atividade fÃ­sica.");
-		return true;
-
-	}
-	
-	/**
 	 * Método para se obter informações sobre o objeto instanciado.
 	 * @return Texto contendo os valores dos atributos desse objeto.
 	 */
 	public String getInfoPretty() {
-		String info = "Atividade: " + getType() +
-		  ", Início: " + getBeginHour() + ", Fim: " + getEndHour() + 
-		  ", Calorias Queimadas: " + getCalories();
+		String info = "Atividade: " + getActivityName() +
+		  ", Início: " + getStartTimePretty() + ", Fim: " + getEndTimePretty() + 
+		  ", Calorias Queimadas: " + getCaloriesPretty() + 
+		  ", Tipo: " + getActivityType() +
+		  ", Distância percorrida: " + getDistancePretty();
 
 		return info;
 	}
+	
+
+	/**
+	 * Método para se obter a data e a hora inicial da Atividade Física formatados (DD-MM-AAAA HH:MM:SS).
+	 * @return Data e Hora inicial da Atividade Física no formato (DD-MM-AAAA HH:MM:SS).
+	 */
+	public String getStartTimePretty() {
+		return Utils.formatDateTime(getStartTime());
+	}
+	
+	/**
+	 * Método para se obter a data e a hora final da Atividade Física formatados (DD-MM-AAAA HH:MM:SS).
+	 * @return Data e Hora final da Atividade Física no formato (DD-MM-AAAA HH:MM:SS).
+	 */
+	public String getEndTimePretty() {
+		return Utils.formatDateTime(getEndTime());
+	}
+	
+	/**
+	 * Método para se obter a quantidade de calorias gastas com sufixo de unidade.
+	 * @return Quantidade de calorias gastas (cal)  
+	 */
+	public String getCaloriesPretty() {
+		return Utils.formatCalories(calories);
+	}	
+	
+	/**
+	 * Método para se obter a quantidade de calorias gastas com sufixo de unidade.
+	 * @return Quantidade de calorias gastas (cal)  
+	 */
+	public String getDistancePretty() {
+		return Utils.formatKilometers(distance);
+	}
+	
 
 	@Override
 	public int compareTo(PhysicalActivity otherActivitySerie) {
-        return this.getType().compareToIgnoreCase(otherActivitySerie.getType());
+        return this.getActivityName().compareToIgnoreCase(otherActivitySerie.getActivityName());
 
 	}
 }

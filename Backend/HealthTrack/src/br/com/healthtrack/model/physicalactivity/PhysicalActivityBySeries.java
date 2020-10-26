@@ -1,49 +1,80 @@
 package br.com.healthtrack.model.physicalactivity;
 
+import java.time.LocalDateTime;
+
+import br.com.healthtrack.utils.Utils;
+
 /**
  * Classe que herda da classe atividade física e permite realizar exercícios com séries, repetições e pesos.
  * @author Richard Kendy Tanaka
- * @version 1.0
+ * @version 2.0
  */
 
 public class PhysicalActivityBySeries extends PhysicalActivity {
 
 	// Attributes
 	private int series;
-	private int repetions;
-	private double weight;
+	private int repetitions;
+	private double liftedWeight;
+	
+	
 
 	// Constructor
+	public PhysicalActivityBySeries() {
+
+	}
+	
+	public PhysicalActivityBySeries(int physicalActivityId, String activityName, LocalDateTime startTime, LocalDateTime endTime, double calories,String activityType) {
+		super(physicalActivityId, activityName, startTime, endTime, calories, activityType);
+
+	}	
+	public PhysicalActivityBySeries(int physicalActivityId, String activityName, LocalDateTime startTime, LocalDateTime endTime, double calories,String activityType, double distance) {
+		super(physicalActivityId, activityName, startTime, endTime, calories, activityType, distance);
+
+	}	
+	
 	/**
 	 * Método construtor padrão.
-	 * @param calories  Quantidade de calorias gastas durante a atividade (cal).
-	 * @param beginHour Hora inicial da atividade (horas).
-	 * @param endHour   Hora final da atividade (horas).
-	 * @param type      Tipo de atividade realizada.
-	 * @param series	Quantidade de séries necessárias para realizar a atividade.
-	 * @param repetions Quantidade de repetições necessárias para realizar a atividade.
-	 * @param weight	Quantidade de peso necessário para realizar a atividade. 
+	 * @param series			Quantidade de séries necessárias para realizar a atividade.
+	 * @param repetions 		Quantidade de repetições necessárias para realizar a atividade.
+	 * @param liftedWeight		Quantidade de peso necessário para realizar a atividade. 
 	 */
-	public PhysicalActivityBySeries(String type, int beginHour, int endHour, double calories, int series, int repetions,
-			double weight) {
-		super(type, beginHour, endHour, calories );
+	public PhysicalActivityBySeries(int physicalActivityId, String activityName, LocalDateTime startTime, LocalDateTime endTime, double calories,String activityType,int series, int repetitions, double liftedWeight) {
+		super(physicalActivityId, activityName, startTime, endTime, calories, activityType);
 		this.series = series;
-		this.repetions = repetions;
-		this.weight = weight;
+		this.repetitions = repetitions;
+		this.liftedWeight = liftedWeight;
+	}	
+	
+	/**
+	 * Método construtor padrão.
+	 * @param distance			Distância percorrida. 
+	 * @param series			Quantidade de séries necessárias para realizar a atividade.
+	 * @param repetions 		Quantidade de repetições necessárias para realizar a atividade.
+	 * @param liftedWeight		Quantidade de peso necessário para realizar a atividade. 
+	 */
+	public PhysicalActivityBySeries(int physicalActivityId, String activityName, LocalDateTime startTime, LocalDateTime endTime, double calories,String activityType,double distance, int series, int repetitions, double liftedWeight) {
+		super(physicalActivityId, activityName, startTime, endTime, calories, activityType, distance);
+		this.series = series;
+		this.repetitions = repetitions;
+		this.liftedWeight = liftedWeight;
 	}
-
+	
+	
+	
+	
 	// Getters And Setters
 	/**
-	 * Método para se obter a quantidade de séries necessárias para realizar a atividade.
-	 * @return Quantidade de séries necessárias para realizar a atividade.
+	 * Método para se obter a quantidade de séries necessárias para realizar a atividade física.
+	 * @return Quantidade de séries necessárias para realizar a atividade física.
 	 */
 	public int getSeries() {
 		return series;
 	}
 	
 	/**
-	 * Método para se alterar a quantidade de séries necessárias para realizar a atividade.(apenas para valores maiores do que zero).
-	 * @param series Quantidade de séries necessárias para realizar a atividade.
+	 * Método para se alterar a quantidade de séries necessárias para realizar a atividade física.(apenas para valores maiores do que zero).
+	 * @param series Quantidade de séries necessárias para realizar a atividade física.
 	 */
 	public void setSeries(int series) {
 		if (series > 0) {
@@ -52,38 +83,38 @@ public class PhysicalActivityBySeries extends PhysicalActivity {
 	}
 
 	/**
-	 * Método para se obter a quantidade de repetições necessárias para realizar a atividade.
-	 * @return Quantidade de repetições necessárias para realizar a atividade.
+	 * Método para se obter a quantidade de repetições necessárias para realizar a atividade física.
+	 * @return Quantidade de repetições necessárias para realizar a atividade física.
 	 */
-	public int getRepetions() {
-		return repetions;
+	public int getRepetitions() {
+		return repetitions;
 	}
 	
 	/**
-	 * Método para se alterar a quantidade de repetições necessárias para realizar a atividade.(apenas para valores maiores do que zero).
-	 * @param repetions Quantidade de repetições necessárias para realizar a atividade.
+	 * Método para se alterar a quantidade de repetições necessárias para realizar a atividade física.(apenas para valores maiores do que zero).
+	 * @param repetions Quantidade de repetições necessárias para realizar a atividade física.
 	 */
-	public void setRepetions(int repetions) {
-		if (repetions > 0) {
-			this.repetions = repetions;
+	public void setRepetitions(int repetitions) {
+		if (repetitions > 0) {
+			this.repetitions = repetitions;
 		}
 	}
 
 	/**
-	 * Método para se obter a quantidade de peso necessário para realizar a atividade.
-	 * @return Quantidade de peso necessário para realizar a atividade.
+	 * Método para se obter a quantidade de peso necessário para realizar a atividade física.
+	 * @return Quantidade de peso necessário para realizar a atividade física.
 	 */
-	public double getWeight() {
-		return weight;
+	public double getLiftedWeight() {
+		return liftedWeight;
 	}
 
 	/**
-	 * Método para se alterar a quantidade de peso necessário para realizar a atividade.(apenas para valores maiores do que zero).
-	 * @param weight Quantidade de peso necessário para realizar a atividade.
+	 * Método para se alterar a quantidade de peso necessário para realizar a atividade física.(apenas para valores maiores do que zero).
+	 * @param weight Quantidade de peso necessário para realizar a atividade física.
 	 */
-	public void setWeight(double weight) {
-		if (weight > 0) {
-			this.weight = weight;
+	public void setLiftedWeight(double liftedWeight) {
+		if (liftedWeight > 0) {
+			this.liftedWeight = liftedWeight;
 		}
 	}
 	
@@ -96,13 +127,28 @@ public class PhysicalActivityBySeries extends PhysicalActivity {
 		return super.calculateCalories(calories);
 	}
 	
+	/**
+	 * Método para se obter informações sobre o objeto instanciado.
+	 * @return Texto contendo os valores dos atributos desse objeto.
+	 */
 	@Override
 	public String getInfoPretty() {
-		String info = "Atividade: " + getType() +
-				  ", Início: " + getBeginHour() + ", Fim: " + getEndHour() + 
-				  ", Calorias Queimadas: " + getCalories() + ", Séries: " + getSeries() + ", Repetições: " 
-				  + getRepetions() + ", Peso: " + getWeight();
+		String info = "Atividade: " + getActivityName() +
+				  ", Início: " + getStartTimePretty() + ", Fim: " + getEndTimePretty() + 
+				  ", Calorias Queimadas: " + getCaloriesPretty() + 
+				  ", Tipo: " + getActivityType() +
+				  ", Séries: " + getSeries() + ", Repetições: " + getRepetitions() + 
+				  ", Peso: " + getLiftedWeightPretty();
+
 		return info;
+	}
+	
+	/**
+	 * Método para se obter a quantidade de peso levantado com sufixo de unidade.
+	 * @return Quantidade de peso levantado (kg)  
+	 */
+	public String getLiftedWeightPretty() {
+		return Utils.formatKilograms(liftedWeight);
 	}
 
 }

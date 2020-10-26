@@ -13,7 +13,7 @@ import br.com.healthtrack.model.meal.MealDAO;
 import br.com.healthtrack.model.meal.MealType;
 import br.com.healthtrack.model.meal.MealTypeDAO;
 import br.com.healthtrack.model.physicalactivity.PhysicalActivity;
-import br.com.healthtrack.model.physicalactivity.PhysicalActivityDAO;
+import br.com.healthtrack.model.physicalactivity.dao.PhysicalActivityBySeriesDAOImpl;
 
 /**
  * Classe que serve para testar as classes DAO que foram criadas.
