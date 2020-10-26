@@ -24,7 +24,7 @@ public class Food implements Comparable<Food> {
 			Arrays.asList( "g", "ml" ));
 	
 	/**
-	 * Método construtor padrão (amount, calories, unidade de medida
+	 * Método construtor (amount, calories, unidade de medida
 	 * e name são obrigatórios).
 	 * @param amount   Quantidade em gramas do item alimentício.
 	 * @param calories Quatidade de calorias do item alimentício.
@@ -39,8 +39,8 @@ public class Food implements Comparable<Food> {
 	}
 
 	/**
-	 * Método construtor padrão sobrecarregado (amount, calories,
-	 * unidade de medida, name e description são obrigatórios).
+	 * Método construtor (amount, calories, unidade de medida, name
+	 * e description são obrigatórios).
 	 * @param amount      Quantidade em gramas do item alimentício.
 	 * @param calories    Quatidade de calorias do item alimentício.
 	 * @param name        Nome do item alimentício.
@@ -57,7 +57,7 @@ public class Food implements Comparable<Food> {
 	}
 
 	/**
-	 * Método construtor padrão (amount, calories, unidade de medida
+	 * Método construtor (amount, calories, unidade de medida
 	 * e name são obrigatórios).
 	 * @param amount   Quantidade em gramas do item alimentício.
 	 * @param calories Quatidade de calorias do item alimentício.
@@ -75,8 +75,8 @@ public class Food implements Comparable<Food> {
 	}
 
 	/**
-	 * Método construtor padrão sobrecarregado (amount, calories,
-	 * unidade de medida, name e description são obrigatórios).
+	 * Método construtor padrão (amount, calories, unidade de medida,
+	 * name e description são obrigatórios).
 	 * @param amount      Quantidade em gramas do item alimentício.
 	 * @param calories    Quatidade de calorias do item alimentício.
 	 * @param id          Identificador do item alimentício.

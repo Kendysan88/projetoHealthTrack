@@ -47,7 +47,7 @@ public class MealTypeDAO {
 						"VALUES (SQ_HT_MEAL_TYPE.NEXTVAL, ?)";
 			}
 
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql,  new String[] { "MEAL_TYPE_ID" });
 			stmt.setString(1, type.getName());
 
 			if (descriptionIsPresent) {

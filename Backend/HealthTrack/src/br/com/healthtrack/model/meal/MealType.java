@@ -12,7 +12,7 @@ public class MealType {
 	private String name;
 
 	/**
-	 * Método construtor padrão (name é obrigatório).
+	 * Método construtor (name é obrigatório).
 	 * @param name Nome do tipo de refeição.
 	 */
 	public MealType(String name) {
@@ -20,7 +20,7 @@ public class MealType {
 	}
 
 	/**
-	 * Método construtor sobrecarregado (name edescription são obrigatórios).
+	 * Método construtor (name edescription são obrigatórios).
 	 * @param name        Nome do tipo de refeição.
 	 * @param description Descrição/observação do tipo de refeição.
 	 */
@@ -30,7 +30,7 @@ public class MealType {
 	}
 
 	/**
-	 * Método construtor sobrecarregado (name e id são obrigatórios).
+	 * Método construtor (name e id são obrigatórios).
 	 * @param id   Identificador do tipo de refeição.
 	 * @param name Nome do tipo de refeição.
 	 */
@@ -40,8 +40,7 @@ public class MealType {
 	}
 
 	/**
-	 * Método construtor sobrecarregado (name, id e description
-	 * são obrigatórios).
+	 * Método construtor (name, id e description são obrigatórios).
 	 * @param name        Nome do tipo de refeição.
 	 * @param id   		  Identificador do tipo de refeição.
 	 * @param description Descrição/observação do tipo de refeição.

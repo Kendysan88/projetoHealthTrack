@@ -7,36 +7,53 @@ import java.util.List;
 import br.com.healthtrack.utils.Utils;
 
 /**
- * Classe que abstrai uma refeiçãoo bem como seu valor calórico.
+ * Classe que abstrai uma refeiçãoo bem como seu valor
+ * calórico.
  * @author Afonso de Sousa Costa
- * @version 3.0
+ * @version 4.0
  */
 public class Meal implements Comparable<Meal> {
 
 	private LocalDateTime dateTime;
+	private int id;
 	private MealType type;
-	private ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
+	private List<FoodItem> foodItems;
 
 	/**
-	 * Método construtor padrão (dateTime e type).
+	 * Método construtor (dateTime e type são obrigatórios).
 	 * @param dateTime Data e hora da refeição.
 	 * @param type     Tipo de refeição.
 	 */
 	public Meal(LocalDateTime dateTime, MealType type) {
+		foodItems = new ArrayList<FoodItem>();
+
 		setDateTime(dateTime);
 		setType(type);
 	}
 
 	/**
-	 * Método construtor sobrecarregado (dateTime, type e foodItems são obrigatórios).
-	 * @param dateTime  Data e hora da refeição.
-	 * @param type      Tipo de refeição.
-	 * @param foodItems Lista de itens alimentícios.
+	 * Método construtor (dateTime, id e type são obrigatórios).
+	 * @param dateTime Data e hora da refeição.
+	 * @param id	   Identificador da refeição.
+	 * @param type     Tipo de refeição.
 	 */
-	public Meal(LocalDateTime dateTime, MealType type, ArrayList<FoodItem> foodItems) {
+	public Meal(int id, LocalDateTime dateTime, MealType type) {
+		foodItems = new ArrayList<FoodItem>();
+
+		setId(id);
 		setDateTime(dateTime);
 		setType(type);
-		this.foodItems = foodItems;
+	}
+
+	/**
+	 * Método para se adicionar um item alimentício
+	 * à refeição.
+	 * @param foodItem Item alimentício a ser
+	 * adicionado.
+	 */
+	public void addFoodItem(FoodItem foodItem) {
+		foodItem.setMealId(this.id);
+		foodItems.add(foodItem);
 	}
 
 	@Override
@@ -53,24 +70,37 @@ public class Meal implements Comparable<Meal> {
 	}
 
 	/**
-	 * Método para se obter a data e hora da refeição formatados (dd-mm-yy HH:MM:SS).
-	 * @return Data e hora da refeição no formato (dd-mm-yy HH:MM:SS).
+	 * Método para se obter a data e hora da refeição
+	 * formatados (dd-mm-yy HH:MM:SS).
+	 * @return Data e hora da refeição no formato
+	 * (dd-mm-yy HH:MM:SS).
 	 */
 	public String getDateTimePretty() {
 		return Utils.formatDateTime(getDateTime());
 	}
 
 	/**
-	 * Método para se obter os itens alimentícios da refeição.
-	 * @return Itens alimentícios da refeição.
+	 * Método para se obter a lista de itens alimentícios
+	 * da refeição.
+	 * @return Lista de itens alimentícios da refeição.
 	 */
 	public List<FoodItem> getFoodItems() {
 		return foodItems;
 	}
 
 	/**
-	 * Método para se obter informações sobre o objeto instanciado.
-	 * @return Texto contendo os valores dos atributos desse objeto.
+	 * Método para se obter o identificador da refeição.
+	 * @return Identificador da refeição.
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * Método para se obter informações sobre o objeto
+	 * instanciado.
+	 * @return Texto contendo os valores dos atributos
+	 * desse objeto.
 	 */
 	public String getInfoPretty() {
 		String info = getTypeName() +
@@ -81,7 +111,8 @@ public class Meal implements Comparable<Meal> {
 	}
 
 	/**
-	 * Método para se obter a quantidade total de calorias da refeição.
+	 * Método para se obter a quantidade total de calorias
+	 * da refeição.
 	 * @return Quantidade de calorias (cal) da refeição.
 	 */
 	public double getTotalCalories() {
@@ -95,7 +126,8 @@ public class Meal implements Comparable<Meal> {
 	}
 
 	/**
-	 * Método para se obter a quantidade total de calorias da refeição com sufixo de unidade.
+	 * Método para se obter a quantidade total de calorias
+	 * da refeição com sufixo de unidade.
 	 * @return Quantidade de calorias (cal) da refeição.
 	 */
 	public String getTotalCaloriesPretty() {
@@ -103,11 +135,12 @@ public class Meal implements Comparable<Meal> {
 	}
 
 	/**
-	 * Método para se obter o tipo da refeição.
-	 * @return Tipo da refeição.
+	 * Método para se obter o identificador do tipo
+	 * da refeição.
+	 * @return Identificador do tipo da refeição.
 	 */
-	public MealType getType() {
-		return type;
+	public int getTypeId() {
+		return type.getId();
 	}
 
 	/**
@@ -116,6 +149,36 @@ public class Meal implements Comparable<Meal> {
 	 */
 	public String getTypeName() {
 		return type.getName();
+	}
+
+	/**
+	 * Método para se remover um item alimentício da
+	 * refeição.
+	 * @param foodItem Nome do item alimentício a ser
+	 * removido.
+	 */
+	public void removeFoodItem(String foodItemName) {
+		FoodItem foodItemToRemove = null;
+
+		for (FoodItem foodItem : foodItems) {
+			if (foodItem.getFoodName().equalsIgnoreCase(foodItemName)) {
+				foodItemToRemove = foodItem;
+				break;
+			}
+		}
+
+		if(foodItemToRemove != null) {
+			foodItems.remove(foodItemToRemove);
+		}
+	}
+
+	/**
+	 * Método para se alterar o identificador da
+	 * refeição.
+	 * @param id Identificador da reifeção.
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**

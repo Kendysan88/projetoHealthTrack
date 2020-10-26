@@ -1,9 +1,13 @@
 package br.com.healthtrack;
 
+import java.time.LocalDateTime;
+
 import br.com.healthtrack.model.bodyinformation.BodyInformation;
 import br.com.healthtrack.model.bodyinformation.BodyInformationDAO;
 import br.com.healthtrack.model.meal.Food;
 import br.com.healthtrack.model.meal.FoodDAO;
+import br.com.healthtrack.model.meal.FoodItem;
+import br.com.healthtrack.model.meal.FoodItemDAO;
 import br.com.healthtrack.model.meal.Meal;
 import br.com.healthtrack.model.meal.MealDAO;
 import br.com.healthtrack.model.meal.MealType;
@@ -79,5 +83,47 @@ public class TesteDAO {
 		for(Food foodItem : foodDAO.getAll()) {
 			System.out.println(foodItem.getInfoPretty());
 		}
+
+		System.out.println("\n\nRefeições DAO");
+
+		Meal meal1 = new Meal(LocalDateTime.now(), mealType2);
+
+		MealDAO mealDAO = new MealDAO();
+		FoodItemDAO foodItemDAO = new FoodItemDAO();
+
+		FoodItem foodItem1 = new FoodItem(food1, 200);
+		meal1.addFoodItem(foodItem1);
+
+		FoodItem foodItem2 = new FoodItem(food2, 150);
+		meal1.addFoodItem(foodItem2);
+
+		FoodItem foodItem3 = new FoodItem(food3, 100);
+		meal1.addFoodItem(foodItem3);
+
+		mealDAO.create(meal1, 1);
+
+		for(Meal mealItem : mealDAO.getAll()) {
+			for(FoodItem foodItem : foodItemDAO.getAll(mealItem)) {
+				mealItem.addFoodItem(foodItem);
+
+				System.out.println(foodItem.getInfoPretty());
+			}
+			System.out.println(mealItem.getInfoPretty());
+		}
+
+//		System.out.println("Atividades Físicas DAO");
+//		for(PhysicalActivity item : new PhysicalActivityDAO().getAll()) {
+//			System.out.println(item.getInfoPretty());
+//		}
+//
+//
+//
+//		System.out.println("\n\n\n");
+//
+//		System.out.println("Informações Corporais DAO");
+//
+//		for(BodyInformation item : new BodyInformationDAO().getAll()) {
+//			System.out.println(item.getInfoPretty());
+//		}
 	}
 }
