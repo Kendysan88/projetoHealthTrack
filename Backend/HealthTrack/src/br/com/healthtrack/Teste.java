@@ -18,45 +18,45 @@ import br.com.healthtrack.model.meal.MealType;
 public class Teste {
 	public static void main(String[] args) {
 
-		System.out.println("Alimentos");
-
-		Food beef  = new Food(100, 1000, "Bife");
-		System.out.println(beef.getInfoPretty());
-
-		Food rice  = new Food(100, 400, "Arroz");
-		System.out.println(rice.getInfoPretty());
-
-		Food beans = new Food(100, 350, "Feijão");
-		System.out.println(beans.getInfoPretty());
+//		System.out.println("Alimentos");
+//
+//		Food beef  = new Food(100, 1000, "Bife");
+//		System.out.println(beef.getInfoPretty());
+//
+//		Food rice  = new Food(100, 400, "Arroz");
+//		System.out.println(rice.getInfoPretty());
+//
+//		Food beans = new Food(100, 350, "Feijão");
+//		System.out.println(beans.getInfoPretty());
 
 		// -------------------------
 
-		System.out.println("\nItems Alimentícios");
-
-		FoodItem riceItem = new FoodItem(rice, 200);
-		System.out.println(riceItem.getInfoPretty());
-
-		FoodItem beefItem = new FoodItem(beef, 50);
-		System.out.println(beefItem.getInfoPretty());
-
-		FoodItem beansItem = new FoodItem(beans, 180);
-		System.out.println(beansItem.getInfoPretty());
+//		System.out.println("\nItems Alimentícios");
+//
+//		FoodItem riceItem = new FoodItem(rice, 200);
+//		System.out.println(riceItem.getInfoPretty());
+//
+//		FoodItem beefItem = new FoodItem(beef, 50);
+//		System.out.println(beefItem.getInfoPretty());
+//
+//		FoodItem beansItem = new FoodItem(beans, 180);
+//		System.out.println(beansItem.getInfoPretty());
 		
 		// -------------------------
 
-		System.out.println("\nRefeição");
-
-		MealType lunchType = new MealType("Almoço");
-		Meal lunch = new Meal(LocalDateTime.now(), lunchType, new ArrayList<FoodItem>() {{
-			add(riceItem);
-			add(beefItem);
-			add(beansItem);
-		}}
-		);
-
-		System.out.println(lunch.getInfoPretty());
-
-		System.out.println("\n\n\n");
+//		System.out.println("\nRefeição");
+//
+//		MealType lunchType = new MealType("Almoço");
+//		Meal lunch = new Meal(LocalDateTime.now(), lunchType, new ArrayList<FoodItem>() {{
+//			add(riceItem);
+//			add(beefItem);
+//			add(beansItem);
+//		}}
+//		);
+//
+//		System.out.println(lunch.getInfoPretty());
+//
+//		System.out.println("\n\n\n");
 
 		// -------------------------
 
