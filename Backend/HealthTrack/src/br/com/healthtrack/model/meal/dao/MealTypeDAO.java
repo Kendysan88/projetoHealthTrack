@@ -8,61 +8,83 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.healthtrack.database.DataBaseManager;
+import br.com.healthtrack.model.DAO;
 import br.com.healthtrack.model.meal.MealType;
 
 /**
  * Classe responsável por manipular entidades do tipo categorias
  * (tipos) de refeição, no banco de dados.
  * @author Afonso de Sousa Costa
- * @version 2.0
+ * @version 3.0
  */
-public class MealTypeDAO {
+public class MealTypeDAO implements DAO<MealType>{
 	private Connection conn;
-	private static String TABLE_NAME = "T_HT_MEAL_TYPE";
+	private static final String TABLE_NAME = "T_HT_MEAL_TYPE";
 
 	/**
 	 * Método para se inserir (persistir) um tipo de refeição no
 	 * banco de dados.
-	 * @param type Objeto tipo de refeição a ser inserido (persistido)
-	 * no banco de dados.
+	 * @param mealType Objeto tipo de refeição a ser inserido
+	 * (persistido) no banco de dados.
 	 */
-	public void create(MealType type) {
-		boolean descriptionIsPresent = type.getDescription() != null;
+	@Override
+	public void create(MealType mealType) {
+		StringBuilder sqlQuery = new StringBuilder();
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		String sql = null;
 
 		try {
 			conn = DataBaseManager.getConnection();
 
-			if (descriptionIsPresent) {
-				sql = "INSERT INTO " + TABLE_NAME +
-						"(MEAL_TYPE_ID, " +
-						"NAME, " +
-						"DESCRIPTION) " +
-						"VALUES (SQ_HT_MEAL_TYPE.NEXTVAL, ?, ?)";
-			} else {
-				sql = "INSERT INTO " + TABLE_NAME +
-						"(MEAL_TYPE_ID, " +
-						"NAME) " +
-						"VALUES (SQ_HT_MEAL_TYPE.NEXTVAL, ?)";
-			}
+			sqlQuery.append("INSERT INTO ")
+					.append(TABLE_NAME)
+					.append("(")
+					.append("MEAL_TYPE_ID, ")
+					.append("NAME, ")
+					.append("DESCRIPTION")
+					.append(")")
+					.append("VALUES (SQ_HT_MEAL_TYPE.NEXTVAL, ?, ?)");
 
-			stmt = conn.prepareStatement(sql,  new String[] { "MEAL_TYPE_ID" });
-			stmt.setString(1, type.getName());
+			stmt = conn.prepareStatement(sqlQuery.toString());
 
-			if (descriptionIsPresent) {
-				stmt.setString(2, type.getDescription());
-			}
+			stmt.setString(1, mealType.getName());
+			stmt.setString(2, mealType.getDescription());
 
 			stmt.executeUpdate();
 
-			rs = stmt.getGeneratedKeys();
+		} catch (SQLException e) {
+			e.printStackTrace();
 
-			if(rs.next()){
-				int lastId = rs.getInt(1);
-				type.setId(lastId);
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
+		}
+	}
+
+	/**
+	 * Método para se remover um tipo de refeição no banco de dados.
+	 * @param mealTypeId Identificador do tipo de refeição no banco
+	 * de dados.
+	 */
+	@Override
+	public void destroy(int mealTypeId) {
+		StringBuilder sqlQuery = new StringBuilder();
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DataBaseManager.getConnection();
+
+			sqlQuery.append("DELETE FROM ")
+					.append(TABLE_NAME)
+					.append(" WHERE MEAL_TYPE_ID = ?");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+			stmt.setInt(1, mealTypeId);
+			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -86,34 +108,34 @@ public class MealTypeDAO {
 	 */
 	public List<MealType> getAll(){
 		List<MealType> list = new ArrayList<MealType>();
+		StringBuilder sqlQuery = new StringBuilder();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = null;
 
 		try {
 			conn = DataBaseManager.getConnection();
-			sql = "SELECT * FROM " + TABLE_NAME + " ORDER BY NAME";
-			stmt = conn.prepareStatement(sql);
+
+			sqlQuery.append("SELECT * FROM ")
+					.append(TABLE_NAME)
+					.append(" ORDER BY NAME");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+
 			rs = stmt.executeQuery();
 
 			while(rs.next()) {
 				MealType type;
 
-				int id = rs.getInt("MEAL_TYPE_ID");
-				String name = rs.getString("NAME");
+				int id             = rs.getInt("MEAL_TYPE_ID");
+				String name        = rs.getString("NAME");
 				String description = rs.getString("DESCRIPTION");
 
-				if (description != null) {
-					type = new MealType(id, name, description);
-
-				} else {
-					type = new MealType(id, name);
-				}
+				type = new MealType(id, name, description);
 
 				list.add(type);
 			}
 
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 
 		} finally {
@@ -128,5 +150,98 @@ public class MealTypeDAO {
 		}
 
 		return list;
+	}
+
+	/**
+	 * Método para pesquisar um tipo de refeição no banco de dados,
+	 * a partir de seu identificador.
+	 * @param mealTypeId Identificador do tipo de refeição no banco
+	 * de dados.
+	 */
+	@Override
+	public MealType searchById(int mealTypeId) {
+		StringBuilder sqlQuery = new StringBuilder();
+		MealType type = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DataBaseManager.getConnection();
+
+			sqlQuery.append("SELECT * FROM ")
+					.append(TABLE_NAME)
+					.append(" WHERE MEAL_TYPE_ID = ?");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+			stmt.setInt(1, mealTypeId);
+			rs = stmt.executeQuery();
+
+			while(rs.next()) {
+				int id             = rs.getInt("MEAL_TYPE_ID");
+				String name        = rs.getString("NAME");
+				String description = rs.getString("DESCRIPTION");
+
+				type = new MealType(id, name, description);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				stmt.close();
+				rs.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return type;
+	}
+
+	/**
+	 * Método para se atualizar um tipo de refeição no banco
+	 * de dados.
+	 * @param mealType Objeto tipo de refeição a ser atualizado
+	 * no banco de dados.
+	 */
+	@Override
+	public void update(MealType mealType) {
+		StringBuilder sqlQuery = new StringBuilder();
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DataBaseManager.getConnection();
+
+			sqlQuery.append("UPDATE ")
+					.append(TABLE_NAME)
+					.append(" SET ")
+					.append("NAME = ?, ")
+					.append("DESCRIPTION = ? ")
+					.append("WHERE MEAL_TYPE_ID = ?");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+
+			stmt.setString(1, mealType.getName());
+			stmt.setString(2, mealType.getDescription());
+			stmt.setInt(3, mealType.getId());
+
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

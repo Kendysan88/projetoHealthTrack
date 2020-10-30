@@ -1,15 +1,41 @@
 package br.com.healthtrack.model.meal;
 
+import br.com.healthtrack.model.meal.dao.MealTypeDAO;
+
 /**
  * Classe que abstrai um tipo de refeição.
  * @author Afonso de Sousa Costa
- * @version 3.0
+ * @version 4.0
  */
 public class MealType {
 
 	private String description;
 	private int id;
 	private String name;
+	private MealType self = null;
+
+	/**
+	 * Método construtor.
+	 */
+	public MealType() {}
+
+	/**
+	 * Método construtor (id é obrigatório).
+	 * @param id Identificador do tipo de refeição.
+	 */
+	public MealType(int id) {
+		if (self == null) {
+			MealTypeDAO dao = new MealTypeDAO();
+
+			self = dao.searchById(id);
+
+			if (self != null) {
+				setId(self.getId());
+				setName(self.getName());
+				setDescription(self.getDescription());
+			}
+		}
+	}
 
 	/**
 	 * Método construtor (name é obrigatório).
@@ -97,11 +123,13 @@ public class MealType {
 	 * @param description Descrição do tipo de refeição.
 	 */
 	public void setDescription(String description) {
+		if(description == null)
+			return;
+
 		description = description.trim();
 
-		if(!description.equals("")) {
+		if(!description.equals(""))
 			this.description = description;
-		}
 	}
 
 	/**
@@ -109,9 +137,8 @@ public class MealType {
 	 * @param id Identificador do tipo de refeição.
 	 */
 	public void setId(int id) {
-		if(id > 0) {
+		if(id > 0)
 			this.id = id;
-		}
 	}
 
 	/**
@@ -120,10 +147,12 @@ public class MealType {
 	 * @param name Nome do tipo de refeição.
 	 */
 	public void setName(String name) {
+		if(name == null)
+			return;
+
 		name = name.trim();
 
-		if(!name.equals("")) {
+		if(!name.equals(""))
 			this.name = name;
-		}
 	}
 }
