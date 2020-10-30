@@ -20,6 +20,10 @@ import br.com.healthtrack.model.meal.MealType;
 public class MealTypeDAO implements DAO<MealType>{
 	private Connection conn;
 	private static final String TABLE_NAME = "T_HT_MEAL_TYPE";
+	private StringBuilder sqlQuery = null;
+	private PreparedStatement stmt = null;
+	private ResultSet rs = null;
+	private List<MealType> list = null;
 
 	/**
 	 * Método para se inserir (persistir) um tipo de refeição no
@@ -29,8 +33,7 @@ public class MealTypeDAO implements DAO<MealType>{
 	 */
 	@Override
 	public void create(MealType mealType) {
-		StringBuilder sqlQuery = new StringBuilder();
-		PreparedStatement stmt = null;
+		sqlQuery = new StringBuilder();
 
 		try {
 			conn = DataBaseManager.getConnection();
@@ -72,8 +75,7 @@ public class MealTypeDAO implements DAO<MealType>{
 	 */
 	@Override
 	public void destroy(int mealTypeId) {
-		StringBuilder sqlQuery = new StringBuilder();
-		PreparedStatement stmt = null;
+		sqlQuery = new StringBuilder();
 
 		try {
 			conn = DataBaseManager.getConnection();
@@ -83,7 +85,9 @@ public class MealTypeDAO implements DAO<MealType>{
 					.append(" WHERE MEAL_TYPE_ID = ?");
 
 			stmt = conn.prepareStatement(sqlQuery.toString());
+
 			stmt.setInt(1, mealTypeId);
+
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -104,13 +108,11 @@ public class MealTypeDAO implements DAO<MealType>{
 	 * Método para se obter uma lista de todos os tipos de refeição
 	 * persistidos no banco de dados.
 	 * @return Lista ordenada alfabeticamente, contendo todos os
-	 * tipos de refeição persistidas no banco de dados.
+	 * tipos de refeição persistidos no banco de dados.
 	 */
 	public List<MealType> getAll(){
-		List<MealType> list = new ArrayList<MealType>();
-		StringBuilder sqlQuery = new StringBuilder();
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
+		sqlQuery = new StringBuilder();
+		list     = new ArrayList<MealType>();
 
 		try {
 			conn = DataBaseManager.getConnection();
@@ -160,10 +162,9 @@ public class MealTypeDAO implements DAO<MealType>{
 	 */
 	@Override
 	public MealType searchById(int mealTypeId) {
-		StringBuilder sqlQuery = new StringBuilder();
 		MealType type = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
+
+		sqlQuery = new StringBuilder();
 
 		try {
 			conn = DataBaseManager.getConnection();
@@ -173,7 +174,9 @@ public class MealTypeDAO implements DAO<MealType>{
 					.append(" WHERE MEAL_TYPE_ID = ?");
 
 			stmt = conn.prepareStatement(sqlQuery.toString());
+
 			stmt.setInt(1, mealTypeId);
+
 			rs = stmt.executeQuery();
 
 			while(rs.next()) {
@@ -210,8 +213,7 @@ public class MealTypeDAO implements DAO<MealType>{
 	 */
 	@Override
 	public void update(MealType mealType) {
-		StringBuilder sqlQuery = new StringBuilder();
-		PreparedStatement stmt = null;
+		sqlQuery = new StringBuilder();
 
 		try {
 			conn = DataBaseManager.getConnection();
