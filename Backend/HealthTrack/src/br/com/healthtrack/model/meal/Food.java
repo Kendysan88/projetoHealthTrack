@@ -4,25 +4,53 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import br.com.healthtrack.model.meal.dao.FoodDAO;
 import br.com.healthtrack.utils.Utils;
 
 /**
  * Classe que abstrai uma porção de um item alimentício, bem como seu
  * valor calórico.
  * @author Afonso de Sousa Costa
- * @version 4.0
+ * @version 5.0
  */
-public class Food implements Comparable<Food> {
+public class Food {
 
 	private double amount;
 	private double calories;
 	private String description;
 	private int id;
 	private String name;
+	private Food self = null;
 	private String unit;
 	private static List<String> validUnits = new ArrayList<String>(
 			Arrays.asList( "g", "ml" ));
-	
+
+	/**
+	 * Método construtor.
+	 */
+	public Food() {}
+
+	/**
+	 * Método construtor (id é obrigatório).
+	 * @param id Identificador do item alimentício.
+	 */
+	public Food(int id) {
+		if (self == null) {
+			FoodDAO dao = new FoodDAO();
+
+			self = dao.searchById(id);
+
+			if (self != null) {
+				setId(self.getId());
+				setAmount(self.getAmount());
+				setCalories(self.getCalories());
+				setName(self.getName());
+				setDescription(self.getDescription());
+				setUnit(self.getUnitPrefix());
+			}
+		}
+	}
+
 	/**
 	 * Método construtor (amount, calories, unidade de medida
 	 * e name são obrigatórios).
@@ -31,7 +59,8 @@ public class Food implements Comparable<Food> {
 	 * @param name     Nome do item alimentício.
 	 * @param unit     Unidade de medida do item alimentício.
 	 */
-	public Food(double amount, double calories, String name, String unit) {
+	public Food(double amount, double calories,
+			String name, String unit) {
 		setAmount(amount);
 		setCalories(calories);
 		setName(name);
@@ -93,11 +122,6 @@ public class Food implements Comparable<Food> {
 		setUnit(unit);
 		setDescription(description);
 	}
-
-	@Override
-    public int compareTo(Food otherFood) {
-        return this.getName().compareToIgnoreCase(otherFood.getName());
-    }
 
 	/**
 	 * Método para se obter a quantidade do item alimentício.
@@ -212,6 +236,9 @@ public class Food implements Comparable<Food> {
 	 * @param description Descrição do item alimentício.
 	 */
 	public void setDescription(String description) {
+		if(description == null)
+			return;
+
 		description = description.trim();
 
 		if(!description.equals("")) {
@@ -235,6 +262,9 @@ public class Food implements Comparable<Food> {
 	 * @param name Nome do item alimentício.
 	 */
 	public void setName(String name) {
+		if(name == null)
+			return;
+
 		name = name.trim();
 
 		if(!name.equals("")) {
@@ -249,6 +279,9 @@ public class Food implements Comparable<Food> {
 	 * @param unit Unidade de medida do item alimentício.
 	 */
 	public void setUnit(String unit) {
+		if(unit == null)
+			return;
+
 		unit = unit.trim();
 
 		if(!unit.equals("") &&

@@ -8,17 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.healthtrack.database.DataBaseManager;
+import br.com.healthtrack.model.DAO;
 import br.com.healthtrack.model.meal.Food;
 
 /**
  * Classe responsável por manipular entidades do tipo item
  * alimentício, no banco de dados.
  * @author Afonso de Sousa Costa
- * @version 2.0
+ * @version 3.0
  */
-public class FoodDAO {
+public class FoodDAO implements DAO<Food>{
 	private Connection conn;
-	private static String TABLE_NAME = "T_HT_FOOD";
+	private static final String TABLE_NAME = "T_HT_FOOD";
+	private StringBuilder sqlQuery = null;
+	private PreparedStatement stmt = null;
+	private ResultSet rs = null;
+	private List<Food> list = null;
 
 	/**
 	 * Método para se inserir (persistir) um item alimentício
@@ -26,52 +31,72 @@ public class FoodDAO {
 	 * @param food Objeto item alimentício a ser inserido
 	 * (persistido) no banco de dados.
 	 */
+	@Override
 	public void create(Food food) {
-		boolean descriptionIsPresent = food.getDescription() != null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		String sql = null;
+		sqlQuery = new StringBuilder();
 
 		try {
 			conn = DataBaseManager.getConnection();
 
-			if (descriptionIsPresent) {
-				sql = "INSERT INTO " + TABLE_NAME +
-						"(FOOD_ID, " +
-						"UNIT_PREFIX, " +
-						"AMOUNT, " +
-						"CALORIES, " +
-						"NAME, " +
-						"DESCRIPTION) " +
-						"VALUES (SQ_HT_FOOD.NEXTVAL, ?, ?, ?, ?, ?)";
-			} else {
-				sql = "INSERT INTO " + TABLE_NAME +
-						"(FOOD_ID, " +
-						"UNIT_PREFIX, " +
-						"AMOUNT, " +
-						"CALORIES, " +
-						"NAME) " +
-						"VALUES (SQ_HT_FOOD.NEXTVAL, ?, ?, ?, ?)";
-			}
+			sqlQuery.append("INSERT INTO ")
+					.append(TABLE_NAME)
+					.append("(")
+					.append("FOOD_ID, ")
+					.append("UNIT_PREFIX, ")
+					.append("AMOUNT, ")
+					.append("CALORIES, ")
+					.append("NAME, ")
+					.append("DESCRIPTION")
+					.append(")")
+					.append("VALUES (")
+					.append("SQ_HT_FOOD.NEXTVAL, ?, ?, ?, ?, ?)");
 
-			stmt = conn.prepareStatement(sql, new String[] { "FOOD_ID" });
+			stmt = conn.prepareStatement(sqlQuery.toString());
+
 			stmt.setString(1, food.getUnitPrefix());
 			stmt.setDouble(2, food.getAmount());
 			stmt.setDouble(3, food.getCalories());
 			stmt.setString(4, food.getName());
-
-			if (descriptionIsPresent) {
-				stmt.setString(5, food.getDescription());
-			}
+			stmt.setString(5, food.getDescription());
 
 			stmt.executeUpdate();
 
-			rs = stmt.getGeneratedKeys();
+		} catch (SQLException e) {
+			e.printStackTrace();
 
-			if(rs.next()){
-				int lastId = rs.getInt(1);
-				food.setId(lastId);
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
+		}
+	}
+
+	/**
+	 * Método para se remover um item alimentício no banco
+	 * de dados.
+	 * @param foodId Identificador do item alimentício no
+	 * banco de dados.
+	 */
+	@Override
+	public void destroy(int foodId) {
+		sqlQuery = new StringBuilder();
+
+		try {
+			conn = DataBaseManager.getConnection();
+
+			sqlQuery.append("DELETE FROM ")
+					.append(TABLE_NAME)
+					.append(" WHERE FOOD_ID = ?");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+
+			stmt.setInt(1, foodId);
+
+			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,19 +116,23 @@ public class FoodDAO {
 	 * Método para se obter uma lista de todos os itens
 	 * alimentícios persistidos no banco de dados.
 	 * @return Lista ordenada alfabeticamente, contendo
-	 * todos os itens alimentícios persistidas no banco
+	 * todos os itens alimentícios persistidos no banco
 	 * de dados.
 	 */
+	@Override
 	public List<Food> getAll(){
-		List<Food> list = new ArrayList<Food>();
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		String sql = null;
+		sqlQuery = new StringBuilder();
+		list     = new ArrayList<Food>();
 
 		try {
 			conn = DataBaseManager.getConnection();
-			sql = "SELECT * FROM " + TABLE_NAME + " ORDER BY NAME";
-			stmt = conn.prepareStatement(sql);
+
+			sqlQuery.append("SELECT * FROM ")
+					.append(TABLE_NAME)
+					.append(" ORDER BY NAME");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+
 			rs = stmt.executeQuery();
 
 			while(rs.next()) {
@@ -116,14 +145,8 @@ public class FoodDAO {
 
 				Food food;
 
-				if (description != null) {
-					food = new Food(id, amount, calories,
-							name, unitPrefix, description);
-
-				} else {
-					food = new Food(id, amount, calories,
-							name, unitPrefix);
-				}
+				food = new Food(id, amount, calories,
+						name, unitPrefix, description);
 
 				list.add(food);
 			}
@@ -143,5 +166,107 @@ public class FoodDAO {
 		}
 
 		return list;
+	}
+
+	/**
+	 * Método para pesquisar um item alimentício no banco de dados,
+	 * a partir de seu identificador.
+	 * @param foodId Identificador do item alimentício no banco
+	 * de dados.
+	 */
+	@Override
+	public Food searchById(int foodId) {
+		Food food = null;
+
+		sqlQuery = new StringBuilder();
+
+		try {
+			conn = DataBaseManager.getConnection();
+
+			sqlQuery.append("SELECT * FROM ")
+					.append(TABLE_NAME)
+					.append(" WHERE FOOD_ID = ?");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+
+			stmt.setInt(1, foodId);
+
+			rs = stmt.executeQuery();
+
+			while(rs.next()) {
+				int id             = rs.getInt("FOOD_ID");
+				double amount      = rs.getDouble("AMOUNT");
+				double calories    = rs.getDouble("CALORIES");
+				String name        = rs.getString("NAME");
+				String description = rs.getString("DESCRIPTION");
+				String unitPrefix  = rs.getString("UNIT_PREFIX");
+
+				food = new Food(id, amount, calories,
+						name, unitPrefix, description);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				stmt.close();
+				rs.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return food;
+	}
+
+	/**
+	 * Método para se atualizar um item alimentício no banco
+	 * de dados.
+	 * @param food Objeto item alimentício a ser atualizado
+	 * no banco de dados.
+	 */
+	@Override
+	public void update(Food food) {
+		sqlQuery = new StringBuilder();
+
+		try {
+			conn = DataBaseManager.getConnection();
+
+			sqlQuery.append("UPDATE ")
+					.append(TABLE_NAME)
+					.append(" SET ")
+					.append("UNIT_PREFIX = ?, ")
+					.append("AMOUNT = ?, ")
+					.append("CALORIES = ?, ")
+					.append("NAME = ?, ")
+					.append("DESCRIPTION = ? ")
+					.append("WHERE FOOD_ID = ?");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+
+			stmt.setString(1, food.getUnitPrefix());
+			stmt.setDouble(2, food.getAmount());
+			stmt.setDouble(3, food.getCalories());
+			stmt.setString(4, food.getName());
+			stmt.setString(5, food.getDescription());
+			stmt.setInt(6, food.getId());
+
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
