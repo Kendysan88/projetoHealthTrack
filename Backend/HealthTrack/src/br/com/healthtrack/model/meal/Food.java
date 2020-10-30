@@ -241,9 +241,8 @@ public class Food {
 
 		description = description.trim();
 
-		if(!description.equals("")) {
+		if(!description.equals(""))
 			this.description = description;
-		}
 	}
 
 	/**
@@ -251,9 +250,8 @@ public class Food {
 	 * @param id Identificador do item alimentício.
 	 */
 	public void setId(int id) {
-		if(id > 0) {
+		if(id > 0)
 			this.id = id;
-		}
 	}
 
 	/**
@@ -285,8 +283,7 @@ public class Food {
 		unit = unit.trim();
 
 		if(!unit.equals("") &&
-				validUnits.contains(unit.toLowerCase())) {
+				validUnits.contains(unit.toLowerCase()))
 			this.unit = unit;
-		}
 	}
 }
