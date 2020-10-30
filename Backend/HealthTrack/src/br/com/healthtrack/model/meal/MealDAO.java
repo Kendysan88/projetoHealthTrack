@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.healthtrack.DataBaseManager;
+import br.com.healthtrack.database.DataBaseManager;
 
 /**
  * Classe responsável por manipular entidades do
