@@ -1,4 +1,4 @@
-package br.com.healthtrack.model.meal;
+package br.com.healthtrack.model.meal.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.healthtrack.database.DataBaseManager;
+import br.com.healthtrack.model.meal.FoodItem;
+import br.com.healthtrack.model.meal.Meal;
+import br.com.healthtrack.model.meal.MealType;
 
 /**
  * Classe responsável por manipular entidades do

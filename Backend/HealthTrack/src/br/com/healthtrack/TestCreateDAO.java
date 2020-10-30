@@ -3,13 +3,13 @@ package br.com.healthtrack;
 import java.time.LocalDateTime;
 
 import br.com.healthtrack.model.meal.Food;
-import br.com.healthtrack.model.meal.FoodDAO;
 import br.com.healthtrack.model.meal.FoodItem;
-import br.com.healthtrack.model.meal.FoodItemDAO;
 import br.com.healthtrack.model.meal.Meal;
-import br.com.healthtrack.model.meal.MealDAO;
 import br.com.healthtrack.model.meal.MealType;
-import br.com.healthtrack.model.meal.MealTypeDAO;
+import br.com.healthtrack.model.meal.dao.FoodDAO;
+import br.com.healthtrack.model.meal.dao.FoodItemDAO;
+import br.com.healthtrack.model.meal.dao.MealDAO;
+import br.com.healthtrack.model.meal.dao.MealTypeDAO;
 import br.com.healthtrack.model.physicalactivity.PhysicalActivityBySeries;
 import br.com.healthtrack.model.physicalactivity.dao.PhysicalActivityBySeriesDAOImpl;
 
