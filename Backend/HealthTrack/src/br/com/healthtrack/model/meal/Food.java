@@ -180,20 +180,22 @@ public class Food {
 	 * @return Texto contendo os valores dos atributos desse objeto.
 	 */
 	public String getInfoPretty() {
-		String info;
+		StringBuilder info = new StringBuilder();
 
-		if (getDescription() != null){
-			info = getName() +
-					" (" + getDescription() + ") "
-					+ getAmountPretty() + " - "
-					+ getCaloriesPretty();
-		} else {
-			info = getName() +
-					" " + getAmountPretty() + " - "
-					+ getCaloriesPretty();
+		info.append(name)
+			.append(" ");
+
+		if (description != null){
+			info.append("(")
+			    .append(description)
+			    .append(") ");
 		}
 
-		return info;
+		info.append(getAmountPretty())
+			.append(" - ")
+			.append(getCaloriesPretty());
+
+		return info.toString();
 	}
 
 	/**

@@ -98,15 +98,16 @@ public class MealType {
 	 * @return Texto contendo os valores dos atributos desse objeto.
 	 */
 	public String getInfoPretty() {
-		String info;
+		StringBuilder info = new StringBuilder();
+
+		info.append(name);
 
 		if(description != null) {
-			info = name + " " + description;
-		} else {
-			info = name;
+			info.append(" ")
+				.append(description);
 		}
 
-		return info;
+		return info.toString();
 	}
 
 	/**
