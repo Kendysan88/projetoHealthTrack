@@ -74,7 +74,7 @@ public class MealTypeDAO implements DAO<MealType>{
 	 * de dados.
 	 */
 	@Override
-	public void destroy(int mealTypeId) {
+	public void destroy(int ...mealTypeId) {
 		sqlQuery = new StringBuilder();
 
 		try {
@@ -86,7 +86,7 @@ public class MealTypeDAO implements DAO<MealType>{
 
 			stmt = conn.prepareStatement(sqlQuery.toString());
 
-			stmt.setInt(1, mealTypeId);
+			stmt.setInt(1, mealTypeId[0]);
 
 			stmt.executeUpdate();
 
@@ -161,7 +161,7 @@ public class MealTypeDAO implements DAO<MealType>{
 	 * de dados.
 	 */
 	@Override
-	public MealType searchById(int mealTypeId) {
+	public MealType searchById(int ...mealTypeId) {
 		MealType type = null;
 
 		sqlQuery = new StringBuilder();
@@ -175,7 +175,7 @@ public class MealTypeDAO implements DAO<MealType>{
 
 			stmt = conn.prepareStatement(sqlQuery.toString());
 
-			stmt.setInt(1, mealTypeId);
+			stmt.setInt(1, mealTypeId[0]);
 
 			rs = stmt.executeQuery();
 

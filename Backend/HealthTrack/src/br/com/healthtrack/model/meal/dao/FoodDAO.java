@@ -82,7 +82,7 @@ public class FoodDAO implements DAO<Food>{
 	 * banco de dados.
 	 */
 	@Override
-	public void destroy(int foodId) {
+	public void destroy(int ...foodId) {
 		sqlQuery = new StringBuilder();
 
 		try {
@@ -94,7 +94,7 @@ public class FoodDAO implements DAO<Food>{
 
 			stmt = conn.prepareStatement(sqlQuery.toString());
 
-			stmt.setInt(1, foodId);
+			stmt.setInt(1, foodId[0]);
 
 			stmt.executeUpdate();
 
@@ -175,7 +175,7 @@ public class FoodDAO implements DAO<Food>{
 	 * de dados.
 	 */
 	@Override
-	public Food searchById(int foodId) {
+	public Food searchById(int ...foodId) {
 		Food food = null;
 
 		sqlQuery = new StringBuilder();
@@ -189,7 +189,7 @@ public class FoodDAO implements DAO<Food>{
 
 			stmt = conn.prepareStatement(sqlQuery.toString());
 
-			stmt.setInt(1, foodId);
+			stmt.setInt(1, foodId[0]);
 
 			rs = stmt.executeQuery();
 
