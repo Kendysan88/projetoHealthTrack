@@ -21,7 +21,7 @@
                 <div class="text-center">
                     <p class="titulo-menu-lateral"><i class="icones-cabecalho fas fa-heartbeat"></i> Health
                         Track</p>
-                        <img src="img/avatar.png" class="img-fluid p-1 rounded-circle"
+                    <img src="img/avatar.png" class="img-fluid p-1 rounded-circle"
                         alt="Foto do Usuário">
                     <p>Nome do Usuário</p>
                 </div>
@@ -34,31 +34,37 @@
                     </a>
                 </li>
                 <li>
-                    <a href="perfil.html" class="lista-lateral cor-especial list-group-item">
+                    <a href="user.html" class="lista-lateral cor-especial list-group-item">
                         <i class="icones-menu-lateral fas fa-user"></i>
                         <p>Perfil</p>
                     </a>
                 </li>
                 <li>
-                    <a href="peso.html" class="lista-lateral cor-especial list-group-item">
+                    <a href="weight.html" class="lista-lateral cor-especial list-group-item">
                         <i class="icones-menu-lateral fas fa-weight"></i>
                         <p>Gerenciar Peso</p>
                     </a>
                 </li>
                 <li>
-                    <a href="exercicio.html" class="lista-lateral cor-especial list-group-item">
+                    <a href="blood-pressure.html" class="lista-lateral cor-especial list-group-item">
+                        <img src="img/blood-pressure-white.svg" class="icone-pressao-arterial-branco">
+                        <p>Gerenciar Pressão Arterial</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="physical-activity.html" class="lista-lateral cor-especial list-group-item">
                         <i class="icones-menu-lateral fas fa-dumbbell"></i>
                         <p>Gerenciar Atividades</p>
                     </a>
                 </li>
                 <li>
-                    <a href="alimento.html" class="lista-lateral cor-especial list-group-item">
+                    <a href="food.html" class="lista-lateral cor-especial list-group-item">
                         <i class="icones-menu-lateral fas fa-utensils"></i>
                         <p>Gerenciar Alimentos</p>
                     </a>
                 </li>
                 <li>
-                    <a href="imc.html" class="lista-lateral cor-especial list-group-item">
+                    <a href="bmi.html" class="lista-lateral cor-especial list-group-item">
                         <i class="icones-menu-lateral fas fa-calculator"></i>
                         <p>Calcular IMC</p>
                     </a>
@@ -89,9 +95,6 @@
                                     <i class="icones-cabecalho fas fa-user"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Configurações</a>
-                                    <a class="dropdown-item" href="#">Atividades</a>
-                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="login.html">Deslogar</a>
                                 </div>
                             </li>
@@ -103,13 +106,13 @@
 
             <!-- Conteúdo Principal -->
             <div class="container-fluid">
-                <h1 class="mt-4">Gerenciar Peso</h1>
+                <h1 class="mt-4">Gerenciar Pressão Arterial</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="home.html">Dashboard</a></li>
                     <li class="breadcrumb-item active">Gerenciar Peso</li>
                 </ol>
                 <div class="card mb-4">
-                    <div class="card-header cartao-titulo"><i class="icone-cartao fas fa-weight"></i> Lista de Pesagens
+                    <div class="card-header cartao-titulo"><img src="img/blood-pressure-black.svg" class="icone-pressao-arterial-preto"> Lista de Medições de Pressão
                     </div>
                     <div class="card-body">
                         <div class="table-responsive text-center">
@@ -117,26 +120,26 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        <th>Peso</th>
-                                        <th>IMC</th>
+                                        <th>Pressão arterial sistólica </th>
+                                        <th>Pressão arterial diastólica </th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>Data</th>
-                                        <th>Peso</th>
-                                        <th>IMC</th>
+                                        <th>Pressão arterial sistólica </th>
+                                        <th>Pressão arterial diastólica </th>
                                         <th>Ações</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     <tr>
                                         <td>XX / XX / XXXX</td>
-                                        <td>XX, X kg</td>
-                                        <td>XX, X</td>
+                                        <td>XX, X mmHg</td>
+                                        <td>XX, X mmHg</td>
                                         <td>
-                                            <button type="button" class="btn m-2 cor-botao" data-target="#modalPeso"
+                                            <button type="button" class="btn m-2 cor-botao" data-target="#modalPressao"
                                                 data-toggle="modal"><i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn m-2 btn-danger"><i
                                                     class="fas fa-trash"></i></button>
@@ -144,8 +147,8 @@
                                     </tr>
                                     <tr>
                                         <td>XX / XX / XXXX</td>
-                                        <td>XX, X kg</td>
-                                        <td>XX, X</td>
+                                        <td>XX, X mmHg</td>
+                                        <td>XX, X mmHg</td>
                                         <td>
                                             <button type="button" class="btn m-2 cor-botao"><i
                                                     class="fas fa-edit"></i></button>
@@ -155,8 +158,8 @@
                                     </tr>
                                     <tr>
                                         <td>XX / XX / XXXX</td>
-                                        <td>XX, X kg</td>
-                                        <td>XX, X</td>
+                                        <td>XX, X mmHg</td>
+                                        <td>XX, X mmHg</td>
                                         <td>
                                             <button type="button" class="btn m-2 cor-botao"><i
                                                     class="fas fa-edit"></i></button>
@@ -166,8 +169,8 @@
                                     </tr>
                                     <tr>
                                         <td>XX / XX / XXXX</td>
-                                        <td>XX, X kg</td>
-                                        <td>XX, X</td>
+                                        <td>XX, X mmHg</td>
+                                        <td>XX, X mmHg</td>
                                         <td>
                                             <button type="button" class="btn m-2 cor-botao"><i
                                                     class="fas fa-edit"></i></button>
@@ -177,8 +180,8 @@
                                     </tr>
                                     <tr>
                                         <td>XX / XX / XXXX</td>
-                                        <td>XX, X kg</td>
-                                        <td>XX, X</td>
+                                        <td>XX, X mmHg</td>
+                                        <td>XX, X mmHg</td>
                                         <td>
                                             <button type="button" class="btn m-2 cor-botao"><i
                                                     class="fas fa-edit"></i></button>
@@ -192,9 +195,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Fim -->
+            <!-- Fim Conteúdo Principal -->
         </section>
-        <!-- Fim -->
+        <!-- Fim Conteúdo Página -->
     </main>
     <!-- Rodapé -->
     <footer id="rodape bottom-fixed">
@@ -209,31 +212,37 @@
     </footer>
     <!-- Fim -->
     
-    <!-- Modal Peso -->
-    <div class="modal fade" id="modalPeso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- Modal Pressão Arterial -->
+    <div class="modal fade" id="modalPressao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalPeso">Editar Peso</h5>
+                    <h5 class="modal-title" id="modalPressao">Editar Pressão Arterial</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="form-group">
-                            <label for="">Peso</label>
-                            <input type="text" class="form-control">
+                        <div class="form-row">
+                            <div class=" form-group col-md-6">
+                                <label for="">Pressão Arterial Sistólica</label>
+                                <input type="text" name="" id="" class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="">Pressão Arterial Diastólica</label>
+                                <input type="text" name="" id="" class="form-control">
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class=" form-group col-md-6">
                                 <label for="">Data</label>
-                                <input type="date" class="form-control">
+                                <input type="date" name="" id="" class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="">Horário</label>
-                                <input type="time" class="form-control">
+                                <input type="time" name="" id="" class="form-control">
                             </div>
                         </div>
                     </form>
