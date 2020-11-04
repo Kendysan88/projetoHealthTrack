@@ -161,6 +161,55 @@ public class MealDAO implements DAO<Meal> {
 	}
 
 	/**
+	 * Método para se obter a quantidade total de calorias
+	 * de uma refeição.
+	 * @return Quantidade total de calorias.
+	 */
+	public double getTotalCalories(int mealId) {
+		double calories = 0.0;
+
+		sqlQuery = new StringBuilder();
+
+		try {
+			conn = DataBaseManager.getConnection();
+
+			sqlQuery.append("SELECT ")
+					.append("SUM(FOOD_ITEM.CALORIES) AS TOTAL_CALORIES")
+					.append(" FROM ")
+					.append(TABLE_NAME)
+					.append(" MEAL ")
+					.append("JOIN T_HT_FOOD_ITEM FOOD_ITEM ")
+					.append("ON MEAL.MEAL_ID = FOOD_ITEM.MEAL_ID")
+					.append(" WHERE MEAL.MEAL_ID = ?");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+
+			stmt.setInt(1, mealId);
+
+			rs = stmt.executeQuery();
+
+			while(rs.next()) {
+				calories = rs.getDouble("TOTAL_CALORIES");
+			}
+
+		} catch(SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				stmt.close();
+				rs.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return calories;
+	}
+
+	/**
 	 * Método para pesquisar uma refeição no banco de dados,
 	 * a partir de seu identificador.
 	 * @param mealId Identificador da refeição no banco

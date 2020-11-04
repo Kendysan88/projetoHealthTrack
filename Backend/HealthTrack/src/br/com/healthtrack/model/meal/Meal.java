@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.healthtrack.model.meal.dao.FoodItemDAO;
 import br.com.healthtrack.model.meal.dao.MealDAO;
 import br.com.healthtrack.model.meal.dao.MealTypeDAO;
 import br.com.healthtrack.model.user.User;
@@ -19,7 +20,6 @@ import br.com.healthtrack.utils.Utils;
 public class Meal {
 
 	private LocalDateTime dateTime;
-	private List<FoodItem> foodItems;
 	private int id;
 	private Meal self = null;
 	private User user = null;
@@ -43,7 +43,6 @@ public class Meal {
 			self = dao.searchById(id);
 
 			if (self != null) {
-				foodItems = new ArrayList<FoodItem>();
 				setId(self.getId());
 				setDateTime(self.getDateTime());
 				setTypeId(self.getTypeId());
@@ -58,8 +57,6 @@ public class Meal {
 	 * @param dateTime Data e hora da refeição (dd-mm-yyyy HH:MM:SS).
 	 */
 	public Meal(int typeId, String dateTime) {
-		foodItems = new ArrayList<FoodItem>();
-
 		setDateTime(dateTime);
 		setTypeId(typeId);
 	}
@@ -71,8 +68,6 @@ public class Meal {
 	 * @param dateTime Data e hora da refeição (dd-mm-yyyy HH:MM:SS).
 	 */
 	public Meal(int typeId, int userId, String dateTime) {
-		foodItems = new ArrayList<FoodItem>();
-
 		setDateTime(dateTime);
 		setTypeId(typeId);
 		setUserId(userId);
@@ -86,8 +81,6 @@ public class Meal {
 	 * @param dateTime Data e hora da refeição (dd-mm-yyyy HH:MM:SS).
 	 */
 	public Meal(int id, int typeId, int userId, String dateTime) {
-		foodItems = new ArrayList<FoodItem>();
-
 		setId(id);
 		setDateTime(dateTime);
 		setTypeId(typeId);
@@ -102,23 +95,10 @@ public class Meal {
 	 * @param dateTime Data e hora da refeição (dd-mm-yyyy HH:MM:SS).
 	 */
 	public Meal(int id, int typeId, int userId, LocalDateTime dateTime) {
-		foodItems = new ArrayList<FoodItem>();
-
 		setId(id);
 		setDateTime(dateTime);
 		setTypeId(typeId);
 		setUserId(userId);
-	}
-
-	/**
-	 * Método para se adicionar um item alimentício
-	 * à refeição.
-	 * @param foodItem Item alimentício a ser
-	 * adicionado.
-	 */
-	public void addFoodItem(FoodItem foodItem) {
-		foodItem.setMealId(this.id);
-		foodItems.add(foodItem);
 	}
 
 	/**
@@ -145,6 +125,13 @@ public class Meal {
 	 * @return Lista de itens alimentícios da refeição.
 	 */
 	public List<FoodItem> getFoodItems() {
+		List<FoodItem> foodItems = new ArrayList<FoodItem>();
+
+		if(id > 0) {
+			FoodItemDAO dao = new FoodItemDAO();
+			foodItems = dao.getAll(id);
+		}
+
 		return foodItems;
 	}
 
@@ -182,8 +169,9 @@ public class Meal {
 	public double getTotalCalories() {
 		double totalCalories = 0.0;
 
-		for(FoodItem foodItem : foodItems) {
-			totalCalories += foodItem.getCalories();
+		if(id > 0) {
+			MealDAO dao = new MealDAO();
+			totalCalories = dao.getTotalCalories(id);
 		}
 
 		return totalCalories;
@@ -245,28 +233,6 @@ public class Meal {
 	 */
 	public int getUserId() {
 		return userId;
-	}
-
-	/**
-	 * Método para se remover um item alimentício da
-	 * refeição.
-	 * @param foodItem Nome do item alimentício a ser
-	 * removido.
-	 */
-	public void removeFoodItem(String foodItemName) {
-		FoodItem foodItemToRemove = null;
-
-		for (FoodItem foodItem : foodItems) {
-			if (foodItem.getFoodName()
-					.equalsIgnoreCase(foodItemName)) {
-				foodItemToRemove = foodItem;
-				break;
-			}
-		}
-
-		if(foodItemToRemove != null) {
-			foodItems.remove(foodItemToRemove);
-		}
 	}
 
 	/**

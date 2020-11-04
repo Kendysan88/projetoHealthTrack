@@ -168,6 +168,58 @@ public class FoodItemDAO implements DAO<FoodItem> {
 	}
 
 	/**
+	 * Método para se obter uma lista de todos os itens
+	 * alimentícios de refeições persistidos no banco de dados.
+	 * @return Lista  contendo todos os itens alimentícios
+	 * de refeições persistidas no banco de dados.
+	 */
+	public List<FoodItem> getAll(int mealId){
+		sqlQuery = new StringBuilder();
+		list     = new ArrayList<FoodItem>();
+
+		try {
+			conn = DataBaseManager.getConnection();
+
+			sqlQuery.append("SELECT * FROM ")
+					.append(TABLE_NAME)
+					.append(" WHERE ")
+					.append(" MEAL_ID = ?");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+
+			stmt.setInt(1, mealId);
+
+			rs = stmt.executeQuery();
+
+			while(rs.next()) {
+				int foodId      = rs.getInt("FOOD_ID");
+				double amount   = rs.getDouble("AMOUNT");
+				double calories = rs.getDouble("CALORIES");
+
+				FoodItem foodItem = new FoodItem(foodId, mealId,
+						amount, calories);
+
+				list.add(foodItem);
+			}
+
+		} catch(SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				stmt.close();
+				rs.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+	}
+
+	/**
 	 * Método para pesquisar um item alimentício no banco de dados,
 	 * a partir de seu identificador.
 	 * @param foodId Identificador do item alimentício no banco de dados.
