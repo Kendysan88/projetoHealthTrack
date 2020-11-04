@@ -7,7 +7,6 @@ import br.com.healthtrack.utils.Utils;
  * @author Afonso de Sousa Costa
  * @version 2.0
  */
-
 public abstract class Person {
 
     private String email;
@@ -37,18 +36,12 @@ public abstract class Person {
         return this.email;
     }
 
-    /**
-	 * Método para se alterar a senha da pessoa.
-	 * (apenas para valores diferentes de vazio).
-	 * @param password Senha da pessoa.
+	/**
+	 * Método para se obter a senha da pessoa.
+	 * @return Senha da pessoa.
 	 */
-	public void setPassword(String password) {
-		password = password.trim();
-
-		if(!password.equals("") && password.length() >=
-				Utils.PASSWORD_SIZE) {
-			this.password = password;
-		}
+    public String getPassword() {
+        return this.password;
     }
 
 	/**
@@ -57,10 +50,30 @@ public abstract class Person {
 	 * @param email Email da pessoa.
 	 */
     public void setEmail(String email) {
+		if(email == null)
+			return;
+
 		email = email.trim();
 
 		if(!email.equals("")) {
 			this.email = email;
+		}
+    }
+
+    /**
+	 * Método para se alterar a senha da pessoa.
+	 * (apenas para valores diferentes de vazio).
+	 * @param password Senha da pessoa.
+	 */
+	public void setPassword(String password) {
+		if(password == null)
+			return;
+
+		password = password.trim();
+
+		if(!password.equals("") && password.length() >=
+				Utils.PASSWORD_SIZE) {
+			this.password = password;
 		}
     }
 
