@@ -1,27 +1,32 @@
 package br.com.healthtrack.model.meal.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.healthtrack.database.DataBaseManager;
-import br.com.healthtrack.model.meal.FoodItem;
+import br.com.healthtrack.model.DAO;
 import br.com.healthtrack.model.meal.Meal;
-import br.com.healthtrack.model.meal.MealType;
 
 /**
  * Classe responsável por manipular entidades do
  * tipo refeição, no banco de dados.
  * @author Afonso de Sousa Costa
- * @version 2.0
+ * @version 4.0
  */
-public class MealDAO {
+public class MealDAO implements DAO<Meal> {
 	private Connection conn;
-	private static String TABLE_NAME = "T_HT_MEAL";
+	private static final String TABLE_NAME = "T_HT_MEAL";
+	private StringBuilder sqlQuery = null;
+	private PreparedStatement stmt = null;
+	private ResultSet rs = null;
+	private List<Meal> list = null;
 
 	/**
 	 * Método para se inserir (persistir) uma refeição no
@@ -29,45 +34,30 @@ public class MealDAO {
 	 * @param meal Objeto refeição a ser inserido (persistido)
 	 * no banco de dados.
 	 */
-	public void create(Meal meal, int userId) {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		String sql = null;
+	@Override
+	public void create(Meal meal) {
+		sqlQuery = new StringBuilder();
 
 		try {
 			conn = DataBaseManager.getConnection();
-			sql = "INSERT INTO " + TABLE_NAME +
-					"(MEAL_ID, " +
-					"USER_ID, " +
-					"MEAL_TYPE_ID, " +
-					"DATE_TIME)" +
-					"VALUES (SQ_HT_MEAL.NEXTVAL, ?, ?, ?)";
 
-			stmt = conn.prepareStatement(sql, new String[] { "MEAL_ID" });
+			sqlQuery.append("INSERT INTO ")
+					.append(TABLE_NAME)
+					.append("(")
+					.append("MEAL_ID, ")
+					.append("USER_ID, ")
+					.append("MEAL_TYPE_ID, ")
+					.append("DATE_TIME")
+					.append(")")
+					.append("VALUES (SQ_HT_MEAL.NEXTVAL, ?, ?, ?)");
 
-			java.sql.Timestamp mealDateTime =
-					java.sql.Timestamp.valueOf(meal.getDateTime());
+			stmt = conn.prepareStatement(sqlQuery.toString());
 
-			stmt.setInt(1, userId); // TODO Create User DAO
+			stmt.setInt(1, meal.getUserId());
 			stmt.setInt(2, meal.getTypeId());
-			stmt.setTimestamp(3, mealDateTime);
+			stmt.setTimestamp(3, Timestamp.valueOf(meal.getDateTime()));
 
 			stmt.executeUpdate();
-
-			rs = stmt.getGeneratedKeys();
-
-			if(rs.next()){
-				int lastId = rs.getInt(1);
-				meal.setId(lastId);
-
-				FoodItemDAO foodItemDAO = new FoodItemDAO();
-
-				for(FoodItem foodItem : meal.getFoodItems()) {
-					foodItem.setMealId(lastId);
-					foodItemDAO.create(foodItem);
-				}
-			}
-
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,44 +74,71 @@ public class MealDAO {
 	}
 
 	/**
+	 * Método para se remover uma refeição no banco de dados.
+	 * @param mealId Identificador da refeição no banco de dados.
+	 */
+	@Override
+	public void destroy(int ...mealId) {
+		sqlQuery = new StringBuilder();
+
+		try {
+			conn = DataBaseManager.getConnection();
+
+			sqlQuery.append("DELETE FROM ")
+					.append(TABLE_NAME)
+					.append(" WHERE MEAL_ID = ?");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+
+			stmt.setInt(1, mealId[0]);
+
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+		
+	/**
 	 * Método para se obter uma lista de todas as
 	 * refeições persistidas no banco de dados.
 	 * @return Lista contendo todas as refeições
 	 * persistidas no banco de dados.
 	 */
 	public List<Meal> getAll(){
-		List<Meal> list = new ArrayList<Meal>();
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		String sql = null;
+		sqlQuery = new StringBuilder();
+		list     = new ArrayList<Meal>();
 
 		try {
 			conn = DataBaseManager.getConnection();
-			sql = "SELECT " +
-					"MEAL.MEAL_ID AS MEAL_ID, " +
-					"MEAL.USER_ID AS MEAL_USER_ID, " +
-					"MEAL.DATE_TIME AS MEAL_DATE_TIME, " +
-					"MEAL_TYPE.MEAL_TYPE_ID AS MEAL_TYPE_ID, " +
-					"MEAL_TYPE.NAME AS MEAL_TYPE_NAME " +
-					"FROM " + TABLE_NAME + " " +
-					"MEAL JOIN T_HT_MEAL_TYPE MEAL_TYPE " +
-					"ON MEAL.MEAL_TYPE_ID = MEAL_TYPE.MEAL_TYPE_ID " +
-					"ORDER BY MEAL.DATE_TIME";
 
-			stmt = conn.prepareStatement(sql);
+			sqlQuery.append("SELECT * FROM ")
+					.append(TABLE_NAME)
+					.append(" ORDER BY DATE_TIME");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
 
 			rs = stmt.executeQuery();
 
 			while(rs.next()) {
-				int mealId                 = rs.getInt("MEAL_ID");
-				int mealTypeId             = rs.getInt("MEAL_TYPE_ID");
-//				int mealUserId             = rs.getInt("MEAL_USER_ID");
-				String mealTypeName        = rs.getString("MEAL_TYPE_NAME");
-				LocalDateTime mealDateTime =
-						rs.getTimestamp("MEAL_DATE_TIME").toLocalDateTime();
+				Meal meal;
 
-				MealType mealType = new MealType(mealTypeId, mealTypeName);
-				Meal meal = new Meal(mealId, mealDateTime, mealType);
+				int id                 = rs.getInt("MEAL_ID");
+				int typeId             = rs.getInt("MEAL_TYPE_ID");
+				int userId             = rs.getInt("USER_ID");
+				LocalDateTime dateTime = rs.getTimestamp("DATE_TIME")
+						.toLocalDateTime();
+
+				meal = new Meal(id, typeId, userId, dateTime);
 
 				list.add(meal);
 			}
@@ -141,6 +158,100 @@ public class MealDAO {
 		}
 
 		return list;
+	}
+
+	/**
+	 * Método para pesquisar uma refeição no banco de dados,
+	 * a partir de seu identificador.
+	 * @param mealId Identificador da refeição no banco
+	 * de dados.
+	 */
+	@Override
+	public Meal searchById(int ...mealId) {
+		Meal meal = null;
+
+		sqlQuery = new StringBuilder();
+		try {
+			conn = DataBaseManager.getConnection();
+
+			sqlQuery.append("SELECT * FROM ")
+					.append(TABLE_NAME)
+					.append(" WHERE MEAL_ID = ?");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+
+			stmt.setInt(1, mealId[0]);
+
+			rs = stmt.executeQuery();
+
+			while(rs.next()) {
+				int id                 = rs.getInt("MEAL_ID");
+				int typeId             = rs.getInt("MEAL_TYPE_ID");
+				int userId             = rs.getInt("USER_ID");
+				LocalDateTime dateTime = rs.getTimestamp("DATE_TIME")
+						.toLocalDateTime();
+
+				meal = new Meal(id, typeId, userId, dateTime);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				stmt.close();
+				rs.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return meal;
+	}
+
+	/**
+	 * Método para se atualizar uma refeição no banco
+	 * de dados.
+	 * @param meal Objeto refeição a ser atualizado
+	 * no banco de dados.
+	 */
+	@Override
+	public void update(Meal meal) {
+		sqlQuery = new StringBuilder();
+
+		try {
+			conn = DataBaseManager.getConnection();
+
+			sqlQuery.append("UPDATE ")
+					.append(TABLE_NAME)
+					.append(" SET ")
+					.append("MEAL_TYPE_ID = ?, ")
+					.append("DATE_TIME = ? ")
+					.append("WHERE MEAL_ID = ?");
+
+			stmt = conn.prepareStatement(sqlQuery.toString());
+
+			stmt.setInt(1, meal.getTypeId());
+			stmt.setDate(2, Date.valueOf(meal.getDateTimePretty()));
+			stmt.setInt(3, meal.getId());
+
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
 

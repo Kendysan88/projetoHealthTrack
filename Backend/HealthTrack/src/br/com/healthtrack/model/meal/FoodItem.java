@@ -1,47 +1,83 @@
 package br.com.healthtrack.model.meal;
 
+import br.com.healthtrack.model.meal.dao.FoodDAO;
+import br.com.healthtrack.model.meal.dao.FoodItemDAO;
+import br.com.healthtrack.model.meal.dao.MealDAO;
 import br.com.healthtrack.utils.Utils;
 
 /**
  * Classe que abstrai um item alimentício presente
  * em uma refeição, bem como seu valor calórico.
  * @author Afonso de Sousa Costa
- * @version 4.0
+ * @version 5.0
  */
 public class FoodItem {
 
 	private double amount;
 	private double calories;
-	private Food food;
+	private Food food = null;
+	private int foodId;
+	private Meal meal = null;
 	private int mealId;
+	private FoodItem self = null;
 
 	/**
-	 * Método construtor (food, amount e calories são
-	 * obrigatórios).
-	 * @param food   Item alimentício de referência.
-	 * @param amount Quantidade em gramas do item
-	 * alimentício de referência.
+	 * Método construtor.
 	 */
-	public FoodItem(Food food, double amount) {
-		setFood(food);
-		setAmount(amount);
-		calculateCalories(food, amount);
+	public FoodItem() {}
+
+	/**
+	 * Método construtor (foodId e mealId são obrigatórios).
+	 * @param foodId Identificador do item alimentício
+	 * de referência.
+	 * @param mealId Identificador da refeição.
+	 */
+	public FoodItem(int foodId, int mealId) {
+		if (self == null) {
+			FoodItemDAO dao = new FoodItemDAO();
+
+			self = dao.searchById(mealId, foodId);
+
+			if (self != null) {
+				setAmount(self.getAmount());
+				setCalories(self.getCalories());
+				setFoodId(self.getFoodId());
+				setMealId(self.getMealId());
+			}
+		}
 	}
 
 	/**
-	 * Método construtor (food, id, amount e calories são
+	 * Método construtor (foodId, mealId e amount são
 	 * obrigatórios).
+	 * @param foodId Identificador do item alimentício
+	 * de referência.
 	 * @param mealId Identificador da refeição.
-	 * @param food   Item alimentício de referência.
-	 * @param amount Quantidade em gramas do item
-	 * alimentício de referência.
-	 * @param calories Quatidade de calorias do item
+	 * @param amount Quantidade em gramas (ou mililitros)
+	 * do item alimentício de referência.
+	 */
+	public FoodItem(int foodId, int mealId, double amount) {
+		setFoodId(foodId);
+		setMealId(mealId);
+		setAmount(amount);
+		calculateCalories(amount);
+	}
+
+	/**
+	 * Método construtor (foodId, mealId, amount e
+	 * calories são obrigatórios).
+	 * @param foodId Identificador do item alimentício
+	 * de referência.
+	 * @param mealId Identificador da refeição.
+	 * @param amount Quantidade em gramas (ou mililitros)
+	 * do item alimentício de referência.
+	 * @param calories Quantidade de calorias do item
 	 * alimentício de referência.
 	 */
-	public FoodItem(int mealId, Food food, double amount,
-			double calories) {
+	public FoodItem(int foodId, int mealId,
+			double amount, double calories) {
+		setFoodId(foodId);
 		setMealId(mealId);
-		setFood(food);
 		setAmount(amount);
 		setCalories(calories);
 	}
@@ -51,9 +87,10 @@ public class FoodItem {
 	 * do item alimentício.
 	 * @param amount Quantidade do item alimentício.
 	 */
-	private void calculateCalories(Food food, double amount) {
+	private void calculateCalories(double amount) {
 		if(amount > 0) {
-			this.calories = ((amount / food.getAmount()) * food.getCalories());
+			this.calories = ((amount / getFood().getAmount()) *
+					getFood().getCalories());
 		} else {
 			this.calories = 0;
 		}
@@ -76,7 +113,7 @@ public class FoodItem {
 	 * gramas (g), ou, em mililitros (ml).
 	 */
 	public String getAmountPretty() {
-		return amount + " " + food.getUnitPrefix();
+		return amount + " " + getFood().getUnitPrefix();
 	}
 
 	/**
@@ -100,13 +137,26 @@ public class FoodItem {
 	}
 
 	/**
+	 * Método para se obter o item alimentício
+	 * de referência.
+	 * @return Item alimentício de referência.
+	 */
+	public Food getFood() {
+		if(food == null && foodId > 0) {
+			FoodDAO dao = new FoodDAO();
+			food = dao.searchById(foodId);
+		}
+		return food;
+	}
+
+	/**
 	 * Método para se obter o identificador do item
 	 * alimentício de referência.
 	 * @return Identificador do item alimentício
 	 * de referência.
 	 */
 	public int getFoodId() {
-		return food.getId();
+		return foodId;
 	}
 
 	/**
@@ -115,7 +165,7 @@ public class FoodItem {
 	 * @return Nome do item alimentício de referência.
 	 */
 	public String getFoodName() {
-		return food.getName();
+		return getFood().getName();
 	}
 
 	/**
@@ -125,13 +175,27 @@ public class FoodItem {
 	 * desse objeto.
 	 */
 	public String getInfoPretty() {
-		String info;
+		StringBuilder info = new StringBuilder();
 
-		info = getFoodName() + " " +
-				getAmountPretty() + " - " +
-				getCaloriesPretty();
+		info.append(getFoodName())
+			.append(" ")
+			.append(getAmountPretty())
+			.append(" - ")
+			.append(getCaloriesPretty());
 
-		return info;
+		return info.toString();
+	}
+
+	/**
+	 * Método para se obter a refeição.
+	 * @return Refeição associada.
+	 */
+	public Meal getMeal() {
+		if(meal == null && mealId > 0) {
+			MealDAO dao = new MealDAO();
+			meal = dao.searchById(mealId);
+		}
+		return meal;
 	}
 
 	/**
@@ -175,13 +239,30 @@ public class FoodItem {
 	}
 
 	/**
+	 * Método para se alterar item alimentício de
+	 * referência.
+	 * @param food Item alimentício de referência.
+	 */
+	public void setFoodId(int foodId) {
+		if(foodId > 0)
+			this.foodId = foodId;
+	}
+
+	/**
+	 * Método para se alterar a refeição.
+	 * @param meal Refeição.
+	 */
+	public void setMeal(Meal meal) {
+		this.meal = meal;
+	}
+
+	/**
 	 * Método para se alterar o identificador da
 	 * refeição.
 	 * @param id Identificador da refeição.
 	 */
 	public void setMealId(int mealId) {
-		if(mealId > 0) {
+		if(mealId > 0)
 			this.mealId = mealId;
-		}
 	}
 }
