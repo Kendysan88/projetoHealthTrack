@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import br.com.healthtrack.model.meal.dao.FoodDAO;
 import br.com.healthtrack.utils.Utils;
 
 /**
@@ -19,10 +20,32 @@ public class Food implements Comparable<Food> {
 	private String description;
 	private int id;
 	private String name;
+	private Food self = null;
 	private String unit;
 	private static List<String> validUnits = new ArrayList<String>(
 			Arrays.asList( "g", "ml" ));
 	
+	/**
+	 * Método construtor (id é obrigatório).
+	 * @param id Identificador do item alimentício.
+	 */
+	public Food(int id) {
+		if (self == null) {
+			FoodDAO dao = new FoodDAO();
+
+			self = dao.searchById(id);
+
+			if (self != null) {
+				setId(self.getId());
+				setAmount(self.getAmount());
+				setCalories(self.getCalories());
+				setName(self.getName());
+				setDescription(self.getDescription());
+				setUnit(self.getUnitPrefix());
+			}
+		}
+	}
+
 	/**
 	 * Método construtor (amount, calories, unidade de medida
 	 * e name são obrigatórios).

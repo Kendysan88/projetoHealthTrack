@@ -1,0 +1,169 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<%@ include file="header.jsp" %>
+<title>Login</title>
+</head>
+<body id="bodyLogin">
+	 <div class="card" id="card-tela-login">
+        <div class="card-body">
+            <h5 class="card-title text-center text-light cartao-texto"><i class="icones-login fas fa-heartbeat"></i>
+                Health Track
+            </h5>
+            <form>
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="email" class="form-control" placeholder="Insira o seu E-mail">
+                </div>
+                <div class="form-group">
+                    <label for="">Senha</label>
+                    <input type="password" class="form-control" placeholder="Insira a sua senha">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input">
+                    <label class="form-check-label" for="exampleCheck1">Lembrar-me</label>
+                </div>
+                <a href="home.html" type="submit" class="btn mb-2 cor-botao">Entrar</a>
+                <div class="form-group">
+                    <small>Não possui uma conta? <a href="#" data-toggle="modal"
+                            data-target="#modalCadastro">Cadastra-se
+                            aqui</a>.</small>
+                </div>
+                <div class="form-group">
+                    <a href="home.html" class="btn btn-primary btn-block text-left"><i
+                            class="icones-login fab fa-facebook-square"></i> Entrar
+                        usando o Facebook</a>
+                </div>
+                <div class="form-group">
+                    <a href="home.html" class="btn btn-danger btn-block text-left"><i class="icones-login fab fa-google"></i>
+                        Entrar usando o
+                        Google</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+     <!-- Modal -->
+    <div class="modal fade" id="modalCadastro" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCadastro">Criar Conta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav mb-2 nav-pills flex-column flex-sm-row justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link cor-botao rounded" href="#"><span class="badge badge-dark">1</span> Dados
+                                do Usuário</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#modalCadastro2"
+                                data-dismiss="modal"><span class="badge badge-dark">2</span> Informações do
+                                Usuário</a>
+                        </li>
+                    </ul>
+                    <form>
+                        <div class="form-group">
+                            <label for="">Nome do Usuário</label>
+                            <input type="text" class="form-control" placeholder="Insira o seu nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="email" class="form-control" placeholder="Insira um email válido">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Senha</label>
+                            <input type="password" class="form-control" placeholder="Crie uma senha">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Confirme a senha</label>
+                            <input type="password" class="form-control" placeholder="Confirme a sua senha">
+                        </div>
+                        <div class="form-group">
+                            <small>Já possui uma conta? <a href="login.html">Acesse o painel</a>.</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn cor-botao btn-block" data-toggle="modal"
+                        data-target="#modalCadastro2" data-dismiss="modal">Próximo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fim do Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="modalCadastro2" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCadastro2">Criar Conta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav mb-2 nav-pillsflex-column flex-sm-row justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#modalCadastro"
+                                data-dismiss="modal"><span class="badge badge-dark">1</span> Dados
+                                do Usuário</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link cor-botao rounded" href="#"><span class="badge badge-dark">2</span>
+                                Informações
+                                do
+                                Usuário</a>
+                        </li>
+                    </ul>
+                    <form>
+                        <div class="form-group">
+                            <label for="">Altura (cm)</label>
+                            <input type="text" class="form-control" placeholder="Insira a sua altura (cm)">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputZip">Peso (kg)</label>
+                            <input type="text" class="form-control" placeholder="Insira o seu peso (kg)">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Telefone</label>
+                            <input type="tel" class="form-control" placeholder="Telefone para Contato">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Gênero</label>
+                            <select class="form-control">
+                                <option selected>Escolha...</option>
+                                <option>...</option>
+                                <option>...</option>
+                                <option>...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Data de Nascimento</label>
+                            <input type="date" class="form-control" placeholder="Coloque a sua data de nascimento">
+                        </div>
+                        <div class="form-group">
+                            <small>Já possui uma conta? <a href="login.html">Acesse o painel</a>.</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalCadastro"
+                        data-dismiss="modal">Voltar</button>
+                    <a href="home.html" class="btn cor-botao text-light">Inscrever-se</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fim do Modal -->
+    <%@ include file="footer.jsp" %>    
+</body>
+</html>
