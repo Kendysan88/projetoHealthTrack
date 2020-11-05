@@ -15,7 +15,6 @@ public abstract class BodyInformation {
 
 	private LocalDateTime dateTime;
 	private int id;
-	protected BodyInformation self = null;
 	private String unit;
 	private User user = null;
 	private int userId;

@@ -21,7 +21,6 @@ public class Meal {
 
 	private LocalDateTime dateTime;
 	private int id;
-	private Meal self = null;
 	private User user = null;
 	private int userId;
 	private MealType type = null;
@@ -31,25 +30,6 @@ public class Meal {
 	 * Método construtor.
 	 */
 	public Meal() {}
-
-	/**
-	 * Método construtor (id é obrigatório).
-	 * @param id Identificador da refeição.
-	 */
-	public Meal(int id) {
-		if (self == null) {
-			MealDAO dao = new MealDAO();
-
-			self = dao.searchById(id);
-
-			if (self != null) {
-				setId(self.getId());
-				setDateTime(self.getDateTime());
-				setTypeId(self.getTypeId());
-				setUserId(self.getUserId());
-			}
-		}
-	}
 
 	/**
 	 * Método construtor (typeId e dateTime são obrigatórios).

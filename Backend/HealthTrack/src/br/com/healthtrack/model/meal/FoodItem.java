@@ -1,7 +1,6 @@
 package br.com.healthtrack.model.meal;
 
 import br.com.healthtrack.model.meal.dao.FoodDAO;
-import br.com.healthtrack.model.meal.dao.FoodItemDAO;
 import br.com.healthtrack.model.meal.dao.MealDAO;
 import br.com.healthtrack.utils.Utils;
 
@@ -19,33 +18,11 @@ public class FoodItem {
 	private int foodId;
 	private Meal meal = null;
 	private int mealId;
-	private FoodItem self = null;
 
 	/**
 	 * Método construtor.
 	 */
 	public FoodItem() {}
-
-	/**
-	 * Método construtor (foodId e mealId são obrigatórios).
-	 * @param foodId Identificador do item alimentício
-	 * de referência.
-	 * @param mealId Identificador da refeição.
-	 */
-	public FoodItem(int foodId, int mealId) {
-		if (self == null) {
-			FoodItemDAO dao = new FoodItemDAO();
-
-			self = dao.searchById(mealId, foodId);
-
-			if (self != null) {
-				setAmount(self.getAmount());
-				setCalories(self.getCalories());
-				setFoodId(self.getFoodId());
-				setMealId(self.getMealId());
-			}
-		}
-	}
 
 	/**
 	 * Método construtor (foodId, mealId e amount são
