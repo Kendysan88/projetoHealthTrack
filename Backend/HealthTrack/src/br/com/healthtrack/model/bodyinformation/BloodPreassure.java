@@ -2,12 +2,10 @@ package br.com.healthtrack.model.bodyinformation;
 
 import java.time.LocalDateTime;
 
-import br.com.healthtrack.utils.Utils;
-
 /**
  * Classe que abstrai uma informação/medida de pressão sanguínea corporal.
- * @author Afonso de Sousa Costa
- * @version 2.0
+ * @author Gabriel Souza Piscinato
+ * @version 3.0
  */
 public class BloodPreassure extends BodyInformation {
 
@@ -19,6 +17,7 @@ public class BloodPreassure extends BodyInformation {
 		new BloodPreassureStatus(200, 120, "HIPERTENSÃO ESTÁGIO 3")
 	};
 
+	private static final String validUnit = "mmHg";
 	private int diastolicValue;
 	private int systolicValue;
 
@@ -27,12 +26,70 @@ public class BloodPreassure extends BodyInformation {
 	 * @param diastolicValue Valor diastólico da medição de pressão corporal.
 	 * @param systolicValue  Valor sistólico da medição de pressão corporal.
 	 * @param dateTime       Data e hora da medição corporal.
+	 * @param unit	   		 Unidade de medida da medidação.
+	 * @param userId   		 Identificador do usuário.
 	 */
-	public BloodPreassure(int systolicValue, int diastolicValue, LocalDateTime dateTime) {
-		super(dateTime);
+	public BloodPreassure(int userId, int systolicValue,
+			int diastolicValue, LocalDateTime dateTime) {
+		super(userId, dateTime, validUnit);
 
-		this.diastolicValue = diastolicValue < 0 ? 0 : diastolicValue;
-		this.systolicValue = systolicValue < 0 ? 0 : systolicValue;
+		setDiastolicValue(diastolicValue);
+		setSystolicValue(systolicValue);
+	}
+
+	/**
+	 * Método construtor sobrecarregado (value e dateTime
+	 * são obrigatórios).
+	 * @param diastolicValue Valor diastólico da medição de pressão corporal.
+	 * @param systolicValue  Valor sistólico da medição de pressão corporal.
+	 * @param dateTime Data e hora da medição corporal.
+	 * @param unit	   Unidade de medida da medidação.
+	 * @param userId   Identificador do usuário.
+	 */
+
+	public BloodPreassure(int id, int userId,
+			int systolicValue, int diastolicValue,
+			LocalDateTime dateTime, String unit) {
+		super(id, userId, dateTime, unit);
+
+		setDiastolicValue(diastolicValue);
+		setSystolicValue(systolicValue);
+
+	}
+
+	/**
+	 * Método construtor sobrecarregado (value e dateTime
+	 * são obrigatórios).
+	 * @param diastolicValue Valor diastólico da medição de pressão corporal.
+	 * @param systolicValue  Valor sistólico da medição de pressão corporal.
+	 * @param dateTime Data e hora da medição corporal.
+	 * @param unit	   Unidade de medida da medidação.
+	 * @param userId   Identificador do usuário.
+	 */
+	public BloodPreassure(int userId, int systolicValue,
+			int diastolicValue, String dateTime) {
+		super(userId, dateTime, validUnit);
+
+		setDiastolicValue(diastolicValue);
+		setSystolicValue(systolicValue);
+	}
+
+	/**
+	 * Método construtor sobrecarregado (value e dateTime
+	 * são obrigatórios).
+	 * @param diastolicValue Valor diastólico da medição de pressão corporal.
+	 * @param systolicValue  Valor sistólico da medição de pressão corporal.
+	 * @param dateTime Data e hora da medição corporal.
+	 * @param unit	   Unidade de medida da medidação.
+	 * @param userId   Identificador do usuário.
+	 */
+	public BloodPreassure(int id, int userId, int systolicValue,
+			int diastolicValue, String dateTime, String unit) {
+		super(id, userId, dateTime, unit);
+
+		setDiastolicValue(diastolicValue);
+		setSystolicValue(systolicValue);
+		
 	}
 
 	/**
@@ -41,15 +98,6 @@ public class BloodPreassure extends BodyInformation {
 	 */
 	public int getDiastolicValue() {
 		return diastolicValue;
-	}
-
-	/**
-	 * Método para se obter informações sobre o objeto instanciado.
-	 * @return Texto contendo os valores dos atributos desse objeto.
-	 */
-	public String getInfoPretty() {
-		String info = getDateTimePretty() + " " + getValuePretty();
-		return info;
 	}
 
 	/**
@@ -75,11 +123,31 @@ public class BloodPreassure extends BodyInformation {
 	}
 
 	/**
-	 * Método para se obter o valor de pressão sanguínea da medição corporal com sufixo de unidade.
-	 * @return Valor da pressão sanguínea da medição corporal com sufixo de milimetros mercúrio.
+	 * Método para se obter informações sobre o objeto instanciado.
+	 * @return Texto contendo os valores dos atributos desse objeto.
 	 */
-	public String getValuePretty() {
-		return diastolicValue + "/" + systolicValue + " " + Utils.MERCURY_MILLIMETERS_UNIT_SYMBOL;
+	public String getSystolicPretty() {
+		StringBuilder info = new StringBuilder();
+
+		info.append(getDateTimePretty())
+			.append(" ")
+			.append(getSystolicValue())
+			.append(" ")
+			.append(getUnit());
+
+		return info.toString();
+	}
+
+	public String getDiastolicPretty() {
+		StringBuilder info = new StringBuilder();
+
+		info.append(getDateTimePretty())
+			.append(" ")
+			.append(getDiastolicValue())
+			.append(" ")
+			.append(getUnit());
+
+		return info.toString();
 	}
 
 	/**
