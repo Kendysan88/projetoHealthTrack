@@ -286,7 +286,7 @@ public class Meal {
 	 * @param userId Identificador do usuário da refeição.
 	 */
 	public void setUserId(int userId) {
-		if(typeId > 0)
+		if(userId > 0)
 			this.userId = userId;
 	}
 }

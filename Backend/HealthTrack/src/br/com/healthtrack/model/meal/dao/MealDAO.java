@@ -1,7 +1,6 @@
 package br.com.healthtrack.model.meal.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -284,7 +283,7 @@ public class MealDAO implements DAO<Meal> {
 			stmt = conn.prepareStatement(sqlQuery.toString());
 
 			stmt.setInt(1, meal.getTypeId());
-			stmt.setDate(2, Date.valueOf(meal.getDateTimePretty()));
+			stmt.setTimestamp(2, Timestamp.valueOf(meal.getDateTime()));
 			stmt.setInt(3, meal.getId());
 
 			stmt.executeUpdate();
