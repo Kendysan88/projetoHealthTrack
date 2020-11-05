@@ -1,7 +1,5 @@
 package br.com.healthtrack.model.meal;
 
-import br.com.healthtrack.model.meal.dao.MealTypeDAO;
-
 /**
  * Classe que abstrai um tipo de refeição.
  * @author Afonso de Sousa Costa
@@ -12,35 +10,8 @@ public class MealType {
 	private String description;
 	private int id;
 	private String name;
-	private MealType self = null;
 
 	/**
-<<<<<<< Updated upstream:Back-End/HealthTrack/src/br/com/healthtrack/model/meal/MealType.java
-=======
-	 * Método construtor.
-	 */
-	public MealType() {}
-
-	/**
-	 * Método construtor (id é obrigatório).
-	 * @param id Identificador do tipo de refeição.
-	 */
-	public MealType(int id) {
-		if (self == null) {
-			MealTypeDAO dao = new MealTypeDAO();
-
-			self = dao.searchById(id);
-
-			if (self != null) {
-				setId(self.getId());
-				setName(self.getName());
-				setDescription(self.getDescription());
-			}
-		}
-	}
-
-	/**
->>>>>>> Stashed changes:Backend/HealthTrack/src/br/com/healthtrack/model/meal/MealType.java
 	 * Método construtor (name é obrigatório).
 	 * @param name Nome do tipo de refeição.
 	 */
