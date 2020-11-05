@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title></title>
+<%@ include file="header.jsp"%>
+</head>
+<body>
+	<main class="d-flex" id="recolhe-menu">
+
+		<!-- Menu Lateral -->
+		<%@ include file="menu-aside.jsp"%>
+		<!-- Fim Menu Lateral -->
+
+		<!-- Conteúdo da Página -->
+		<section id="conteudo-pagina">
+
+			<!-- Menu para deslogar -->
+			<%@ include file="menu-top.jsp"%>
+			<!-- Fim Menu para Deslogar -->
+
+			<!-- Conteúdo Principal -->
+		
+			<!-- Fim Conteúdo Principal -->
+
+		</section>
+		<!-- Fim Contéudo da Página -->
+	</main>
+
+	<%@ include file="footer.jsp"%>
+
+	<!-- Modal XXXXXXXXX -->
+	<%@ include file="weight-modal.jsp"%>
+	<!-- Fim XXXXXXXXXXX -->
+</body>

@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+E:\Repositorios\HealthTrack\Integration\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+4164788191.index
+585752885.index
+3434330770.index
+4219902012.index
+1676837905.index
+892481851.index
+830673938.index
