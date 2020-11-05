@@ -38,6 +38,54 @@ public abstract class BodyInformation {
 	}
 
 	/**
+	 * Método construtor padrão (dateTime é obrigatório).
+	 * @param dateTime Data e hora da medição corporal.
+	 * @param unit	   Unidade de medida da medidação.
+	 * corporal.
+	 */
+	public BodyInformation(int id, int userId, LocalDateTime dateTime, String unit) {
+		setId(id);
+		setUserId(userId);
+		setDateTime(dateTime);
+		setUnit(unit);
+	}
+
+	/**
+	 * Método construtor padrão (dateTime é obrigatório).
+	 * @param dateTime Data e hora da medição corporal.
+	 * @param unit	   Unidade de medida da medidação
+	 */
+	public BodyInformation(int id, int userId, String dateTime, String unit) {
+		setId(id);
+		setUserId(userId);
+		setDateTime(dateTime);
+		setUnit(unit);
+	}
+
+	/**
+	 * Método construtor padrão (dateTime é obrigatório).
+	 * @param dateTime Data e hora da medição corporal.
+	 * @param unit	   Unidade de medida da medidação.
+	 * corporal.
+	 */
+	public BodyInformation(int userId, LocalDateTime dateTime, String unit) {
+		setUserId(userId);
+		setDateTime(dateTime);
+		setUnit(unit);
+	}
+
+	/**
+	 * Método construtor padrão (dateTime é obrigatório).
+	 * @param dateTime Data e hora da medição corporal.
+	 * @param unit	   Unidade de medida da medidação
+	 */
+	public BodyInformation(int userId, String dateTime, String unit) {
+		setUserId(userId);
+		setDateTime(dateTime);
+		setUnit(unit);
+	}
+
+	/**
 	 * Método construtor sobrecarregado (value e dateTime
 	 * são obrigatórios).
 	 * @param value    Valor da medição corporal.
