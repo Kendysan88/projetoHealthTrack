@@ -1,4 +1,4 @@
-package br.com.healthtrack.model.meal.dao;
+package br.com.healthtrack.model.bodyinformation.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,30 +11,30 @@ import java.util.List;
 
 import br.com.healthtrack.database.DataBaseManager;
 import br.com.healthtrack.model.DAO;
-import br.com.healthtrack.model.meal.Meal;
+import br.com.healthtrack.model.bodyinformation.Height;
 
 /**
- * Classe responsável por manipular entidades do
- * tipo refeição, no banco de dados.
- * @author Afonso de Sousa Costa
- * @version 4.0
+ * Classe responsável por manipular entidades do tipo
+ * informações corporais, no banco de dados.
+ * @author Afonso de Sousa Costa e Gabriel Souza Piscinato
+ * @version 2.0
  */
-public class MealDAO implements DAO<Meal> {
+public class HeightDAO implements DAO<Height>{
 	private Connection conn;
-	private static final String TABLE_NAME = "T_HT_MEAL";
+	private static final String TABLE_NAME = "T_HT_HEIGHT";
 	private StringBuilder sqlQuery = null;
 	private PreparedStatement stmt = null;
 	private ResultSet rs = null;
-	private List<Meal> list = null;
+	private List<Height> list = null;
 
 	/**
-	 * Método para se inserir (persistir) uma refeição no
-	 * banco de dados.
-	 * @param meal Objeto refeição a ser inserido (persistido)
+	 * Método para se inserir (persistir) uma mediçãs de altura
+	 *  no banco de dados.
+	 * @param height Objeto altura a ser inserido (persistido)
 	 * no banco de dados.
 	 */
 	@Override
-	public void create(Meal meal) {
+	public void create(Height height) {
 		sqlQuery = new StringBuilder();
 
 		try {
@@ -43,18 +43,20 @@ public class MealDAO implements DAO<Meal> {
 			sqlQuery.append("INSERT INTO ")
 					.append(TABLE_NAME)
 					.append("(")
-					.append("MEAL_ID, ")
+					.append("HEIGHT_ID, ")
 					.append("USER_ID, ")
-					.append("MEAL_TYPE_ID, ")
+					.append("UNIT_PREFIX, ")
+					.append("VALUE, ")
 					.append("DATE_TIME")
 					.append(")")
-					.append("VALUES (SQ_HT_MEAL.NEXTVAL, ?, ?, ?)");
+					.append("VALUES (SQ_HT_HEIGHT.NEXTVAL, ?, ?, ?, ?)");
 
 			stmt = conn.prepareStatement(sqlQuery.toString());
 
-			stmt.setInt(1, meal.getUserId());
-			stmt.setInt(2, meal.getTypeId());
-			stmt.setTimestamp(3, Timestamp.valueOf(meal.getDateTime()));
+			stmt.setInt(1, height.getUserId());
+			stmt.setString(2, height.getUnit());
+			stmt.setDouble(3, height.getValue());
+			stmt.setTimestamp(4, Timestamp.valueOf(height.getDateTime()));
 
 			stmt.executeUpdate();
 
@@ -73,11 +75,13 @@ public class MealDAO implements DAO<Meal> {
 	}
 
 	/**
-	 * Método para se remover uma refeição no banco de dados.
-	 * @param mealId Identificador da refeição no banco de dados.
+	 * Método para se remover uma medição de altura no
+	 * banco de dados.
+	 * @param mealId Identificador da medição de altura
+	 * no banco de dados.
 	 */
 	@Override
-	public void destroy(int ...mealId) {
+	public void destroy(int... heightId) {
 		sqlQuery = new StringBuilder();
 
 		try {
@@ -85,11 +89,11 @@ public class MealDAO implements DAO<Meal> {
 
 			sqlQuery.append("DELETE FROM ")
 					.append(TABLE_NAME)
-					.append(" WHERE MEAL_ID = ?");
+					.append(" WHERE HEIGHT_ID = ?");
 
 			stmt = conn.prepareStatement(sqlQuery.toString());
 
-			stmt.setInt(1, mealId[0]);
+			stmt.setInt(1, heightId[0]);
 
 			stmt.executeUpdate();
 
@@ -106,16 +110,17 @@ public class MealDAO implements DAO<Meal> {
 			}
 		}
 	}
-		
+
 	/**
 	 * Método para se obter uma lista de todas as
-	 * refeições persistidas no banco de dados.
-	 * @return Lista contendo todas as refeições
+	 * medições de altura persistidas no banco de dados.
+	 * @return Lista contendo todas as medições de altura
 	 * persistidas no banco de dados.
 	 */
-	public List<Meal> getAll(){
+	@Override
+	public List<Height> getAll() {
 		sqlQuery = new StringBuilder();
-		list     = new ArrayList<Meal>();
+		list     = new ArrayList<Height>();
 
 		try {
 			conn = DataBaseManager.getConnection();
@@ -129,17 +134,18 @@ public class MealDAO implements DAO<Meal> {
 			rs = stmt.executeQuery();
 
 			while(rs.next()) {
-				Meal meal;
+				Height height;
 
-				int id                 = rs.getInt("MEAL_ID");
-				int typeId             = rs.getInt("MEAL_TYPE_ID");
+				int id                 = rs.getInt("HEIGHT_ID");
 				int userId             = rs.getInt("USER_ID");
+				double value           = rs.getDouble("VALUE");
+				String unit            = rs.getString("UNIT_PREFIX");
 				LocalDateTime dateTime = rs.getTimestamp("DATE_TIME")
 						.toLocalDateTime();
 
-				meal = new Meal(id, typeId, userId, dateTime);
+				height = new Height(id, userId, value, dateTime, unit);
 
-				list.add(meal);
+				list.add(height);
 			}
 
 		} catch(SQLException e) {
@@ -160,63 +166,14 @@ public class MealDAO implements DAO<Meal> {
 	}
 
 	/**
-	 * Método para se obter a quantidade total de calorias
-	 * de uma refeição.
-	 * @return Quantidade total de calorias.
-	 */
-	public double getTotalCalories(int mealId) {
-		double calories = 0.0;
-
-		sqlQuery = new StringBuilder();
-
-		try {
-			conn = DataBaseManager.getConnection();
-
-			sqlQuery.append("SELECT ")
-					.append("SUM(FOOD_ITEM.CALORIES) AS TOTAL_CALORIES")
-					.append(" FROM ")
-					.append(TABLE_NAME)
-					.append(" MEAL ")
-					.append("JOIN T_HT_FOOD_ITEM FOOD_ITEM ")
-					.append("ON MEAL.MEAL_ID = FOOD_ITEM.MEAL_ID")
-					.append(" WHERE MEAL.MEAL_ID = ?");
-
-			stmt = conn.prepareStatement(sqlQuery.toString());
-
-			stmt.setInt(1, mealId);
-
-			rs = stmt.executeQuery();
-
-			while(rs.next()) {
-				calories = rs.getDouble("TOTAL_CALORIES");
-			}
-
-		} catch(SQLException e) {
-			e.printStackTrace();
-
-		} finally {
-			try {
-				stmt.close();
-				rs.close();
-				conn.close();
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return calories;
-	}
-
-	/**
-	 * Método para pesquisar uma refeição no banco de dados,
-	 * a partir de seu identificador.
-	 * @param mealId Identificador da refeição no banco
-	 * de dados.
+	 * Método para pesquisar uma medição de altura no
+	 * banco de dados, a partir de seu identificador.
+	 * @param heightId Identificador da medição de altura
+	 * no banco de dados.
 	 */
 	@Override
-	public Meal searchById(int ...mealId) {
-		Meal meal = null;
+	public Height searchById(int... heightId) {
+		Height height = null;
 
 		sqlQuery = new StringBuilder();
 		try {
@@ -224,22 +181,23 @@ public class MealDAO implements DAO<Meal> {
 
 			sqlQuery.append("SELECT * FROM ")
 					.append(TABLE_NAME)
-					.append(" WHERE MEAL_ID = ?");
+					.append(" WHERE HEIGHT_ID = ?");
 
 			stmt = conn.prepareStatement(sqlQuery.toString());
 
-			stmt.setInt(1, mealId[0]);
+			stmt.setInt(1, heightId[0]);
 
 			rs = stmt.executeQuery();
 
 			while(rs.next()) {
-				int id                 = rs.getInt("MEAL_ID");
-				int typeId             = rs.getInt("MEAL_TYPE_ID");
+				int id                 = rs.getInt("HEIGHT_ID");
 				int userId             = rs.getInt("USER_ID");
+				double value           = rs.getDouble("VALUE");
+				String unit            = rs.getString("UNIT_PREFIX");
 				LocalDateTime dateTime = rs.getTimestamp("DATE_TIME")
 						.toLocalDateTime();
 
-				meal = new Meal(id, typeId, userId, dateTime);
+				height = new Height(id, userId, value, dateTime, unit);
 
 			}
 
@@ -257,17 +215,17 @@ public class MealDAO implements DAO<Meal> {
 			}
 		}
 
-		return meal;
+		return height;
 	}
 
 	/**
-	 * Método para se atualizar uma refeição no banco
-	 * de dados.
-	 * @param meal Objeto refeição a ser atualizado
+	 * Método para se atualizar uma medição de altura
+	 * no banco de dados.
+	 * @param height Objeto altura a ser atualizado
 	 * no banco de dados.
 	 */
 	@Override
-	public void update(Meal meal) {
+	public void update(Height height) {
 		sqlQuery = new StringBuilder();
 
 		try {
@@ -276,15 +234,15 @@ public class MealDAO implements DAO<Meal> {
 			sqlQuery.append("UPDATE ")
 					.append(TABLE_NAME)
 					.append(" SET ")
-					.append("MEAL_TYPE_ID = ?, ")
+					.append("VALUE = ?, ")
 					.append("DATE_TIME = ? ")
-					.append("WHERE MEAL_ID = ?");
+					.append("WHERE HEIGHT_ID = ?");
 
 			stmt = conn.prepareStatement(sqlQuery.toString());
 
-			stmt.setInt(1, meal.getTypeId());
-			stmt.setTimestamp(2, Timestamp.valueOf(meal.getDateTime()));
-			stmt.setInt(3, meal.getId());
+			stmt.setDouble(1, height.getValue());
+			stmt.setTimestamp(2, Timestamp.valueOf(height.getDateTime()));
+			stmt.setInt(3, height.getId());
 
 			stmt.executeUpdate();
 
@@ -302,4 +260,3 @@ public class MealDAO implements DAO<Meal> {
 		}
 	}
 }
-

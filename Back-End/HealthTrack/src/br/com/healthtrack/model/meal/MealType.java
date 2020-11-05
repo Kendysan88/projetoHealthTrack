@@ -5,7 +5,7 @@ import br.com.healthtrack.model.meal.dao.MealTypeDAO;
 /**
  * Classe que abstrai um tipo de refeição.
  * @author Afonso de Sousa Costa
- * @version 3.0
+ * @version 4.0
  */
 public class MealType {
 
@@ -40,7 +40,15 @@ public class MealType {
 	}
 
 	/**
+<<<<<<< HEAD:Back-End/HealthTrack/src/br/com/healthtrack/model/meal/MealType.java
 >>>>>>> Stashed changes:Backend/HealthTrack/src/br/com/healthtrack/model/meal/MealType.java
+=======
+	 * Método construtor.
+	 */
+	public MealType() {}
+
+	/**
+>>>>>>> crud-with-dao:Backend/HealthTrack/src/br/com/healthtrack/model/meal/MealType.java
 	 * Método construtor (name é obrigatório).
 	 * @param name Nome do tipo de refeição.
 	 */
@@ -101,15 +109,16 @@ public class MealType {
 	 * @return Texto contendo os valores dos atributos desse objeto.
 	 */
 	public String getInfoPretty() {
-		String info;
+		StringBuilder info = new StringBuilder();
+
+		info.append(name);
 
 		if(description != null) {
-			info = name + " " + description;
-		} else {
-			info = name;
+			info.append(" ")
+				.append(description);
 		}
 
-		return info;
+		return info.toString();
 	}
 
 	/**
@@ -126,11 +135,13 @@ public class MealType {
 	 * @param description Descrição do tipo de refeição.
 	 */
 	public void setDescription(String description) {
+		if(description == null)
+			return;
+
 		description = description.trim();
 
-		if(!description.equals("")) {
+		if(!description.equals(""))
 			this.description = description;
-		}
 	}
 
 	/**
@@ -138,9 +149,8 @@ public class MealType {
 	 * @param id Identificador do tipo de refeição.
 	 */
 	public void setId(int id) {
-		if(id > 0) {
+		if(id > 0)
 			this.id = id;
-		}
 	}
 
 	/**
@@ -149,10 +159,12 @@ public class MealType {
 	 * @param name Nome do tipo de refeição.
 	 */
 	public void setName(String name) {
+		if(name == null)
+			return;
+
 		name = name.trim();
 
-		if(!name.equals("")) {
+		if(!name.equals(""))
 			this.name = name;
-		}
 	}
 }

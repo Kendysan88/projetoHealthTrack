@@ -9,7 +9,6 @@ import br.com.healthtrack.utils.Utils;
  * @author Afonso de Sousa Costa
  * @version 2.0
  */
-
 public class BloodPreassure extends BodyInformation {
 
 	private static final BloodPreassureStatus[] status = {

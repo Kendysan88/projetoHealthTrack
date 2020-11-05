@@ -2,7 +2,7 @@ package br.com.healthtrack.model.physicalactivity.dao;
 
 import java.util.ArrayList;
 
-import br.com.healthtrack.DataBaseManager;
+import br.com.healthtrack.database.DataBaseManager;
 import br.com.healthtrack.model.physicalactivity.PhysicalActivityBySeries;
 
 import java.sql.Connection;
