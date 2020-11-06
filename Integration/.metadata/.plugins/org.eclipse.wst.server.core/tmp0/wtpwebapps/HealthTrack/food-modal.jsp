@@ -21,6 +21,33 @@
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
+							<label for="">Nome</label> <input type="text" name="" id=""
+								class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="">Descrição</label>
+							<textarea class="form-control" id=""
+								rows="3"></textarea>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="">Tipo de Medida</label> <select name="" id=""
+									class="form-control">
+									<option selected>Escolha...</option>
+									<option>ml</option>
+									<option>g</option>
+								</select>
+							</div>
+							<div class=" form-group col-md-4">
+								<label for="">Quantidade</label> <input type="text" name=""
+									id="" class="form-control">
+							</div>
+							<div class=" form-group col-md-4">
+								<label for="">Calorias</label> <input type="text" name="" id=""
+									class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
 							<label for="">Tipo de Refeição</label> <select name="" id=""
 								class="form-control">
 								<option selected>Escolha...</option>
@@ -31,28 +58,6 @@
 								<option>Jantar</option>
 								<option>Lanche da Noite</option>
 							</select>
-						</div>
-						<div class="form-group">
-							<label for="">Alimento Ingerido</label> <input type="text"
-								name="" id="" class="form-control">
-						</div>
-						<div class="form-row">
-							<div class=" form-group col-md-6">
-								<label for="">Quantidade</label> <input type="text" name=""
-									id="" class="form-control">
-							</div>
-							<div class="form-group col-md-6">
-								<label for="">Unidade</label> <select name="" id=""
-									class="form-control">
-									<option selected>Escolha...</option>
-									<option>ml</option>
-									<option>g</option>
-									<option>calorias</option>
-									<option>...</option>
-									<option>...</option>
-									<option>...</option>
-								</select>
-							</div>
 						</div>
 					</form>
 				</div>

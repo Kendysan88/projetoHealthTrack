@@ -13,8 +13,8 @@
 				<p class="titulo-menu-lateral">
 					<i class="icones-cabecalho fas fa-heartbeat"></i> Health Track
 				</p>
-				<img src="resources/img/avatar.png" class="img-fluid p-1 rounded-circle"
-					alt="Foto do Usuário">
+				<img src="resources/img/avatar.png"
+					class="img-fluid p-1 rounded-circle" alt="Foto do Usuário">
 				<p>Nome do Usuário</p>
 			</div>
 		</div>
@@ -47,8 +47,13 @@
 			</a></li>
 			<li><a href="food.jsp"
 				class="lista-lateral cor-especial list-group-item"> <i
-					class="icones-menu-lateral fas fa-utensils"></i>
+					class="icones-menu-lateral fas fa-drumstick-bite"></i>
 					<p>Gerenciar Alimentos</p>
+			</a></li>
+			<li><a href="meal.jsp"
+				class="lista-lateral cor-especial list-group-item"> <i
+					class="icones-menu-lateral fas fa-utensils"></i>
+					<p>Gerenciar Refeições</p>
 			</a></li>
 			<li><a href="bmi.jsp"
 				class="lista-lateral cor-especial list-group-item"> <i

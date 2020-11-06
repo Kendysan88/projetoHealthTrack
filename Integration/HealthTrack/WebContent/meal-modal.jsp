@@ -12,7 +12,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="modalAlimento">Adicionar Alimentos</h5>
+					<h5 class="modal-title" id="modalAlimento">Adicionar Refeições</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -21,44 +21,28 @@
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<label for="">Nome</label> <input type="text" name="" id=""
+							<label for="">Lista de Alimentos</label> <select name="" id=""
 								class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="">Descrição</label>
-							<textarea class="form-control" id=""
-								rows="3"></textarea>
+								<option selected>Escolha...</option>
+								<option>...............</option>
+								<option>...............</option>
+								<option>...............</option>
+								<option>...............</option>
+								<option>...............</option>
+								<option>...............</option>
+							</select>
 						</div>
 						<div class="form-row">
-							<div class="form-group col-md-4">
-								<label for="">Tipo de Medida</label> <select name="" id=""
-									class="form-control">
-									<option selected>Escolha...</option>
-									<option>ml</option>
-									<option>g</option>
-								</select>
-							</div>
-							<div class=" form-group col-md-4">
+							<div class=" form-group col-md-6">
 								<label for="">Quantidade</label> <input type="text" name=""
 									id="" class="form-control">
 							</div>
-							<div class=" form-group col-md-4">
-								<label for="">Calorias</label> <input type="text" name="" id=""
+							<div class=" form-group col-md-6">
+								<label for="">Total de Calorias</label> <input type="text" name="" id=""
 									class="form-control">
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="">Tipo de Refeição</label> <select name="" id=""
-								class="form-control">
-								<option selected>Escolha...</option>
-								<option>Café da Manhã</option>
-								<option>Lanche da Manhã</option>
-								<option>Almoço</option>
-								<option>Lanche da Tarde</option>
-								<option>Jantar</option>
-								<option>Lanche da Noite</option>
-							</select>
-						</div>
+
 					</form>
 				</div>
 				<div class="modal-footer">

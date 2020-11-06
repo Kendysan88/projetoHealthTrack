@@ -30,7 +30,7 @@
 				</ol>
 				<div class="card mb-4">
 					<div class="card-header cartao-titulo">
-						<i class="icone-cartao fas fa-weight"></i> Lista de Alimentos
+						<i class="icone-cartao fas fa-drumstick-bite"></i> Lista de Alimentos
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -38,26 +38,31 @@
 								cellspacing="0">
 								<thead>
 									<tr>
-										<th>Tipo de Refeição</th>
-										<th>Alimentos Ingeridos</th>
+										<th>Nome</th>
+										<th>Descrição</th>
+										<th>Tipo de Medida</th>
 										<th>Quantidade</th>
+										<th>Calorias</th>
 										<th colspan="2">Ações</th>
 									</tr>
 								</thead>
 								<tfoot>
 									<tr>
-										<th>Tipo de Refeição</th>
-										<th>Alimento Ingerido</th>
+										<th>Nome</th>
+										<th>Descrição</th>
+										<th>Tipo de Medida</th>
 										<th>Quantidade</th>
+										<th>Calorias</th>
 										<th colspan="2">Ações</th>
 									</tr>
 								</tfoot>
 								<tbody>
 									<tr>
-										<td>Lorem ipsum dolor sit amet consectetur adipisicing
-											elit.</td>
+										<td>Lorem ipsum dolor sit amet consectetur</td>
 										<td>Magni provident placeat a eum corrupti mollitia fuga.</td>
-										<td>XXX, X kcal ou g ou ml</td>
+										<td>XXX g ou ml</td>
+										<td>XXX</td>
+										<td>XXX cal</td>
 										<td class="border-right-0">
 											<button type="button" class="btn cor-botao"
 												data-toggle="modal" data-target="#modalAlimento">
@@ -71,10 +76,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>Lorem ipsum dolor sit amet consectetur adipisicing
-											elit.</td>
+										<td>Lorem ipsum dolor sit amet consectetur</td>
 										<td>Magni provident placeat a eum corrupti mollitia fuga.</td>
-										<td>XXX, X kcal ou g ou ml</td>
+										<td>XXX g ou ml</td>
+										<td>XXX</td>
+										<td>XXX cal</td>
 										<td class="border-right-0">
 											<button type="button" class="btn cor-botao"
 												data-toggle="modal" data-target="#modalAlimento">
@@ -88,10 +94,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>Lorem ipsum dolor sit amet consectetur adipisicing
-											elit.</td>
+										<td>Lorem ipsum dolor sit amet consectetur</td>
 										<td>Magni provident placeat a eum corrupti mollitia fuga.</td>
-										<td>XXX, X kcal ou g ou ml</td>
+										<td>XXX g ou ml</td>
+										<td>XXX</td>
+										<td>XXX cal</td>
 										<td class="border-right-0">
 											<button type="button" class="btn cor-botao"
 												data-toggle="modal" data-target="#modalAlimento">
@@ -105,10 +112,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>Lorem ipsum dolor sit amet consectetur adipisicing
-											elit.</td>
+										<td>Lorem ipsum dolor sit amet consectetur</td>
 										<td>Magni provident placeat a eum corrupti mollitia fuga.</td>
-										<td>XXX, X kcal ou g ou ml</td>
+										<td>XXX g ou ml</td>
+										<td>XXX</td>
+										<td>XXX cal</td>
 										<td class="border-right-0">
 											<button type="button" class="btn cor-botao"
 												data-toggle="modal" data-target="#modalAlimento">
@@ -122,10 +130,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>Lorem ipsum dolor sit amet consectetur adipisicing
-											elit.</td>
+										<td>Lorem ipsum dolor sit amet consectetur</td>
 										<td>Magni provident placeat a eum corrupti mollitia fuga.</td>
-										<td>XXX, X kcal ou g ou ml</td>
+										<td>XXX g ou ml</td>
+										<td>XXX</td>
+										<td>XXX cal</td>
 										<td class="border-right-0">
 											<button type="button" class="btn cor-botao"
 												data-toggle="modal" data-target="#modalAlimento">
