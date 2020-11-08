@@ -12,4 +12,8 @@
 	</section>
 	<section name="ExternalProjectImportWizard">
 	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="617"/>
+		<item key="DIALOG_Y_ORIGIN" value="231"/>
+	</section>
 </section>
