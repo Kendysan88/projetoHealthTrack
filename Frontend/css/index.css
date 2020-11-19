@@ -76,6 +76,18 @@ body {
   float: left;
 }
 
+.icone-pressao-arterial-branco{
+  float: left;
+  width: 2rem;
+  height: 2rem;
+}
+
+.icone-pressao-arterial-preto{
+  margin-right: 20px;
+  width: 2rem;
+  height: 2rem;
+}
+
 a.lista-lateral {
   color: #F5F9FB;
   text-decoration: none;
@@ -95,6 +107,8 @@ a.lista-lateral:hover {
 .icone-cartao {
   margin-right: 20px;
   font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
   font-weight: bold;
 }
 

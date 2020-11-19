@@ -21,7 +21,7 @@
                 <div class="text-center">
                     <p class="titulo-menu-lateral"><i class="icones-cabecalho fas fa-heartbeat"></i> Health
                         Track</p>
-                        <img src="img/avatar.png" class="img-fluid p-1 rounded-circle"
+                    <img src="img/avatar.png" class="img-fluid p-1 rounded-circle"
                         alt="Foto do Usuário">
                     <p>Nome do Usuário</p>
                 </div>
@@ -34,31 +34,37 @@
                     </a>
                 </li>
                 <li>
-                    <a href="perfil.html" class="lista-lateral cor-especial list-group-item">
+                    <a href="user.html" class="lista-lateral cor-especial list-group-item">
                         <i class="icones-menu-lateral fas fa-user"></i>
                         <p>Perfil</p>
                     </a>
                 </li>
                 <li>
-                    <a href="peso.html" class="lista-lateral cor-especial list-group-item">
+                    <a href="weight.html" class="lista-lateral cor-especial list-group-item">
                         <i class="icones-menu-lateral fas fa-weight"></i>
                         <p>Gerenciar Peso</p>
                     </a>
                 </li>
                 <li>
-                    <a href="exercicio.html" class="lista-lateral cor-especial list-group-item">
+                    <a href="blood-pressure.html" class="lista-lateral cor-especial list-group-item">
+                        <img src="img/blood-pressure-white.svg" class="icone-pressao-arterial-branco">
+                        <p>Gerenciar Pressão Arterial</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="physical-activity.html" class="lista-lateral cor-especial list-group-item">
                         <i class="icones-menu-lateral fas fa-dumbbell"></i>
                         <p>Gerenciar Atividades</p>
                     </a>
                 </li>
                 <li>
-                    <a href="alimento.html" class="lista-lateral cor-especial list-group-item">
+                    <a href="food.html" class="lista-lateral cor-especial list-group-item">
                         <i class="icones-menu-lateral fas fa-utensils"></i>
                         <p>Gerenciar Alimentos</p>
                     </a>
                 </li>
                 <li>
-                    <a href="imc.html" class="lista-lateral cor-especial list-group-item">
+                    <a href="bmi.html" class="lista-lateral cor-especial list-group-item">
                         <i class="icones-menu-lateral fas fa-calculator"></i>
                         <p>Calcular IMC</p>
                     </a>
@@ -89,9 +95,6 @@
                                     <i class="icones-cabecalho fas fa-user"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Configurações</a>
-                                    <a class="dropdown-item" href="#">Atividades</a>
-                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="login.html">Deslogar</a>
                                 </div>
                             </li>
@@ -110,47 +113,43 @@
                 </ol>
                 <div class="card mb-4">
                     <div class="card-header cartao-titulo"><i class="icone-cartao fas fa-dumbbell"></i> Lista de
-                        Atividades</div>
+                        Atividades Físicas</div>
                     <div class="card-body">
                         <div class="table-responsive text-center">
                             <table class="table table-bordered" id="" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Título</th>
+                                        <th>Atividade</th>
                                         <th>Tipo</th>
                                         <th>Data</th>
                                         <th>Tempo</th>
-                                        <th>Anotações</th>
                                         <th>Calorias</th>
-                                        <th>Passos</th>
-                                        <th>Quilômetros</th>
+                                        <th>Distância</th>
+                                        <th>Séries, Repetições e Peso Levantado</th>
                                         <th colspan="2">Ações</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Título</th>
+                                        <th>Atividade</th>
                                         <th>Tipo</th>
                                         <th>Data</th>
                                         <th>Tempo</th>
-                                        <th>Anotações</th>
                                         <th>Calorias</th>
-                                        <th>Passos</th>
-                                        <th>Quilômetros</th>
+                                        <th>Distância</th>
+                                        <th>Séries, Repetições e Peso Levantado</th>
                                         <th colspan="2">Ações</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     <tr>
-                                        <td>Lorem ipsum dolor sit amet</td>
+                                        <td>Lorem ipsum dolor</td>
                                         <td>Corporis repellendus.</td>
                                         <td>XX / XX / XXXX</td>
                                         <td>XXX min</td>
-                                        <td>Architecto quis tempora dolore at neque maxime in, minima explicabo officia.
-                                        </td>
                                         <td>XXX kcal</td>
-                                        <td>XXXX</td>
-                                        <td>XX, X km</td>
+                                        <td>XXX km</td>
+                                        <td>XX S, XX Rep, XX kg </td>
                                         <td class="border-right-0">
                                             <button type="button" class="btn m-2 cor-botao" data-toggle="modal"
                                                 data-target="#modalExercicio"><i class="fas fa-edit"></i></button>
@@ -161,15 +160,13 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Lorem ipsum dolor sit amet</td>
+                                        <td>Lorem ipsum dolor</td>
                                         <td>Corporis repellendus.</td>
                                         <td>XX / XX / XXXX</td>
                                         <td>XXX min</td>
-                                        <td>Architecto quis tempora dolore at neque maxime in, minima explicabo officia.
-                                        </td>
                                         <td>XXX kcal</td>
-                                        <td>XXXX</td>
-                                        <td>XX, X km</td>
+                                        <td>XXX km</td>
+                                        <td>XX S, XX Rep, XX kg </td>
                                         <td class="border-right-0">
                                             <button type="button" class="btn m-2 cor-botao" data-toggle="modal"
                                                 data-target="#modalExercicio"><i class="fas fa-edit"></i></button>
@@ -180,15 +177,13 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Lorem ipsum dolor sit amet</td>
+                                        <td>Lorem ipsum dolor</td>
                                         <td>Corporis repellendus.</td>
                                         <td>XX / XX / XXXX</td>
                                         <td>XXX min</td>
-                                        <td>Architecto quis tempora dolore at neque maxime in, minima explicabo officia.
-                                        </td>
                                         <td>XXX kcal</td>
-                                        <td>XXXX</td>
-                                        <td>XX, X km</td>
+                                        <td>XXX km</td>
+                                        <td>XX S, XX Rep, XX kg </td>
                                         <td class="border-right-0">
                                             <button type="button" class="btn m-2 cor-botao" data-toggle="modal"
                                                 data-target="#modalExercicio"><i class="fas fa-edit"></i></button>
@@ -199,15 +194,13 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Lorem ipsum dolor sit amet</td>
+                                        <td>Lorem ipsum dolor</td>
                                         <td>Corporis repellendus.</td>
                                         <td>XX / XX / XXXX</td>
                                         <td>XXX min</td>
-                                        <td>Architecto quis tempora dolore at neque maxime in, minima explicabo officia.
-                                        </td>
                                         <td>XXX kcal</td>
-                                        <td>XXXX</td>
-                                        <td>XX, X km</td>
+                                        <td>XXX km</td>
+                                        <td>XX S, XX Rep, XX kg </td>
                                         <td class="border-right-0">
                                             <button type="button" class="btn m-2 cor-botao" data-toggle="modal"
                                                 data-target="#modalExercicio"><i class="fas fa-edit"></i></button>
@@ -218,15 +211,13 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Lorem ipsum dolor sit amet</td>
+                                        <td>Lorem ipsum dolor</td>
                                         <td>Corporis repellendus.</td>
                                         <td>XX / XX / XXXX</td>
                                         <td>XXX min</td>
-                                        <td>Architecto quis tempora dolore at neque maxime in, minima explicabo officia.
-                                        </td>
                                         <td>XXX kcal</td>
-                                        <td>XXXX</td>
-                                        <td>XX, X km</td>
+                                        <td>XXX km</td>
+                                        <td>XX S, XX Rep, XX kg </td>
                                         <td class="border-right-0">
                                             <button type="button" class="btn m-2 cor-botao" data-toggle="modal"
                                                 data-target="#modalExercicio"><i class="fas fa-edit"></i></button>
@@ -241,10 +232,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fim -->
             </div>
-            <!-- Fim -->
+            <!-- Fim Conteúdo Principal -->
         </section>
+        <!-- Fim Conteúdo da Página -->
     </main>
     <!-- Rodapé -->
     <footer id="rodape bottom-fixed">
@@ -273,12 +264,12 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="">Título da Atividade</label>
-                            <input type="text" class="form-control">
+                            <label for="">Atividade Físca</label>
+                            <input type="text" name="" id="" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="">Tipo de Atividade</label>
-                            <select class="form-control">
+                            <select name="" id="" class="form-control">
                                 <option selected>Escolha...</option>
                                 <option>...</option>
                                 <option>...</option>
@@ -287,19 +278,19 @@
                         </div>
                         <div class="form-group">
                             <label for="">Data</label>
-                            <input type="date" class="form-control">
+                            <input type="date" name="" id="" class="form-control">
                         </div>
                         <div class="form-row">
                             <div class=" form-group col-md-6">
                                 <label for="">Início</label>
-                                <input type="time" class="form-control">
+                                <input type="time" name="" id="" class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="">Fim</label>
-                                <input type="time" class="form-control">
+                                <input type="time" name="" id="" class="form-control">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="">Esforço</label>
                             <div class="row">
                                 <div class="col-md-4">
@@ -312,25 +303,31 @@
                                     <p class="text-right m-0">Alto</p>
                                 </div>
                             </div>
-                            <input type="range" class="custom-range" min="0" max="5" step="0.5" id="">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Anotações</label>
-                            <input type="text" class="form-control">
-                        </div>
+                            <input type="range" name="" id="" class="custom-range" min="0" max="5" step="0.5" id="">
+                        </div> -->
                         <div class="form-row">
                             <div class=" form-group col-md-6">
                                 <label for="">Calorias</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="" id="" class="form-control">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="">Passos</label>
-                                <input type="text" class="form-control">
+                                <label for="">Distância</label>
+                                <input type="text" name="" id="" class="form-control">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="">Quilômetros</label>
-                            <input type="text" class="form-control">
+                        <div class="form-row">
+                            <div class=" form-group col-md-4">
+                                <label for="">Séries</label>
+                                <input type="text" name="" id="" class="form-control">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="">Repetições</label>
+                                <input type="text" name="" id="" class="form-control">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="">Peso Levantado</label>
+                                <input type="text" name="" id="" class="form-control">
+                            </div>
                         </div>
                     </form>
                 </div>
