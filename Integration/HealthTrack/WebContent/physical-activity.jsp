@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,12 @@
 			<!-- Conteúdo Principal -->
 			<div class="container-fluid">
 				<h1 class="mt-4">Gerenciar Atividades</h1>
+					<c:if test="${not empty msg }">
+						<div class="alert alert-success">${msg}</div>
+					</c:if>
+					<c:if test="${not empty err }">
+						<div class="alert alert-danger">${err}</div>
+					</c:if>
 				<ol class="breadcrumb mb-4">
 					<li class="breadcrumb-item"><a href="home.jsp">Dashboard</a></li>
 					<li class="breadcrumb-item active">Gerenciar Atividades</li>
@@ -35,8 +42,7 @@
 					</div>
 					<div class="card-body">
 						<div class="table-responsive text-center">
-							<table class="table table-bordered" id="" width="100%"
-								cellspacing="0">
+							<table class="table table-bordered" width="100%"cellspacing="0">
 								<thead>
 									<tr>
 										<th>Atividade</th>
@@ -49,119 +55,29 @@
 										<th colspan="2">Ações</th>
 									</tr>
 								</thead>
-								<tfoot>
-									<tr>
-										<th>Atividade</th>
-										<th>Tipo</th>
-										<th>Data</th>
-										<th>Tempo</th>
-										<th>Calorias</th>
-										<th>Distância</th>
-										<th>Séries, Repetições e Peso Levantado</th>
-										<th colspan="2">Ações</th>
-									</tr>
-								</tfoot>
 								<tbody>
-									<tr>
-										<td>Lorem ipsum dolor</td>
-										<td>Corporis repellendus.</td>
-										<td>XX / XX / XXXX</td>
-										<td>XXX min</td>
-										<td>XXX kcal</td>
-										<td>XXX km</td>
-										<td>XX S, XX Rep, XX kg</td>
-										<td class="border-right-0">
-											<button type="button" class="btn m-2 cor-botao"
-												data-toggle="modal" data-target="#modalExercicio">
-												<i class="fas fa-edit"></i>
-											</button>
-										</td>
-										<td class="border-left-0">
-											<button type="button" class="btn m-2 btn-danger">
-												<i class="fas fa-trash"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Lorem ipsum dolor</td>
-										<td>Corporis repellendus.</td>
-										<td>XX / XX / XXXX</td>
-										<td>XXX min</td>
-										<td>XXX kcal</td>
-										<td>XXX km</td>
-										<td>XX S, XX Rep, XX kg</td>
-										<td class="border-right-0">
-											<button type="button" class="btn m-2 cor-botao"
-												data-toggle="modal" data-target="#modalExercicio">
-												<i class="fas fa-edit"></i>
-											</button>
-										</td>
-										<td class="border-left-0">
-											<button type="button" class="btn m-2 btn-danger">
-												<i class="fas fa-trash"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Lorem ipsum dolor</td>
-										<td>Corporis repellendus.</td>
-										<td>XX / XX / XXXX</td>
-										<td>XXX min</td>
-										<td>XXX kcal</td>
-										<td>XXX km</td>
-										<td>XX S, XX Rep, XX kg</td>
-										<td class="border-right-0">
-											<button type="button" class="btn m-2 cor-botao"
-												data-toggle="modal" data-target="#modalExercicio">
-												<i class="fas fa-edit"></i>
-											</button>
-										</td>
-										<td class="border-left-0">
-											<button type="button" class="btn m-2 btn-danger">
-												<i class="fas fa-trash"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Lorem ipsum dolor</td>
-										<td>Corporis repellendus.</td>
-										<td>XX / XX / XXXX</td>
-										<td>XXX min</td>
-										<td>XXX kcal</td>
-										<td>XXX km</td>
-										<td>XX S, XX Rep, XX kg</td>
-										<td class="border-right-0">
-											<button type="button" class="btn m-2 cor-botao"
-												data-toggle="modal" data-target="#modalExercicio">
-												<i class="fas fa-edit"></i>
-											</button>
-										</td>
-										<td class="border-left-0">
-											<button type="button" class="btn m-2 btn-danger">
-												<i class="fas fa-trash"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Lorem ipsum dolor</td>
-										<td>Corporis repellendus.</td>
-										<td>XX / XX / XXXX</td>
-										<td>XXX min</td>
-										<td>XXX kcal</td>
-										<td>XXX km</td>
-										<td>XX S, XX Rep, XX kg</td>
-										<td class="border-right-0">
-											<button type="button" class="btn m-2 cor-botao"
-												data-toggle="modal" data-target="#modalExercicio">
-												<i class="fas fa-edit"></i>
-											</button>
-										</td>
-										<td class="border-left-0">
-											<button type="button" class="btn m-2 btn-danger">
-												<i class="fas fa-trash"></i>
-											</button>
-										</td>
-									</tr>
+				                  	<c:forEach items="${physicalActivity}" var="pa">
+					                  	  <tr>
+						                        <td>${ pa.getActivityName() }</td>
+						                        <td>${ pa.getActivityType() }</td>
+						                        <td>${ pa.getDatePretty() }</td>
+						                        <td>${ pa.getDuration() }</td>
+						                        <td>${ pa.getCaloriesPretty() }</td>
+	   					                        <td>${ pa.getDistancePretty() }</td>
+						                        <td>${pa.getSeries()}, ${pa.getRepetitions()}, ${pa.getLiftedWeightPretty()}</td>
+	             								<td class="border-right-0">
+													<button type="button" class="btn m-2 cor-botao"
+														data-toggle="modal" data-target="#modalExercicio">
+														<i class="fas fa-edit"></i>
+													</button>
+												</td>
+												<td class="border-left-0">
+													<button type="button" class="btn m-2 btn-danger">
+														<i class="fas fa-trash"></i>
+													</button>
+												</td>
+					                      </tr>
+				                  	</c:forEach>
 								</tbody>
 							</table>
 						</div>

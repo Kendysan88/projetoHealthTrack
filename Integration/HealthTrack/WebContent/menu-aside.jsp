@@ -19,16 +19,6 @@
 			</div>
 		</div>
 		<ul class="list-group list-group-flush">
-			<li><a href="home.jsp"
-				class="lista-lateral cor-especial list-group-item"> <i
-					class="icones-menu-lateral fas fa-home"></i>
-					<p>Dashboard</p>
-			</a></li>
-			<li><a href="user.jsp"
-				class="lista-lateral cor-especial list-group-item"> <i
-					class="icones-menu-lateral fas fa-user"></i>
-					<p>Perfil</p>
-			</a></li>
 			<li><a href="weight.jsp"
 				class="lista-lateral cor-especial list-group-item"> <i
 					class="icones-menu-lateral fas fa-weight"></i>

@@ -43,19 +43,15 @@
 						<form>
 							<div class="form-row">
 								<div class="form-group col-md-4">
-									<label for="">Altura (ex.: 1,70)</label> <input type="number"
-										class="form-control" name="" id="inputEmail4">
+									<label for="">Altura (ex.: 1.70)</label> 
+									<input type="text" class="form-control" name="" id="height">
 								</div>
 								<div class="form-group col-md-4">
-									<label for="">Peso (ex.: 69,2)</label> <input type="number"
-										class="form-control" name="" id="inputPassword4">
-								</div>
-								<div class="form-group col-md-4">
-									<label for="">Seu IMC: </label> <input type="text"
-										class="form-control" name="" id="inputPassword4">
+									<label for="">Peso (ex.: 69.2)</label> 
+									<input type="text" class="form-control" name="" id="weight">
 								</div>
 							</div>
-							<button type="submit" class="btn cor-botao">Calcular</button>
+							<button type="button" class="btn cor-botao" data-toggle="modal" data-target="#bmiModal" onclick="bmi()">Calcular</button>
 							<button type="reset" class="btn btn-secondary">Limpar</button>
 						</form>
 
@@ -109,7 +105,33 @@
 		</section>
 		<!-- Fim Contéudo da Página -->
 	</main>
+	
+	<!-- Modal -->
+		<div class="modal fade" id="bmiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header cor-botao">
+		        <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body text-center">
+		        		<h1 id="result"></h1>
+		      </div>
 
+		    </div>
+		  </div>
+		</div>
+	<!-- Fim Modal -->	
 	<%@ include file="footer.jsp"%>
+	<script>
+		function bmi () {
+			var height = Number(document.getElementById("height").value);
+			var weight = Number(document.getElementById("weight").value);
+			var result = weight / (height * height);
+			document.getElementById("result").innerHTML = "Seu IMC é : " + result.toFixed(2);
+			}	
+	</script>
 </body>
 </html>
